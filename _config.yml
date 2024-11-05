@@ -20,10 +20,6 @@ author: Mohaddeseh Mozaffari
 
 navbar-links:
   About Me: "aboutme"
-  Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://deanattali.com"
 
 ################
 # --- Logo --- #
@@ -51,26 +47,27 @@ round-avatar: true
 social-network-links:
   email: "mohaddeseh.mozaffarii@gmail.com"
   github: Mohimozaffari
+  kaggle: mohaddesehmozaffari
+
 #  medium: yourname
 #  reddit: yourname or r/yoursubreddit
   linkedin: Mohimozaffari
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78
-  instagram: Mohimozaffari
 #  spotify: yourname
 #  telephone: +14159998888
 #  steam: deanat78
 #  twitch: yourname
 #  yelp: yourname
   telegram: mohimozaffari
+  instagram: Mohimozaffari
 #  calendly: yourname
 #  mastodon: instance.url/@username
 #  bluesky: yourname
 #  ORCID: your ORCID ID
 #  google-scholar: your google scholar
 #  discord: "invite_code" or "users/userid" or "invite/invite_code"
-  kaggle: mohaddesehmozaffari
 #  hackerrank: yourname
 #  gitlab: yourname
 #  itchio: yourname
@@ -124,17 +121,18 @@ navbar-var-length: false
 
 # Personalize the colours in your website. Colour values can be any valid CSS colour
 
-page-col: "#FFFFFF"
-text-col: "#404040"
-link-col: "#008AFF"
-hover-col: "#0085A1"
-navbar-col: "#EAEAEA"
-navbar-text-col: "#404040"
-navbar-border-col: "#DDDDDD"
-footer-col: "#EAEAEA"
-footer-text-col: "#777777"
-footer-link-col: "#404040"
-footer-hover-col: "#0085A1"
+page-col: "#1A1A1A"      # Dark background
+text-col: "#EAEAEA"      # Light gray text
+link-col: "#8A2BE2"      # Purple links
+hover-col: "#BA55D3"     # Light purple hover links
+navbar-col: "#2E2E2E"    # Darker navbar background
+navbar-text-col: "#EAEAEA" # Light gray navbar text
+navbar-border-col: "#4B4B4B" # Dark gray navbar border
+footer-col: "#2E2E2E"    # Darker footer background
+footer-text-col: "#BEBEBE" # Medium gray footer text
+footer-link-col: "#8A2BE2" # Purple footer links
+footer-hover-col: "#BA55D3" # Light purple footer hover links
+
 
 # Alternatively, the navbar, footer, and page background can be set to an image
 # instead of colour
