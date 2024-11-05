@@ -1,16 +1,10 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle:
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+I'm Mohaddeseh Mozaffari, a researcher in Complex Systems and Biological Physics with a strong interest in Cognitive Science, Neuroscience, and Machine Learning. Currently working on groundbreaking research in brain imaging and Topological Data Analysis (TDA), I’m deeply committed to solving complex problems that bridge science and technology."
 
-- I rock a great mustache
-- I'm extremely loyal to my family
-
-What else do you need?
-
-### My story
-
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+Academic Background: Master's degree in Statistical Physics and Complex Systems with a focus on computational and stochastic processes.
+Research Interests: Biological Physics, Cognitive Science, Network Science, Neuroscience, Complex Systems, Topological Data Analysis, Machine Learning, Computer Vision.

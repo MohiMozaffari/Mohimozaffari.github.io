@@ -142,7 +142,7 @@ footer-hover-col: "#BA55D3" # Light purple footer hover links
 #page-img: "/assets/img/bgimage.png"
 
 # Suggest a colour for mobile browsers to use as the browser's theme. This is only supported by a few mobile browsers.
-mobile-theme-col: "#0085A1"
+mobile-theme-col: "#BA55D3"
 
 # For any extra visual customization, you can include additional CSS files in every page on your site. List any custom CSS files here
 #site-css:
