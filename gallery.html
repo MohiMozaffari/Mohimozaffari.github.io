@@ -70,11 +70,11 @@ subtitle: A collection of my photos
             galleryItem.classList.add('gallery-item');
 
             const link = document.createElement('a');
-            link.href = `assets/img/gallery_imgs/${filename}`;
+            link.href = `{{ 'assets/img/gallery_imgs/${filename}' | relative_url }}`;
             link.classList.add('gallery-link');
 
             const img = document.createElement('img');
-            img.src = `assets/img/gallery_imgs/${filename}`;
+            img.src = `{{ 'assets/img/gallery_imgs/${filename}' | relative_url }}`;
             img.alt = `Gallery Image ${filename}`;
             img.loading = 'lazy';
             img.classList.add('gallery-image');
