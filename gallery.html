@@ -1,0 +1,101 @@
+---
+layout: page
+title: Gallery
+subtitle: A collection of my photos
+---
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <style>
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Three images per row */
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-image:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container" id="gallery"></div>
+
+    <script>
+        // List of image filenames
+        const imageFilenames = [
+            "20250323_095617.jpg", 
+            "20250319_094135.jpg", "20250316_100816.jpg", "20250312_173846.jpg", "20250202_192934.jpg", "20250119_094859.jpg",
+            "20241230_094419.jpg", "20241223_074446.jpg", "20241212_130906.jpg", "20241212_130858.jpg", "20241126_091444.jpg",
+            "20241126_085836.jpg", "20241114_095913.jpg", "20241114_095613.jpg", "20241030_191731.jpg", "20241030_101402.jpg",
+            "20241017_183003.jpg", "20240919_200118.jpg", "20240911_073113.jpg", "20240910_192826.jpg", "20240910_164716.jpg",
+            "20240910_164619.jpg", "20240910_164418.jpg", "20240909_200131.jpg", "20240824_170021.jpg", "20240524_182243.jpg",
+            "20240523_201125.jpg", "20240523_193650.jpg", "20240523_193149.jpg", "20240516_084034.jpg", "20240509_105053.jpg",
+            "20240509_105031.jpg", "20240426_111029.jpg", "20240426_110625.jpg", "20240426_110356.jpg", "20240303_181157.jpg",
+            "20240229_101556.jpg", "20240229_101525.jpg", "20240204_104441.jpg", "20240204_104412.jpg", "20240128_202857.jpg",
+            "20240122_175725.jpg", "20240122_165611.jpg", "20240115_095632.jpg", "20240110_094420.jpg", "20240110_094417.jpg",
+            "20231225_172659.jpg", "20231225_095303.jpg", "20231213_094553.jpg", "20231129_094834.jpg", "20231128_072949.jpg",
+            "20231128_072150.jpg", "20231126_102022.jpg", "20231119_164551.jpg", "20231119_164433.jpg", "20231028_233743.jpg",
+            "20230930_194920.jpg", "20230927_223500.jpg", "20230927_103005.jpg", "20230927_102913.jpg"
+        ];
+
+        const galleryContainer = document.getElementById('gallery');
+
+        // Dynamically create gallery items
+        imageFilenames.forEach(filename => {
+            const galleryItem = document.createElement('div');
+            galleryItem.classList.add('gallery-item');
+
+            const link = document.createElement('a');
+            link.href = `assets/img/gallery_imgs/${filename}`;
+            link.classList.add('gallery-link');
+
+            const img = document.createElement('img');
+            img.src = `assets/img/gallery_imgs/${filename}`;
+            img.alt = `Gallery Image ${filename}`;
+            img.loading = 'lazy';
+            img.classList.add('gallery-image');
+
+            const caption = document.createElement('div');
+            caption.classList.add('gallery-caption');
+            const date = filename.split('_')[0]; // Extract date from filename
+            const year = date.substring(0, 4); // Extract year
+            const month = date.substring(4, 6); // Extract month
+            const monthNames = [
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+            ];
+            const monthName = monthNames[parseInt(month, 10) - 1]; // Convert month to name
+            caption.textContent = `${year} ${monthName}`;
+
+            link.appendChild(img);
+            galleryItem.appendChild(link);
+            galleryItem.appendChild(caption);
+            galleryContainer.appendChild(galleryItem);
+        });
+    </script>
+</body>
+</html>
