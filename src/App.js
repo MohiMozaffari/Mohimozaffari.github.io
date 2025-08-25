@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ScrollToTop from "./components/ScrollToTop";
 import { motion } from 'framer-motion';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -17,6 +18,7 @@ function App() {
     <div className="App relative">
       <ParticleBackground />
       <BrowserRouter>
+      <ScrollToTop behavior="smooth" />
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
