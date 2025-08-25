@@ -7,7 +7,7 @@ import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
 import Teaching from './pages/Teaching';
 import Contact from './pages/Contact';
-import Gallery from './pages/Gallery';
+// import Gallery from './pages/Gallery';
 import Layout from './components/Layout';
 import ParticleBackground from './components/ParticleBackground';
 import './App.css';
@@ -25,7 +25,7 @@ function App() {
             <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/teaching" element={<Teaching />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/gallery" element={<Gallery />} />
+            {/* <Route path="/gallery" element={<Gallery />} /> */}
           </Routes>
         </Layout>
       </BrowserRouter>

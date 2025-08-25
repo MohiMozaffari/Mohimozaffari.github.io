@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
     { name: 'About', path: '/about', icon: Users },
     { name: 'Projects', path: '/projects', icon: Code },
     { name: 'Teaching', path: '/teaching', icon: Users },
-    { name: 'Gallery', path: '/gallery', icon: Image },
+    // { name: 'Gallery', path: '/gallery', icon: Image },
     { name: 'Contact', path: '/contact', icon: Mail },
   ];
 

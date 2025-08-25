@@ -22,34 +22,30 @@ const About = () => {
     }
   };
 
-  const skills = [
-    { name: 'Python', level: 95 },
-    { name: 'Scientific Computing', level: 90 },
-    { name: 'Complex Systems', level: 85 },
-    { name: 'Machine Learning', level: 80 },
-    { name: 'Game Development', level: 75 },
-    { name: 'Data Analysis', level: 88 }
-  ];
+const skills = [
+  { name: 'Python', level: 95 },
+  { name: 'Complex Systems & Network Science', level: 88 },
+  { name: 'Machine Learning & AI', level: 85 },
+  { name: 'Data Analysis & Visualization', level: 88 },
+  { name: 'Neuroscience Applications', level: 80 },
+  { name: 'Game Development (Pygame)', level: 70 },
+  { name: 'Tkinter (Python GUI)', level: 60 },
+  { name: 'Teaching & Mentoring', level: 92 },
+];
 
   const experiences = [
-    {
-      title: 'Research Scientist',
-      organization: 'Complex Systems Lab',
-      period: '2020 - Present',
-      description: 'Leading research in biological physics and complex adaptive systems, focusing on computational approaches to understanding emergence in living systems.'
-    },
-    {
-      title: 'Python Instructor',
-      organization: 'Independent Teaching',
-      period: '2019 - Present',
-      description: 'Teaching Python programming, scientific computing, and AI concepts to students and professionals through hands-on projects and real-world applications.'
-    },
-    {
-      title: 'Game Development Educator',
-      organization: 'Code Academy',
-      period: '2021 - Present',
-      description: 'Developing and delivering game development curricula, helping students learn programming through interactive and engaging game projects.'
-    }
+  {
+    title: 'Researcher',
+    organization: 'CCNet (Complexity & Complex Networks Lab)',
+    period: '2022 - Present',
+    description: 'Collaborated on projects in complex systems, network science, and topological data analysis with applications in neuroscience and machine learning.'
+  },
+  {
+    title: 'Python & AI Instructor',
+    organization: 'Independent / Online',
+    period: '2022 - Present',
+    description: 'Teaching Python, scientific computing, and AI through hands-on projects. Designed courses that include game development, interactive simulations, and real-world applications.'
+  },
   ];
 
   return (
@@ -75,35 +71,26 @@ const About = () => {
           <motion.div variants={itemVariants} className="mb-20">
             <div className="bg-purple-900/30 p-8 md:p-12 rounded-2xl border border-purple-700/50">
               <h2 className="text-3xl font-bold text-white mb-8">My Journey</h2>
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <p className="text-lg text-purple-200 leading-relaxed mb-6">
-                    My fascination with complex systems began during my undergraduate studies in physics, 
-                    where I was captivated by how simple rules could give rise to incredibly sophisticated 
-                    behaviors. This led me to pursue research in biological physics, where I explore how 
-                    life itself emerges from the interactions of countless molecular components.
-                  </p>
-                  
-                  <p className="text-lg text-purple-200 leading-relaxed">
-                    What drives me is the intersection of theory and practice. While I love diving deep 
-                    into mathematical models and computational simulations, I'm equally passionate about 
-                    making these concepts accessible to others through teaching and educational technology.
-                  </p>
-                </div>
-                
-                <div>
-                  <p className="text-lg text-purple-200 leading-relaxed mb-6">
-                    My approach to education is hands-on and project-based. I believe that students learn 
-                    best when they can see immediate applications of what they're studying. That's why I 
-                    incorporate game development and interactive simulations into my Python and AI courses.
-                  </p>
-                  
-                  <p className="text-lg text-purple-200 leading-relaxed">
-                    When I'm not researching or teaching, you'll find me experimenting with new algorithms, 
-                    contributing to open-source projects, or exploring the latest developments in artificial 
-                    intelligence and their applications to biological systems.
-                  </p>
-                </div>
+              <div className="grid md:grid-cols-1 gap-8">
+              <div>
+                <p className="text-lg text-purple-200 leading-relaxed mb-6">
+                  I started in physics, curious about how simple rules create complex patterns. That curiosity 
+                  grew into my master’s research on brain networks and autism, where I used tools like persistent 
+                  homology to study the hidden structure of the brain.
+                </p>
+
+                <p className="text-lg text-purple-200 leading-relaxed mb-6">
+                  I love when theory meets practice. Whether it’s running simulations, building models, or 
+                  teaching Python and AI, I make learning hands-on with games, projects, and real-world 
+                  applications. 
+                </p>
+
+                <p className="text-lg text-purple-200 leading-relaxed">
+                  Outside of research and teaching, I’m usually trying out new algorithms, contributing to 
+                  open-source, or just recharging with yoga, TRX workouts, and a little purple aesthetic ✨. 
+                </p>
+              </div>
+
               </div>
             </div>
           </motion.div>
@@ -146,7 +133,7 @@ const About = () => {
                   variants={itemVariants}
                   className="bg-purple-900/30 p-8 rounded-xl border border-purple-700/50"
                 >
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                  <div className="flex flex-col md:flex-row md:justify-between mb-4 text-left">
                     <div>
                       <h3 className="text-xl font-bold text-white">{exp.title}</h3>
                       <p className="text-purple-300">{exp.organization}</p>
@@ -158,6 +145,45 @@ const About = () => {
               ))}
             </div>
           </motion.div>
+
+                    {/* Education */}
+          <motion.div variants={itemVariants} className="mb-20">
+            <h2 className="text-3xl font-bold text-white text-center mb-12">Education</h2>
+            <div className="space-y-8">
+              <motion.div
+                variants={itemVariants}
+                className="bg-purple-900/30 p-8 rounded-xl border border-purple-700/50"
+              >
+                <div className="flex flex-col md:flex-row md:justify-between mb-4 text-left">
+                  <div>
+                    <h3 className="text-xl font-bold text-white">M.Sc. Complex Systems Physics</h3>
+                    <p className="text-purple-300">Shahid Beheshti University</p>
+                  </div>
+                  <span className="text-purple-400 font-semibold mt-2 md:mt-0">2022 – 2024</span>
+                </div>
+                <p className="text-purple-200 leading-relaxed">
+                  Focused on topological data analysis, brain networks, and autism research. Ranked 2nd in the program.
+                </p>
+              </motion.div>
+
+              <motion.div
+                variants={itemVariants}
+                className="bg-purple-900/30 p-8 rounded-xl border border-purple-700/50"
+              >
+                <div className="flex flex-col md:flex-row md:justify-between mb-4 text-left">
+                  <div>
+                    <h3 className="text-xl font-bold text-white">B.Sc. Physics</h3>
+                    <p className="text-purple-300">Shahid Beheshti University</p>
+                  </div>
+                  <span className="text-purple-400 font-semibold mt-2 md:mt-0">2018 – 2022</span>
+                </div>
+                <p className="text-purple-200 leading-relaxed">
+                  Studied fundamental and applied physics with a focus on complex systems. Ranked 1st in the program.
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
+
 
           {/* Values & Approach */}
           <motion.div variants={itemVariants}>
