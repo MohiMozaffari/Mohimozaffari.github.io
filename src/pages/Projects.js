@@ -80,11 +80,11 @@ export default function Projects() {
             return (
               <div
                 key={p.id}
-                className="bg-purple-900/30 rounded-xl border border-purple-700/50 overflow-hidden hover:border-purple-600 transition-all duration-300 hover:transform hover:scale-105"
+                className="bg-purple-900/30 rounded-xl border border-purple-700/50 overflow-hidden hover:border-purple-600 transition-all duration-300 hover:transform hover:scale-105 flex flex-col"
               >
-                <div className="p-6 text-left">
+                <div className="p-6 flex flex-col h-full">
                   {/* Title row: name wraps, pill stays on the right */}
-                  <div className="flex items-start justify-between gap-3 mb-4">
+                  <div className="flex items-start justify-between mb-4">
                     <h3
                       className="text-xl font-bold text-white leading-snug break-words whitespace-normal pr-2"
                       title={p.name}
@@ -106,7 +106,7 @@ export default function Projects() {
                   </div>
 
                   {/* Description wraps; keep it from getting too tall */}
-                  <p className="text-purple-200 mb-6 leading-relaxed text-sm break-words">
+                  <p className="text-purple-200 text-sm leading-relaxed mb-6 flex-grow">
                     {p.description}
                   </p>
 
