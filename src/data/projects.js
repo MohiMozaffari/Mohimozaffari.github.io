@@ -16,7 +16,7 @@ export const projects = [
     name: "Computational-Physics",
     description: "Comprehensive collection of computational physics algorithms and simulations implemented in Python and Jupyter notebooks, including numerical integration methods, wave equation solvers, quantum mechanics simulations, and Monte Carlo methods.",
     url: "https://github.com/MohiMozaffari/Computational-Physics",
-    language: "Jupyter Notebook",
+    languages: ["Python", "Jupyter Notebook"],
     stars: 6,
     forks: 0,
     created_at: "2023-01-15T00:00:00Z",
@@ -39,7 +39,7 @@ export const projects = [
     name: "Coevolutionary-Simulation",
     description: "Sophisticated simulation framework for studying coevolutionary dynamics in complex adaptive systems, featuring multi-species evolution modeling, adaptive fitness landscapes, and network topology effects.",
     url: "https://github.com/MohiMozaffari/Coevolutionary-Simulation",
-    language: "Python",
+    languages: ["Python", "C++"],
     stars: 0,
     forks: 0,
 
@@ -63,7 +63,7 @@ export const projects = [
     name: "Game-of-Life-Simulation",
     description: "Enhanced implementation of Conway's Game of Life with custom rule sets, pattern library, interactive editing interface, and statistical analysis tools for educational and research purposes.",
     url: "https://github.com/MohiMozaffari/Game-of-Life-Simulation",
-    language: "Python",
+    languages: ["Python"],
     stars: 0,
     forks: 0,
 
@@ -87,7 +87,7 @@ export const projects = [
     name: "Sandpile-Simulation",
     description: "Implementation of the Abelian sandpile model demonstrating self-organized criticality, featuring avalanche analysis, critical exponent measurement, and 2D/3D visualizations.",
     url: "https://github.com/MohiMozaffari/Sandpile-Simulation",
-    language: "Python",
+    languages: ["Python"],
     stars: 0,
     forks: 0,
         created_at: "2024-12-17T00:00:00Z",
@@ -110,7 +110,7 @@ export const projects = [
     name: "Analyzing-Oscar-Academy-Awards-Data",
     description: "Comprehensive data analysis of Oscar Academy Awards spanning multiple decades, featuring predictive models, demographic insights, interactive visualizations, and statistical correlation analysis.",
     url: "https://github.com/MohiMozaffari/Analyzing-Oscar-Academy-Awards-Data",
-    language: "Jupyter Notebook",
+    languages: ["Python", "Jupyter Notebook"],
     stars: 0,
     forks: 0,
 
@@ -134,7 +134,7 @@ export const projects = [
     name: "SBU_Thesis_Template",
     description: "Professional LaTeX template for Shahid Beheshti University thesis formatting, ensuring compliance with university standards and supporting Persian/English languages with automated bibliography management.",
     url: "https://github.com/MohiMozaffari/SBU_Thesis_Template",
-    language: "TeX",
+    languages: ["TeX"],
     stars: 0,
     forks: 0,
 
@@ -147,7 +147,7 @@ export const projects = [
         "Automated bibliography",
         "Chapter and section styling",
         "Math notation support",
-        "Persian/English dual language"
+        "Persian/English dual languages"
       ],
       technologies: ["LaTeX", "BibTeX"],
       applications: "Helps students prepare standardized theses quickly."
@@ -158,7 +158,7 @@ export const projects = [
     name: "TDA-Brain-ASD-Thesis",
     description: "Thesis materials on topological features and brain-network analysis in autism. Includes LaTeX source, structured chapters, figures, and reproducible results.",
     url: "https://github.com/MohiMozaffari/TDA-Brain-ASD-Thesis",
-    language: "TeX",
+    languages: ["TeX"],
     stars: 0,
     forks: 0,
     created_at: "2025-08-01T00:00:00Z",
@@ -180,7 +180,7 @@ export const projects = [
     name: "Percolation-Simulation",
     description: "Simulation of site/bond percolation with cluster statistics, threshold scanning, and probability heatmaps.",
     url: "https://github.com/MohiMozaffari/Percolation-Simulation",
-    language: "Python",
+    languages: ["Python"],
     stars: 0,    forks: 0,
         created_at: "2024-09-08T00:00:00Z",
     updated_at: "2024-09-08T00:00:00Z",
@@ -200,7 +200,7 @@ export const projects = [
     name: "2D-Ising-Model-Simulation",
     description: "2D Ising model simulation with Metropolis updates, magnetization tracking, and temperature sweeps.",
     url: "https://github.com/MohiMozaffari/2D-Ising-Model-Simulation",
-    language: "Python",
+    languages: ["Python"],
     stars: 0,
     forks: 0,
         created_at: "2024-09-08T00:00:00Z",
@@ -221,7 +221,7 @@ export const projects = [
     name: "Voter-Model-Simulation",
     description: "Stochastic voter model on a lattice with opinion flip dynamics, magnetization curves, and animated lattice evolution.",
     url: "https://github.com/MohiMozaffari/Voter-Model-Simulation",
-    language: "Python",
+    languages: ["Python"],
     stars: 0,
     forks: 0,
         created_at: "2024-09-08T00:00:00Z",
@@ -242,7 +242,7 @@ export const projects = [
     name: "2D_Ising_Simulation_CPP",
     description: "Ising model exploration in Python notebooks with C++-style optimization ideas. Includes parameter exploration and visualization.",
     url: "https://github.com/MohiMozaffari/2D_Ising_Simulation_CPP",
-    language: "Jupyter Notebook",
+    languages: ["C++"],
     stars: 0,    
     forks: 0,
     created_at: "2024-09-08T00:00:00Z",
@@ -254,16 +254,16 @@ export const projects = [
         "Parameter exploration",
         "Plotting and diagnostics"
       ],
-      technologies: ["Python", "NumPy", "Matplotlib", "Jupyter"],
+      technologies: ["C++", "Python", "NumPy", "Matplotlib", "Jupyter"],
       applications: "Fast experimentation for statistical physics simulations."
     }
   },
   {
     id: "simple-disease-simulation",
-    name: "Simple_Disease_Transmission_Simulation",
+    name: "Simple-Disease-Transmission-Simulation",
     description: "Simple epidemic spread model with equations, lattice/compartment dynamics, and figure generation.",
     url: "https://github.com/MohiMozaffari/Simple_Disease_Transmission_Simulation",
-    language: "TeX",
+    languages: ["C++", "TeX"],
     stars: 1,
     forks: 0,
     created_at: "2023-11-20T00:00:00Z",
@@ -284,7 +284,7 @@ export const projects = [
     name: "War-Spaceship-Game",
     description: "Two-player spaceship battle game built with Pygame, featuring projectiles, collisions, and local multiplayer.",
     url: "https://github.com/MohiMozaffari/War-Spaceship-Game",
-    language: "Python",
+    languages: ["Python"],
     stars: 1,
     forks: 0,
     created_at: "2024-09-17T00:00:00Z",
@@ -307,7 +307,7 @@ export const projects = [
     name: "Catch-fruits",
     description: "Arcade-style fruit catching game with score tracking, increasing difficulty, and keyboard input handling.",
     url: "https://github.com/MohiMozaffari/Catch-fruits",
-    language: "Python",
+    languages: ["Python"],
     stars: 0,
     forks: 0,
     created_at: "2024-09-10T00:00:00Z",
@@ -349,8 +349,11 @@ export const getProject = (param) => {
 };
 
 export const allLanguages = Array.from(
-  new Set(withSlugs.map((p) => (p.language || 'Unknown').toLowerCase()))
-).sort();
+  new Set(
+    projects.flatMap((p) => p.languages || [p.languages || "unknown"])
+  )
+).map((lang) => lang.toLowerCase());
+
 
 // Optional default export (lets you `import projects from '../data/projects'`)
 export default withSlugs;
