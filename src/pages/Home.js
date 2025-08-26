@@ -191,68 +191,64 @@ const Home = () => {
 
             <motion.div
               variants={itemVariants}
-              // always 2 columns (2x2 layout), all breakpoints
-              className="grid grid-cols-2 gap-6"
+              className="grid grid-cols-2 gap-4 sm:gap-6 lg:gap-8"
             >
-              {/* 1) Python & Simulations */}
-              <div className="bg-purple-900/50 rounded-xl border border-purple-700/50 aspect-square hover:border-purple-400 hover:shadow-lg hover:shadow-purple-900/30 transition-all duration-300">
-                <div className="h-full w-full p-6 flex flex-col items-center justify-center text-center">
-                  <div className="w-14 h-14 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
-                    <Code className="w-7 h-7 text-white" />
-                  </div>
-                  <h3 className="text-base sm:text-lg font-bold text-white mb-2">
-                    Python &amp; Simulations
-                  </h3>
-                  <p className="text-purple-200 text-xs sm:text-sm">
-                    Numerical models, Monte&nbsp;Carlo, ODE/PDE solvers.
-                  </p>
-                </div>
-              </div>
+              {/* Card template */}
+              {[
+                {
+                  title: "Python & Simulations",
+                  desc: "Numerical models, Monte Carlo, ODE/PDE solvers.",
+                  Icon: Code,
+                },
+                {
+                  title: "Complex Systems & Neuroscience",
+                  desc: "Networks, dynamics, TDA, connectomes.",
+                  Icon: Brain,
+                },
+                {
+                  title: "Machine Learning & AI",
+                  desc: "Modeling, evaluation, feature engineering.",
+                  Icon: Cpu,
+                },
+                {
+                  title: "Tkinter & Pygame",
+                  desc: "Desktop GUIs and 2D gameplay loops.",
+                  Icon: Gamepad2,
+                },
+              ].map(({ title, desc, Icon }, i) => (
+                <div
+                  key={i}
+                  className="bg-purple-900/50 rounded-xl border border-purple-700/50 
+                 aspect-square flex items-center justify-center 
+                 hover:border-purple-400 hover:shadow-lg hover:shadow-purple-900/30 
+                 transition-all duration-300 
+                 p-3 sm:p-4 lg:p-6"
+                >
+                  <div className="flex flex-col items-center text-center w-full h-full justify-center">
+                    {/* Icon */}
+                    <div
+                      className="bg-purple-600 rounded-lg grid place-items-center mb-2 sm:mb-3 lg:mb-4
+                     w-12 h-12 sm:w-14 sm:h-14 lg:w-12 lg:h-12"
+                    >
+                      <Icon className="text-white w-6 h-6 sm:w-7 sm:h-7 lg:w-6 lg:h-6" />
+                    </div>
 
-              {/* 2) Complex Systems & Neuroscience */}
-              <div className="bg-purple-900/50 rounded-xl border border-purple-700/50 aspect-square hover:border-purple-400 hover:shadow-lg hover:shadow-purple-900/30 transition-all duration-300">
-                <div className="h-full w-full p-6 flex flex-col items-center justify-center text-center">
-                  <div className="w-14 h-14 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
-                    <Brain className="w-7 h-7 text-white" />
-                  </div>
-                  <h3 className="text-base sm:text-lg font-bold text-white mb-2">
-                    Complex Systems &amp; Neuroscience
-                  </h3>
-                  <p className="text-purple-200 text-xs sm:text-sm">
-                    Networks, dynamics, TDA, connectomes.
-                  </p>
-                </div>
-              </div>
+                    {/* Title */}
+                    <h3
+                      className="font-bold text-white 
+                     text-sm sm:text-base lg:text-sm 
+                     leading-tight mb-1 sm:mb-2"
+                    >
+                      {title}
+                    </h3>
 
-              {/* 3) Machine Learning & AI */}
-              <div className="bg-purple-900/50 rounded-xl border border-purple-700/50 aspect-square hover:border-purple-400 hover:shadow-lg hover:shadow-purple-900/30 transition-all duration-300">
-                <div className="h-full w-full p-6 flex flex-col items-center justify-center text-center">
-                  <div className="w-14 h-14 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
-                    <Cpu className="w-7 h-7 text-white" />
+                    {/* Description (hide on small) */}
+                    <p className="hidden md:block text-purple-200 text-xs sm:text-sm leading-snug">
+                      {desc}
+                    </p>
                   </div>
-                  <h3 className="text-base sm:text-lg font-bold text-white mb-2">
-                    Machine Learning &amp; AI
-                  </h3>
-                  <p className="text-purple-200 text-xs sm:text-sm">
-                    Modeling, evaluation, feature engineering.
-                  </p>
                 </div>
-              </div>
-
-              {/* 4) Tkinter & Pygame */}
-              <div className="bg-purple-900/50 rounded-xl border border-purple-700/50 aspect-square hover:border-purple-400 hover:shadow-lg hover:shadow-purple-900/30 transition-all duration-300">
-                <div className="h-full w-full p-6 flex flex-col items-center justify-center text-center">
-                  <div className="w-14 h-14 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
-                    <Gamepad2 className="w-7 h-7 text-white" />
-                  </div>
-                  <h3 className="text-base sm:text-lg font-bold text-white mb-2">
-                    Tkinter &amp; Pygame
-                  </h3>
-                  <p className="text-purple-200 text-xs sm:text-sm">
-                    Desktop GUIs and 2D gameplay loops.
-                  </p>
-                </div>
-              </div>
+              ))}
             </motion.div>
           </div>
         </motion.div>

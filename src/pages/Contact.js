@@ -5,39 +5,40 @@ import { Mail, Linkedin, Send } from 'lucide-react';
 const Contact = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { delayChildren: 0.3, staggerChildren: 0.2 }
-    }
+    visible: { opacity: 1, transition: { delayChildren: 0.3, staggerChildren: 0.2 } },
   };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1 }
+    visible: { y: 0, opacity: 1 },
   };
 
   const contacts = [
     {
       icon: Mail,
       title: 'Email',
-      action: 'mohaddeseh.mozaffari@gmail.com',
-      link: 'mailto:mohaddeseh.mozaffari@gmail.com',
-      color: 'hover:text-red-400'
+      action: 'mohaddeseh.mozaffarii@gmail.com',
+      link: 'mailto:mohaddeseh.mozaffarii@gmail.com',
+      hover: 'group-hover:bg-red-400/20 group-hover:border-red-400/60',
+      iconHover: 'group-hover:text-red-300',
     },
     {
       icon: Linkedin,
       title: 'LinkedIn',
       action: '@mohimozaffari',
       link: 'https://www.linkedin.com/in/mohimozaffari',
-      color: 'hover:text-blue-400'
+      hover: 'group-hover:bg-blue-400/20 group-hover:border-blue-400/60',
+      iconHover: 'group-hover:text-blue-300',
     },
     {
       icon: Send,
       title: 'Telegram',
       action: '@mohimozaffari',
       link: 'https://t.me/mohimozaffari',
-      color: 'hover:text-sky-400'
-    }
+      hover: 'group-hover:bg-sky-400/20 group-hover:border-sky-400/60',
+      iconHover: 'group-hover:text-sky-300',
+      nudgeX: '-translate-x-[1px]', // subtle 1px shift to visually center the paper plane
+    },
   ];
 
   return (
@@ -46,9 +47,7 @@ const Contact = () => {
         <motion.div initial="hidden" animate="visible" variants={containerVariants}>
           {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              Get In Touch
-            </h1>
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Get In Touch</h1>
             <p className="text-xl text-purple-200 max-w-3xl mx-auto leading-relaxed">
               You can reach me directly via Email, LinkedIn, or Telegram.
             </p>
@@ -56,24 +55,26 @@ const Contact = () => {
 
           {/* Contact Cards */}
           <motion.div variants={itemVariants} className="grid md:grid-cols-3 gap-8">
-            {contacts.map((c, i) => {
-              const Icon = c.icon;
-              return (
-                <a
-                  key={i}
-                  href={c.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-purple-900/30 p-6 rounded-xl border border-purple-700/50 text-center hover:border-purple-600 transition-all duration-300"
-                >
-                  <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon className={`w-8 h-8 text-white ${c.color}`} />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2">{c.title}</h3>
-                  <p className="text-purple-200">{c.action}</p>
-                </a>
-              );
-            })}
+            {contacts.map(({ icon: Icon, title, action, link, hover, iconHover, nudgeX }, i) => (
+              <a
+                key={i}
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group bg-purple-900/30 p-6 rounded-xl border border-purple-700/50 text-center transition-all duration-300 hover:border-purple-600 ${hover}`}
+              >
+                {/* Icon circle: perfectly centered with grid */}
+                <div className="w-16 h-16 rounded-full mx-auto mb-4 bg-purple-600 transition-colors grid place-items-center">
+                  <Icon
+                    className={`w-8 h-8 text-white block transition-colors ${iconHover || ''} ${nudgeX || ''}`}
+                    aria-hidden="true"
+                  />
+                </div>
+
+                <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
+                <p className="text-purple-200">{action}</p>
+              </a>
+            ))}
           </motion.div>
         </motion.div>
       </div>
