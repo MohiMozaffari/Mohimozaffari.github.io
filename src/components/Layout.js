@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Menu, X, Brain, Code, BookOpen, Users, Mail, Image } from 'lucide-react';
+import { Menu, X, Brain, Code, BookOpen, FileText, Users, Mail } from 'lucide-react';
 
 const Layout = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,9 +10,10 @@ const Layout = ({ children }) => {
   const navItems = [
     { name: 'Home', path: '/', icon: Brain },
     { name: 'About', path: '/about', icon: Users },
+    { name: 'Research', path: '/research', icon: BookOpen },
     { name: 'Projects', path: '/projects', icon: Code },
     { name: 'Teaching', path: '/teaching', icon: Users },
-    // { name: 'Gallery', path: '/gallery', icon: Image },
+    { name: 'Blog', path: '/blog', icon: FileText },
     { name: 'Contact', path: '/contact', icon: Mail },
   ];
 
@@ -108,10 +109,10 @@ const Layout = ({ children }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center">
             <p className="text-purple-200">
-              © 2025 Mohaddeseh Mozaffari. All rights reserved.
+              © 2026 Mohaddeseh Mozaffari. All rights reserved.
             </p>
             <p className="text-purple-300 text-sm mt-2">
-              Researcher in Complex Systems | Educator in Python, AI, and Game Development
+              AI & Neuroscience Researcher | Brain Networks | Topological Data Analysis | Medical Imaging
             </p>
           </div>
         </div>

@@ -8,13 +8,14 @@ import {
   LayoutGrid,
   Gamepad2,
   BarChart3,
-  Cpu,
   Bot,
   // details icons
   CheckCircle,
-  Star,
   Clock,
   BookOpen,
+  GraduationCap,
+  Cpu,
+  Star,
 } from "lucide-react";
 import coursesData from "../data/courses";
 
@@ -23,9 +24,31 @@ const iconMap = {
   LayoutGrid,
   Gamepad2,
   BarChart3,
-  Cpu,
   Bot,
 };
+
+const taExperience = [
+  {
+    course: "Complex Systems Physics",
+    supervisor: "[Add supervising professor name]",
+  },
+  {
+    course: "Complex Networks & Graph Theory",
+    supervisor: "[Add supervising professor name]",
+  },
+  {
+    course: "Stochastic Processes",
+    supervisor: "[Add supervising professor name]",
+  },
+  {
+    course: "Numerical Simulations",
+    supervisor: "[Add supervising professor name]",
+  },
+  {
+    course: "Analytical Mechanics",
+    supervisor: "[Add supervising professor name]",
+  },
+];
 
 export default function Teaching() {
   const [activeId, setActiveId] = useState("pythonFundamentals");
@@ -60,10 +83,11 @@ export default function Teaching() {
         <motion.div initial="hidden" animate="visible" variants={containerVariants}>
           {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Teaching & Courses</h1>
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Teaching</h1>
             <p className="text-xl text-purple-200 max-w-3xl mx-auto leading-relaxed">
-              Learn Python, AI, and computational thinking through hands-on projects and real-world applications.
-              Each course builds practical skills and deep understanding.
+              Python instructor since June 2023 (Ostadbank & Picha Club), teaching Python, data
+              analysis, and machine learning to learners of varying backgrounds — from complete
+              beginners to advanced deep-learning students — through 1:1 and group sessions.
             </p>
           </motion.div>
 
@@ -109,7 +133,7 @@ export default function Teaching() {
                       <h2 className="text-3xl font-bold text-white mb-4">{currentCourse.title}</h2>
                       <p className="text-lg text-purple-200 leading-relaxed mb-6">{currentCourse.description}</p>
 
-                      <div className="grid grid-cols-3 gap-4 mb-8">
+                      <div className="grid grid-cols-2 gap-4 mb-8">
                         <div className="text-center">
                           <Clock className="w-6 h-6 text-purple-400 mx-auto mb-2" />
                           <div className="text-white font-semibold">{currentCourse.duration}</div>
@@ -120,11 +144,6 @@ export default function Teaching() {
                           <div className="text-white font-semibold">{currentCourse.level}</div>
                           <div className="text-purple-300 text-sm">Level</div>
                         </div>
-                        <div className="text-center">
-                          <Star className="w-6 h-6 text-purple-400 mx-auto mb-2" />
-                          <div className="text-white font-semibold">{currentCourse.price}</div>
-                          <div className="text-purple-300 text-sm">Investment</div>
-                        </div>
                       </div>
 
                       {/* Centered CTA */}
@@ -133,7 +152,7 @@ export default function Teaching() {
                           to="/contact"
                           className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full hover:from-purple-700 hover:to-pink-700 transition-all duration-300"
                         >
-                          Enroll Now
+                          Get In Touch
                         </Link>
                       </div>
                     </div>
@@ -165,9 +184,34 @@ export default function Teaching() {
             </motion.div>
           )}
 
+          {/* Teaching Assistant Experience */}
+          <motion.div variants={itemVariants} className="mb-16">
+            <h2 className="text-3xl font-bold text-white text-center mb-4 flex items-center justify-center gap-2">
+              <GraduationCap className="w-7 h-7 text-purple-400" /> Teaching Assistant Experience
+            </h2>
+            <p className="text-purple-300 text-center mb-8">
+              Department of Physics, Shahid Beheshti University — January 2022 to July 2025
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {taExperience.map((ta) => (
+                <div
+                  key={ta.course}
+                  className="bg-purple-900/30 p-4 rounded-xl border border-purple-700/50 flex items-center justify-between gap-3"
+                >
+                  <span className="text-white font-semibold">{ta.course}</span>
+                  <span className="text-purple-400 text-sm text-right">{ta.supervisor}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
           {/* Teaching Philosophy */}
           <motion.div variants={itemVariants} className="mb-16">
-            <h2 className="text-3xl font-bold text-white text-center mb-12">My Teaching Philosophy</h2>
+            <h2 className="text-3xl font-bold text-white text-center mb-4">My Teaching Philosophy</h2>
+            <p className="text-purple-300 text-center max-w-2xl mx-auto mb-12">
+              Clear explanations, examples before abstraction, and step-by-step, project-based
+              learning.
+            </p>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-purple-900/30 p-6 rounded-xl border border-purple-700/50 text-center">
                 <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">

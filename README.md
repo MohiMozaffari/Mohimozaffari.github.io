@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# mohimozaffari.github.io
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Mohaddeseh "Mohi" Mozaffari's personal academic/portfolio site: a static React frontend on GitHub
+Pages, backed by a separately hosted Node/Express API + MongoDB database for projects,
+publications, blog posts, contact messages, and page-view analytics.
 
-## Available Scripts
+## Architecture
 
-In the project directory, you can run:
+- **Frontend** (`src/`): Create React App + craco + Tailwind, deployed to GitHub Pages via
+  `.github/workflows/pages.yml` on every push to `main`.
+- **Backend** (`server/`): Node/Express + Mongoose, deployed separately (e.g. Render free tier).
+  See `server/.env.example` for required environment variables.
+- **Database**: MongoDB Atlas (free M0 cluster).
 
-### `npm start`
+## How to update content (no code changes needed)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Projects, publications, and blog posts are stored in the database and edited through the admin
+panel at `/admin/login`, not by editing files in this repo:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Projects**: auto-synced daily from GitHub (and on-demand via the "Refresh from GitHub" button
+  in the admin Projects tab). Use the admin panel to set `Featured`/`Hidden` flags and add
+  overrides (arXiv link, Zenodo DOI, custom description) — never hand-edit a projects list in code.
+- **Publications**: add/edit directly in the admin Publications tab.
+- **Blog / research notes**: add/edit directly in the admin Blog tab.
+- **Contact messages**: view submissions in the admin Messages tab (also emailed on arrival).
+- **Analytics**: simple page-view counts in the admin Analytics tab.
 
-### `npm test`
+The Teaching page content (`src/data/courses.js`) and About page bio are the only content that
+still lives in code, since they don't need runtime editing.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Local development
 
-### `npm run build`
+```bash
+# Backend
+cd server
+cp .env.example .env   # fill in MONGODB_URI, ADMIN_*, etc.
+npm install
+npm run dev             # http://localhost:5000
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Frontend (in a separate terminal, from repo root)
+cp .env.example .env.local   # REACT_APP_API_URL=http://localhost:5000
+npm install
+npm start                    # http://localhost:3000
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Deployment
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **MongoDB Atlas**: create a free M0 cluster, a database user, and allow network access from
+   anywhere (Render's free tier has a dynamic outbound IP). Copy the connection string.
+2. **Render**: create a Web Service pointed at this repo with root directory `server`, build
+   command `npm install`, start command `node src/index.js`. Set the env vars listed in
+   `server/.env.example` (`MONGODB_URI`, `ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH`,
+   `ADMIN_JWT_SECRET`, `SYNC_SECRET`, `GITHUB_TOKEN`, `RESEND_API_KEY`, `CONTACT_TO_EMAIL`,
+   `CORS_ORIGIN=https://mohimozaffari.github.io`).
+3. **cron-job.org** (or similar free cron pinger): schedule a daily `POST` to
+   `https://<your-render-service>.onrender.com/api/sync/github` with header
+   `x-cron-secret: <SYNC_SECRET>` to keep projects in sync (Render's free tier has no built-in cron).
+4. **GitHub Actions**: add a repo secret `REACT_APP_API_URL` set to your Render service's URL —
+   the existing `pages.yml` workflow passes it into the CRA build.
+5. **First-run seed**: from `server/`, run `npm run seed` once to create the manual Coronary
+   Artery Segmentation project entry (no public GitHub repo exists for it). Then log into
+   `/admin/login` and add the Network Neuroscience manuscript as a Publication — nothing seeds
+   that automatically.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+See the `deploy-free-tier` Claude Code skill (`.claude/skills/deploy-free-tier/`) for common
+free-tier gotchas (spin-down delays, CORS, IP allowlisting).

@@ -177,19 +177,20 @@ const About = () => {
                 <div className="flex flex-col md:flex-row md:justify-between mb-4 text-left">
                   <div>
                     <h3 className="text-xl font-bold text-white">
-                      M.Sc. Complex Systems Physics
+                      M.Sc. Statistical Physics & Complex Systems
                     </h3>
                     <p className="text-purple-300">
                       Shahid Beheshti University
                     </p>
                   </div>
                   <span className="text-purple-400 font-semibold mt-2 md:mt-0">
-                    2022 – 2024
+                    2022 – 2025
                   </span>
                 </div>
                 <p className="text-purple-200 leading-relaxed">
-                  Focused on topological data analysis, brain networks, and
-                  autism research. Ranked 2nd in the program.
+                  Thesis: "Analysis of Topological Features of Brain Networks in Autism Spectrum
+                  Disorder Using Persistent Homology," graded Outstanding, defended March 11, 2025.
+                  Ranked 2nd in the program.
                 </p>
               </motion.div>
 
