@@ -16,11 +16,14 @@ goal first — not general portfolio polish, not "what's technically impressive 
   identity is an established **purple theme** — preserve it. Changes here should be refinement
   (typography, spacing, hierarchy, consistency), not a redesign of the color scheme or aesthetic,
   unless explicitly asked for.
-- **Backend:** a real backend API (Node/Express or Next.js API routes) on a free-tier host
-  (Render/Railway/Fly.io). GitHub Pages can't run a backend, so this is intentionally split — don't
-  try to collapse it back into a purely static site.
-- **Database:** free tier (MongoDB Atlas or Supabase). Stores projects (synced from GitHub, plus
-  curation flags/overrides), publications, blog posts, contact messages, and page-view counts.
+- **Backend:** a Hono app running on Cloudflare Workers (`server/`), free tier, no credit card
+  required. GitHub Pages can't run a backend, so this is intentionally split — don't try to
+  collapse it back into a purely static site. (Render and Vercel were tried first and ruled out —
+  Render requires a card even on free tier, Vercel blocked signup for this user's region.)
+- **Database:** Cloudflare D1 (SQLite), not MongoDB — Workers can't make a raw driver connection to
+  MongoDB Atlas (no `net`/`tls` socket support even with `nodejs_compat`), so this project uses
+  Cloudflare's native D1 instead. Stores projects (synced from GitHub, plus curation
+  flags/overrides), publications, blog posts, contact messages, and page-view counts.
 - **Content is database-backed, not hardcoded.** Projects, bio text, and blog posts should be
   editable through an admin view without touching React code or redeploying. If you find yourself
   about to hardcode a project into a component, stop — see the `sync-github-projects` skill.

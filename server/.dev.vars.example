@@ -1,0 +1,13 @@
+# Copy to .dev.vars for local `wrangler dev`, and enter the same values as Worker
+# secrets/vars in the Cloudflare dashboard for the deployed version.
+
+ADMIN_USERNAME=
+ADMIN_PASSWORD_HASH=
+ADMIN_JWT_SECRET=
+SYNC_SECRET=
+CONTACT_TO_EMAIL=
+CORS_ORIGIN=https://mohimozaffari.github.io,http://localhost:3000
+RESEND_API_KEY=
+
+# Optional: raises the GitHub API rate limit from 60/hr to 5000/hr
+GITHUB_TOKEN=

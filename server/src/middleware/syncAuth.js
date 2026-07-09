@@ -1,24 +1,25 @@
-const jwt = require('jsonwebtoken');
+const { verify } = require('hono/jwt');
 
 // Allows either the external cron pinger (shared secret header) or a logged-in admin (JWT).
-function requireSyncAuth(req, res, next) {
-  const cronSecret = req.headers['x-cron-secret'];
-  if (cronSecret && process.env.SYNC_SECRET && cronSecret === process.env.SYNC_SECRET) {
+async function requireSyncAuth(c, next) {
+  const cronSecret = c.req.header('x-cron-secret');
+  if (cronSecret && c.env.SYNC_SECRET && cronSecret === c.env.SYNC_SECRET) {
     return next();
   }
 
-  const header = req.headers.authorization || '';
+  const header = c.req.header('Authorization') || '';
   const token = header.startsWith('Bearer ') ? header.slice(7) : null;
   if (token) {
     try {
-      req.admin = jwt.verify(token, process.env.ADMIN_JWT_SECRET);
+      const payload = await verify(token, c.env.ADMIN_JWT_SECRET, 'HS256');
+      c.set('admin', payload);
       return next();
     } catch (err) {
       // fall through to 401 below
     }
   }
 
-  return res.status(401).json({ error: 'Unauthorized' });
+  return c.json({ error: 'Unauthorized' }, 401);
 }
 
-module.exports = requireSyncAuth;
+module.exports = { requireSyncAuth };

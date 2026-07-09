@@ -1,16 +1,17 @@
-const jwt = require('jsonwebtoken');
+const { verify } = require('hono/jwt');
 
-function requireAdmin(req, res, next) {
-  const header = req.headers.authorization || '';
+async function requireAdmin(c, next) {
+  const header = c.req.header('Authorization') || '';
   const token = header.startsWith('Bearer ') ? header.slice(7) : null;
-  if (!token) return res.status(401).json({ error: 'Missing token' });
+  if (!token) return c.json({ error: 'Missing token' }, 401);
 
   try {
-    req.admin = jwt.verify(token, process.env.ADMIN_JWT_SECRET);
-    next();
+    const payload = await verify(token, c.env.ADMIN_JWT_SECRET, 'HS256');
+    c.set('admin', payload);
+    await next();
   } catch (err) {
-    return res.status(401).json({ error: 'Invalid or expired token' });
+    return c.json({ error: 'Invalid or expired token' }, 401);
   }
 }
 
-module.exports = requireAdmin;
+module.exports = { requireAdmin };

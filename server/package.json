@@ -1,27 +1,20 @@
 {
-  "name": "mohaddeseh-mozaffari-website-server",
+  "name": "mohaddeseh-mozaffari-website-worker",
   "version": "1.0.0",
   "private": true,
   "main": "src/index.js",
-  "engines": {
-    "node": ">=18"
-  },
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
-    "seed": "node src/scripts/seed.js"
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:migrate:local": "wrangler d1 execute mohi-portfolio --local --file=./schema.sql",
+    "db:migrate:remote": "wrangler d1 execute mohi-portfolio --remote --file=./schema.sql",
+    "db:seed:remote": "wrangler d1 execute mohi-portfolio --remote --file=./seed.sql"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "express-rate-limit": "^7.4.0",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.7.0",
-    "resend": "^4.0.0"
+    "hono": "^4.6.9"
   },
   "devDependencies": {
-    "nodemon": "^3.1.7"
+    "wrangler": "^4.110.0"
   }
 }

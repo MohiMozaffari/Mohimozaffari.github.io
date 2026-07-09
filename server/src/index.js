@@ -1,14 +1,40 @@
-require('dotenv').config();
-const connectDB = require('./config/db');
-const app = require('./app');
+const { Hono } = require('hono');
+const { cors } = require('hono/cors');
 
-const PORT = process.env.PORT || 5000;
+const projectsRoutes = require('./routes/projects');
+const publicationsRoutes = require('./routes/publications');
+const blogRoutes = require('./routes/blog');
+const contactRoutes = require('./routes/contact');
+const analyticsRoutes = require('./routes/analytics');
+const authRoutes = require('./routes/auth');
+const syncRoutes = require('./routes/sync');
 
-connectDB()
-  .then(() => {
-    app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
-  })
-  .catch((err) => {
-    console.error('Failed to connect to MongoDB:', err.message);
-    process.exit(1);
-  });
+const app = new Hono();
+
+app.use('*', async (c, next) => {
+  const allowedOrigins = (c.env.CORS_ORIGIN || '')
+    .split(',')
+    .map((o) => o.trim())
+    .filter(Boolean);
+
+  return cors({
+    origin: (origin) => (allowedOrigins.includes(origin) ? origin : null),
+  })(c, next);
+});
+
+app.get('/api/health', (c) => c.json({ ok: true }));
+
+app.route('/api/projects', projectsRoutes);
+app.route('/api/publications', publicationsRoutes);
+app.route('/api/blog', blogRoutes);
+app.route('/api/contact', contactRoutes);
+app.route('/api/analytics', analyticsRoutes);
+app.route('/api/auth', authRoutes);
+app.route('/api/sync', syncRoutes);
+
+app.onError((err, c) => {
+  console.error(err);
+  return c.json({ error: 'Internal server error' }, 500);
+});
+
+module.exports = app;

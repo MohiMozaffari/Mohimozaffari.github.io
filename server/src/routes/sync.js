@@ -1,9 +1,17 @@
-const express = require('express');
-const requireSyncAuth = require('../middleware/syncAuth');
-const ctrl = require('../controllers/syncController');
+const { Hono } = require('hono');
+const { requireSyncAuth } = require('../middleware/syncAuth');
+const { syncGithubProjects } = require('../services/githubSync');
 
-const router = express.Router();
+const app = new Hono();
 
-router.post('/github', requireSyncAuth, ctrl.runSync);
+app.post('/github', requireSyncAuth, async (c) => {
+  try {
+    const result = await syncGithubProjects(c.env.DB, c.env.GITHUB_TOKEN);
+    return c.json(result);
+  } catch (err) {
+    console.error('GitHub sync failed:', err.message);
+    return c.json({ error: 'GitHub sync failed', detail: err.message }, 502);
+  }
+});
 
-module.exports = router;
+module.exports = app;

@@ -10,3 +10,7 @@ build/
 .env
 .env.local
 server/.env
+server/.dev.vars
+
+# Cloudflare Workers local dev state
+server/.wrangler/
