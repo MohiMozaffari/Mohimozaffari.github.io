@@ -28,7 +28,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-950 via-purple-900 to-indigo-950">
+    <div className="relative z-10 min-h-screen bg-gradient-to-br from-purple-950 via-purple-900 to-indigo-950">
       <nav className="bg-purple-950/90 backdrop-blur-sm border-b border-purple-800/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <h1 className="text-xl font-bold text-white">Admin Dashboard</h1>

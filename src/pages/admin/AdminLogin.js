@@ -24,7 +24,7 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-950 via-purple-900 to-indigo-950 flex items-center justify-center px-4">
+    <div className="relative z-10 min-h-screen bg-gradient-to-br from-purple-950 via-purple-900 to-indigo-950 flex items-center justify-center px-4">
       <form
         onSubmit={handleSubmit}
         className="bg-purple-900/30 p-8 rounded-xl border border-purple-700/50 w-full max-w-sm"
