@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Menu, X, Brain, Code, BookOpen, FileText, Users, Mail } from 'lucide-react';
+import useSiteSettings from '../hooks/useSiteSettings';
 
 const Layout = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const settings = useSiteSettings();
 
   const navItems = [
     { name: 'Home', path: '/', icon: Brain },
@@ -112,7 +114,7 @@ const Layout = ({ children }) => {
               © 2026 Mohaddeseh Mozaffari. All rights reserved.
             </p>
             <p className="text-purple-300 text-sm mt-2">
-              AI & Neuroscience Researcher | Brain Networks | Topological Data Analysis | Medical Imaging
+              {settings.footer_tagline}
             </p>
           </div>
         </div>

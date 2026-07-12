@@ -7,8 +7,10 @@ import PublicationsTab from './tabs/PublicationsTab';
 import BlogTab from './tabs/BlogTab';
 import MessagesTab from './tabs/MessagesTab';
 import AnalyticsTab from './tabs/AnalyticsTab';
+import ContentTab from './tabs/ContentTab';
 
 const TABS = [
+  { key: 'content', label: 'Content', component: ContentTab },
   { key: 'projects', label: 'Projects', component: ProjectsTab },
   { key: 'publications', label: 'Publications', component: PublicationsTab },
   { key: 'blog', label: 'Blog', component: BlogTab },

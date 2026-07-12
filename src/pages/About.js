@@ -1,8 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Brain, Code, BookOpen, Users, Award, Target } from "lucide-react";
+import useSiteSettings from "../hooks/useSiteSettings";
 
 const About = () => {
+  const settings = useSiteSettings();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -64,9 +66,7 @@ const About = () => {
               About Me
             </h1>
             <p className="text-xl text-purple-200 max-w-3xl mx-auto leading-relaxed">
-              Passionate about bridging the gap between theoretical physics and
-              practical applications through computational approaches and
-              innovative teaching methods.
+              {settings.about_intro}
             </p>
           </motion.div>
 
@@ -77,24 +77,15 @@ const About = () => {
               <div className="grid md:grid-cols-1 gap-8">
                 <div>
                   <p className="text-lg text-purple-200 leading-relaxed mb-6">
-                    I started in physics, curious about how simple rules create
-                    complex patterns. That curiosity grew into my master’s
-                    research on brain networks and autism, where I used tools
-                    like persistent homology to study the hidden structure of
-                    the brain.
+                    {settings.about_journey_1}
                   </p>
 
                   <p className="text-lg text-purple-200 leading-relaxed mb-6">
-                    I love when theory meets practice. Whether it’s running
-                    simulations, building models, or teaching Python and AI, I
-                    make learning hands-on with games, projects, and real-world
-                    applications.
+                    {settings.about_journey_2}
                   </p>
 
                   <p className="text-lg text-purple-200 leading-relaxed">
-                    Outside of research and teaching, I’m usually trying out new
-                    algorithms, contributing to open-source, or just recharging
-                    with yoga, TRX workouts, and a little purple aesthetic ✨.
+                    {settings.about_journey_3}
                   </p>
                 </div>
               </div>

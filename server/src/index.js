@@ -8,6 +8,7 @@ const contactRoutes = require('./routes/contact');
 const analyticsRoutes = require('./routes/analytics');
 const authRoutes = require('./routes/auth');
 const syncRoutes = require('./routes/sync');
+const settingsRoutes = require('./routes/settings');
 
 const app = new Hono();
 
@@ -31,6 +32,7 @@ app.route('/api/contact', contactRoutes);
 app.route('/api/analytics', analyticsRoutes);
 app.route('/api/auth', authRoutes);
 app.route('/api/sync', syncRoutes);
+app.route('/api/settings', settingsRoutes);
 
 app.onError((err, c) => {
   console.error(err);

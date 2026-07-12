@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Linkedin, Send, Loader2, CheckCircle2 } from 'lucide-react';
 import { sendContactMessage } from '../api/contact';
+import useSiteSettings from '../hooks/useSiteSettings';
 
 const Contact = () => {
+  const settings = useSiteSettings();
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
 
@@ -67,7 +69,7 @@ const Contact = () => {
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Get In Touch</h1>
             <p className="text-xl text-purple-200 max-w-3xl mx-auto leading-relaxed">
-              Send a message directly, or reach me via Email, LinkedIn, or Telegram.
+              {settings.contact_intro}
             </p>
           </motion.div>
 

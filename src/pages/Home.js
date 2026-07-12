@@ -12,8 +12,10 @@ import NeuralNetwork from "../components/NeuralNetwork";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { getProjects } from "../api/projects";
 import { getLangColor, displayName, displayDescription, projectYear } from "../utils/projectDisplay";
+import useSiteSettings from "../hooks/useSiteSettings";
 
 const Home = () => {
+  const settings = useSiteSettings();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -75,10 +77,10 @@ const Home = () => {
                 className="text-xl md:text-2xl text-purple-200 mb-8 leading-relaxed"
                 variants={itemVariants}
               >
-                AI & Neuroscience Researcher
+                {settings.home_hero_line1}
                 <br />
                 <span className="text-purple-300">
-                  Brain Networks | Topological Data Analysis | Medical Imaging
+                  {settings.home_hero_line2}
                 </span>
               </motion.p>
 
@@ -129,10 +131,7 @@ const Home = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div variants={itemVariants}>
               <p className="text-lg text-purple-200 leading-relaxed mb-6">
-                I started in physics, curious about how simple rules create
-                complex patterns. That curiosity grew into my master’s research
-                on brain networks and autism, where I used tools like persistent
-                homology to study the hidden structure of the brain.
+                {settings.home_about_paragraph}
               </p>
 
               <Link

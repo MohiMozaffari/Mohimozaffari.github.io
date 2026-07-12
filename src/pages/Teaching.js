@@ -18,6 +18,7 @@ import {
   Star,
 } from "lucide-react";
 import coursesData from "../data/courses";
+import useSiteSettings from "../hooks/useSiteSettings";
 
 const iconMap = {
   Code2,
@@ -51,6 +52,7 @@ const taExperience = [
 ];
 
 export default function Teaching() {
+  const settings = useSiteSettings();
   const [activeId, setActiveId] = useState("pythonFundamentals");
   const detailsRef = useRef(null);
 
@@ -85,9 +87,7 @@ export default function Teaching() {
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Teaching</h1>
             <p className="text-xl text-purple-200 max-w-3xl mx-auto leading-relaxed">
-              Python instructor since June 2023 (Ostadbank & Picha Club), teaching Python, data
-              analysis, and machine learning to learners of varying backgrounds — from complete
-              beginners to advanced deep-learning students — through 1:1 and group sessions.
+              {settings.teaching_intro}
             </p>
           </motion.div>
 

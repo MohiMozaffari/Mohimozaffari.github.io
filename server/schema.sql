@@ -70,3 +70,9 @@ CREATE TABLE IF NOT EXISTS page_views (
 
 CREATE INDEX IF NOT EXISTS idx_page_views_ts ON page_views(ts);
 CREATE INDEX IF NOT EXISTS idx_page_views_path ON page_views(path);
+
+CREATE TABLE IF NOT EXISTS site_settings (
+  key TEXT PRIMARY KEY,
+  value TEXT NOT NULL DEFAULT '',
+  updated_at TEXT DEFAULT (datetime('now'))
+);
