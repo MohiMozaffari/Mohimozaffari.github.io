@@ -19,7 +19,7 @@ const Home = () => {
 
   useEffect(() => {
     getProjects()
-      .then((data) => setProjects(data.filter((p) => p.featured).slice(0, 3)))
+      .then((data) => setProjects(data.filter((p) => p.featured)))
       .catch(() => setProjects([]))
       .finally(() => setLoading(false));
   }, []);
