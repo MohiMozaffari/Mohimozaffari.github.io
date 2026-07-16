@@ -5,16 +5,6 @@ import { Calendar, ArrowRight } from "lucide-react";
 import { getPosts } from "../api/blog";
 import LoadingSpinner from "../components/LoadingSpinner";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { delayChildren: 0.2, staggerChildren: 0.15 } },
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-};
-
 export default function Blog() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -29,14 +19,19 @@ export default function Blog() {
   return (
     <div className="relative z-10 py-20">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div initial="hidden" animate="visible" variants={containerVariants}>
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Research Notes</h1>
-            <p className="text-xl text-purple-200 max-w-3xl mx-auto leading-relaxed">
-              Notes on research progress, papers, and the PhD application process.
-            </p>
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Research Notes</h1>
+          <p className="text-xl text-purple-200 max-w-3xl mx-auto leading-relaxed">
+            Notes on research progress, papers, and the PhD application process.
+          </p>
+        </motion.div>
 
+        <div>
           {loading ? (
             <div className="flex justify-center py-8">
               <LoadingSpinner size="medium" />
@@ -44,7 +39,7 @@ export default function Blog() {
           ) : posts.length === 0 ? (
             <p className="text-center text-purple-300">No posts yet — check back soon.</p>
           ) : (
-            <motion.div variants={itemVariants} className="space-y-6">
+            <div className="space-y-6">
               {posts.map((post) => (
                 <Link
                   key={post._id}
@@ -75,9 +70,9 @@ export default function Blog() {
                   </span>
                 </Link>
               ))}
-            </motion.div>
+            </div>
           )}
-        </motion.div>
+        </div>
       </div>
     </div>
   );

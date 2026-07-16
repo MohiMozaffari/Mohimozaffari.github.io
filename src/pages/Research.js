@@ -9,12 +9,21 @@ const STATUS_LABEL = {
   submitted: "Submitted",
   "under-review": "Under Review",
   published: "Published",
+  preprint: "Preprint",
 };
 
 const STATUS_STYLE = {
   submitted: "bg-blue-500/20 text-blue-300 border border-blue-500/40",
   "under-review": "bg-amber-500/20 text-amber-300 border border-amber-500/40",
   published: "bg-green-500/20 text-green-300 border border-green-500/40",
+  preprint: "bg-slate-500/20 text-slate-300 border border-slate-500/40",
+};
+
+const STATUS_DOT = {
+  submitted: "bg-blue-400",
+  "under-review": "bg-amber-400",
+  published: "bg-green-400",
+  preprint: "bg-slate-400",
 };
 
 const education = [
@@ -85,11 +94,7 @@ export default function Research() {
                   <div key={pub._id} className="relative pl-8">
                     <span
                       className={`absolute -left-[9px] top-1 w-4 h-4 rounded-full border-2 border-purple-950 ${
-                        pub.status === "published"
-                          ? "bg-green-400"
-                          : pub.status === "under-review"
-                          ? "bg-amber-400"
-                          : "bg-blue-400"
+                        STATUS_DOT[pub.status] || "bg-purple-400"
                       }`}
                     />
                     <span
