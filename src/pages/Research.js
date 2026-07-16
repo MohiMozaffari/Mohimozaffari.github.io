@@ -32,16 +32,6 @@ const education = [
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { delayChildren: 0.2, staggerChildren: 0.15 } },
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-};
-
 export default function Research() {
   const settings = useSiteSettings();
   const [publications, setPublications] = useState([]);
@@ -57,23 +47,28 @@ export default function Research() {
   return (
     <div className="relative z-10 py-20">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div initial="hidden" animate="visible" variants={containerVariants}>
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Research</h1>
-            <p className="text-xl text-purple-200 max-w-3xl mx-auto leading-relaxed">
-              Publications, ongoing work, and academic background.
-            </p>
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Research</h1>
+          <p className="text-xl text-purple-200 max-w-3xl mx-auto leading-relaxed">
+            Publications, ongoing work, and academic background.
+          </p>
+        </motion.div>
 
+        <div>
           {/* Research Statement */}
-          <motion.div variants={itemVariants} className="mb-16">
+          <div className="mb-16">
             <p className="text-lg text-purple-100 leading-relaxed max-w-4xl mx-auto text-left bg-purple-900/20 p-8 rounded-xl border border-purple-700/40">
               {settings.research_statement}
             </p>
-          </motion.div>
+          </div>
 
           {/* Publications */}
-          <motion.div variants={itemVariants} className="mb-16">
+          <div className="mb-16">
             <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
               <FileText className="w-6 h-6 text-purple-400" /> Publications
             </h2>
@@ -123,10 +118,10 @@ export default function Research() {
                 ))}
               </div>
             )}
-          </motion.div>
+          </div>
 
           {/* Education */}
-          <motion.div variants={itemVariants}>
+          <div>
             <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
               <GraduationCap className="w-6 h-6 text-purple-400" /> Education
             </h2>
@@ -145,8 +140,8 @@ export default function Research() {
                 </div>
               ))}
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </div>
   );

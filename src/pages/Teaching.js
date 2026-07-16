@@ -62,12 +62,6 @@ export default function Teaching() {
     [courses, activeId]
   );
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { delayChildren: 0.3, staggerChildren: 0.2 } },
-  };
-  const itemVariants = { hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1 } };
-
   const scrollToDetails = useCallback(() => {
     if (detailsRef.current) {
       detailsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -82,17 +76,21 @@ export default function Teaching() {
   return (
     <div className="relative z-10 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div initial="hidden" animate="visible" variants={containerVariants}>
-          {/* Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Teaching</h1>
-            <p className="text-xl text-purple-200 max-w-3xl mx-auto leading-relaxed">
-              {settings.teaching_intro}
-            </p>
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Teaching</h1>
+          <p className="text-xl text-purple-200 max-w-3xl mx-auto leading-relaxed">
+            {settings.teaching_intro}
+          </p>
+        </motion.div>
 
+        <div>
           {/* Course selection grid */}
-          <motion.div variants={itemVariants} className="mb-16">
+          <div className="mb-16">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 items-stretch">
               {courses.map((c) => {
                 const Icon = iconMap[c.icon] || Code2;
@@ -114,7 +112,7 @@ export default function Teaching() {
                 );
               })}
             </div>
-          </motion.div>
+          </div>
 
           {/* Course Details */}
           {currentCourse && (
@@ -185,7 +183,7 @@ export default function Teaching() {
           )}
 
           {/* Teaching Assistant Experience */}
-          <motion.div variants={itemVariants} className="mb-16">
+          <div className="mb-16">
             <h2 className="text-3xl font-bold text-white text-center mb-4 flex items-center justify-center gap-2">
               <GraduationCap className="w-7 h-7 text-purple-400" /> Teaching Assistant Experience
             </h2>
@@ -203,10 +201,10 @@ export default function Teaching() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Teaching Philosophy */}
-          <motion.div variants={itemVariants} className="mb-16">
+          <div className="mb-16">
             <h2 className="text-3xl font-bold text-white text-center mb-4">My Teaching Philosophy</h2>
             <p className="text-purple-300 text-center max-w-2xl mx-auto mb-12">
               Clear explanations, examples before abstraction, and step-by-step, project-based
@@ -244,10 +242,10 @@ export default function Teaching() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Call to Action (centered) */}
-          <motion.div variants={itemVariants}>
+          <div>
             <div className="bg-gradient-to-r from-purple-900/50 to-pink-900/50 p-8 rounded-xl border border-purple-700/50 text-center">
               <h3 className="text-2xl font-bold text-white mb-4">Ready to Start Your Learning Journey?</h3>
               <p className="text-purple-200 mb-6 max-w-2xl mx-auto">
@@ -262,8 +260,8 @@ export default function Teaching() {
                 </Link>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </div>
   );

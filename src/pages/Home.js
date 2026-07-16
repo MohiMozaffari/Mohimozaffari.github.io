@@ -126,22 +126,13 @@ const Home = () => {
 
       {/* About Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-          className="max-w-7xl mx-auto"
-        >
-          <motion.h2
-            variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold text-center text-white mb-16"
-          >
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-16">
             About Me
-          </motion.h2>
+          </h2>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div variants={itemVariants}>
+            <div>
               <p className="text-lg text-purple-200 leading-relaxed mb-6">
                 {settings.home_about_paragraph}
               </p>
@@ -153,9 +144,9 @@ const Home = () => {
                 Learn more about my journey
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div variants={itemVariants} className="space-y-4 sm:space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {[
                 {
                   title: "Complex Systems & Neuroscience",
@@ -183,26 +174,17 @@ const Home = () => {
                   </div>
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* Featured Projects */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-purple-950/30">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-          className="max-w-7xl mx-auto"
-        >
-          <motion.h2
-            variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold text-center text-white mb-16"
-          >
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-16">
             Featured Projects
-          </motion.h2>
+          </h2>
 
           {loading ? (
             <div className="flex justify-center">
@@ -211,10 +193,9 @@ const Home = () => {
           ) : (
             <div className="grid md:grid-cols-3 gap-8">
               {projects.map((project) => (
-                <motion.div
+                <div
                   key={project._id}
-                  variants={itemVariants}
-                  className="bg-purple-900/50 p-6 rounded-xl border border-purple-700/50 hover:border-purple-600 transition-all duration-300 hover:transform hover:scale-105"
+                  className="bg-purple-900/50 p-6 rounded-xl border border-purple-700/50 hover:border-purple-600 transition-all duration-300"
                 >
                   <div className="flex items-start justify-between mb-4 gap-3">
                     <h3
@@ -253,11 +234,11 @@ const Home = () => {
                       {project.source === "manual" ? "View Preprint →" : "View on GitHub →"}
                     </a>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           )}
-        </motion.div>
+        </div>
       </section>
     </div>
   );
