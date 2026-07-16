@@ -11,6 +11,12 @@ const STATUS_LABEL = {
   published: "Published",
 };
 
+const STATUS_STYLE = {
+  submitted: "bg-blue-500/20 text-blue-300 border border-blue-500/40",
+  "under-review": "bg-amber-500/20 text-amber-300 border border-amber-500/40",
+  published: "bg-green-500/20 text-green-300 border border-green-500/40",
+};
+
 const education = [
   {
     degree: "MSc, Statistical Physics & Complex Systems",
@@ -79,18 +85,26 @@ export default function Research() {
             ) : publications.length === 0 ? (
               <p className="text-purple-300">No publications listed yet.</p>
             ) : (
-              <div className="space-y-6">
+              <div className="relative border-l-2 border-purple-700/50 ml-3 space-y-10">
                 {publications.map((pub) => (
-                  <div
-                    key={pub._id}
-                    className="bg-purple-900/30 p-6 rounded-xl border border-purple-700/50"
-                  >
-                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-3">
-                      <h3 className="text-lg font-bold text-white">{pub.title}</h3>
-                      <span className="shrink-0 text-xs bg-purple-700 text-purple-100 px-3 py-1 rounded-full whitespace-nowrap">
-                        {STATUS_LABEL[pub.status] || pub.status}
-                      </span>
-                    </div>
+                  <div key={pub._id} className="relative pl-8">
+                    <span
+                      className={`absolute -left-[9px] top-1 w-4 h-4 rounded-full border-2 border-purple-950 ${
+                        pub.status === "published"
+                          ? "bg-green-400"
+                          : pub.status === "under-review"
+                          ? "bg-amber-400"
+                          : "bg-blue-400"
+                      }`}
+                    />
+                    <span
+                      className={`inline-block text-xs font-semibold px-3 py-1 rounded-full mb-2 ${
+                        STATUS_STYLE[pub.status] || "bg-purple-700 text-purple-100 border border-purple-600"
+                      }`}
+                    >
+                      {STATUS_LABEL[pub.status] || pub.status}
+                    </span>
+                    <h3 className="text-xl font-bold text-white mb-1">{pub.title}</h3>
                     {pub.authors && <p className="text-purple-300 text-sm mb-2">{pub.authors}</p>}
                     {pub.description && (
                       <p className="text-purple-200 text-sm leading-relaxed mb-3">{pub.description}</p>

@@ -4,9 +4,7 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight,
   Brain,
-  Code,
   Cpu,
-  Gamepad2,
   Download,
 } from "lucide-react";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -157,63 +155,31 @@ const Home = () => {
               </Link>
             </motion.div>
 
-            <motion.div
-              variants={itemVariants}
-              className="grid grid-cols-2 gap-4 sm:gap-6 lg:gap-8"
-            >
-              {/* Card template */}
+            <motion.div variants={itemVariants} className="space-y-4 sm:space-y-6">
               {[
                 {
                   title: "Complex Systems & Neuroscience",
-                  desc: "Networks, dynamics, TDA, connectomes.",
+                  desc: "Networks, dynamics, topological data analysis, connectomes.",
                   Icon: Brain,
                 },
                 {
                   title: "Machine Learning & AI",
-                  desc: "Modeling, evaluation, feature engineering.",
+                  desc: "Modeling, evaluation, and feature engineering for medical imaging and brain-network data.",
                   Icon: Cpu,
-                },
-                {
-                  title: "Python & Simulations",
-                  desc: "Numerical models, Monte Carlo, ODE/PDE solvers.",
-                  Icon: Code,
-                },
-                {
-                  title: "Tkinter & Pygame",
-                  desc: "Desktop GUIs and 2D gameplay loops.",
-                  Icon: Gamepad2,
                 },
               ].map(({ title, desc, Icon }, i) => (
                 <div
                   key={i}
-                  className="bg-purple-900/50 rounded-xl border border-purple-700/50
-                 aspect-square flex items-center justify-center
+                  className="bg-purple-900/50 rounded-xl border border-purple-600/60
                  hover:border-purple-400 hover:shadow-lg hover:shadow-purple-900/30
-                 transition-all duration-300
-                 p-3 sm:p-4 lg:p-6"
+                 transition-all duration-300 p-6 flex items-start gap-4"
                 >
-                  <div className="flex flex-col items-center text-center w-full h-full justify-center">
-                    {/* Icon */}
-                    <div
-                      className="bg-purple-600 rounded-lg grid place-items-center mb-2 sm:mb-3 lg:mb-4
-                     w-12 h-12 sm:w-14 sm:h-14 lg:w-12 lg:h-12"
-                    >
-                      <Icon className="text-white w-6 h-6 sm:w-7 sm:h-7 lg:w-6 lg:h-6" />
-                    </div>
-
-                    {/* Title */}
-                    <h3
-                      className="font-bold text-white
-                     text-sm sm:text-base lg:text-sm
-                     leading-tight mb-1 sm:mb-2"
-                    >
-                      {title}
-                    </h3>
-
-                    {/* Description (hide on small) */}
-                    <p className="hidden md:block text-purple-200 text-xs sm:text-sm leading-snug">
-                      {desc}
-                    </p>
+                  <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg grid place-items-center w-12 h-12 shrink-0">
+                    <Icon className="text-white w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-white text-lg leading-tight mb-1">{title}</h3>
+                    <p className="text-purple-200 text-sm leading-snug">{desc}</p>
                   </div>
                 </div>
               ))}

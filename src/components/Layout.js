@@ -11,9 +11,9 @@ const Layout = ({ children }) => {
 
   const navItems = [
     { name: 'Home', path: '/', icon: Brain },
-    { name: 'About', path: '/about', icon: Users },
     { name: 'Research', path: '/research', icon: BookOpen },
     { name: 'Projects', path: '/projects', icon: Code },
+    { name: 'About', path: '/about', icon: Users },
     { name: 'Teaching', path: '/teaching', icon: Users },
     { name: 'Blog', path: '/blog', icon: FileText },
     { name: 'Contact', path: '/contact', icon: Mail },
