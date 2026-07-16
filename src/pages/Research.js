@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { FileText, GraduationCap, ExternalLink } from "lucide-react";
 import { getPublications } from "../api/publications";
 import LoadingSpinner from "../components/LoadingSpinner";
+import useSiteSettings from "../hooks/useSiteSettings";
 
 const STATUS_LABEL = {
   submitted: "Submitted",
@@ -36,6 +37,7 @@ const itemVariants = {
 };
 
 export default function Research() {
+  const settings = useSiteSettings();
   const [publications, setPublications] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -54,6 +56,13 @@ export default function Research() {
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Research</h1>
             <p className="text-xl text-purple-200 max-w-3xl mx-auto leading-relaxed">
               Publications, ongoing work, and academic background.
+            </p>
+          </motion.div>
+
+          {/* Research Statement */}
+          <motion.div variants={itemVariants} className="mb-16">
+            <p className="text-lg text-purple-100 leading-relaxed max-w-4xl mx-auto text-left bg-purple-900/20 p-8 rounded-xl border border-purple-700/40">
+              {settings.research_statement}
             </p>
           </motion.div>
 

@@ -31,23 +31,23 @@ const iconMap = {
 const taExperience = [
   {
     course: "Complex Systems Physics",
-    supervisor: "[Add supervising professor name]",
+    supervisor: "Prof. G. Reza Jafari",
   },
   {
     course: "Complex Networks & Graph Theory",
-    supervisor: "[Add supervising professor name]",
+    supervisor: "Prof. G. Reza Jafari",
   },
   {
     course: "Stochastic Processes",
-    supervisor: "[Add supervising professor name]",
+    supervisor: "Prof. S. Ali Hosseiny",
   },
   {
     course: "Numerical Simulations",
-    supervisor: "[Add supervising professor name]",
+    supervisor: "Prof. S. Ali Hosseiny",
   },
   {
     course: "Analytical Mechanics",
-    supervisor: "[Add supervising professor name]",
+    supervisor: "Prof. Marzieh Farhang",
   },
 ];
 
@@ -190,7 +190,7 @@ export default function Teaching() {
               <GraduationCap className="w-7 h-7 text-purple-400" /> Teaching Assistant Experience
             </h2>
             <p className="text-purple-300 text-center mb-8">
-              Department of Physics, Shahid Beheshti University — January 2022 to July 2025
+              Department of Physics, Shahid Beheshti University — 2022 to 2025
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               {taExperience.map((ta) => (

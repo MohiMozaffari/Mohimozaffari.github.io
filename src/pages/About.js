@@ -24,15 +24,23 @@ const About = () => {
     },
   };
 
-  const skills = [
-    { name: "Python", level: 95 },
-    { name: "Complex Systems & Network Science", level: 88 },
-    { name: "Machine Learning & AI", level: 85 },
-    { name: "Data Analysis & Visualization", level: 88 },
-    { name: "Neuroscience Applications", level: 80 },
-    { name: "Game Development (Pygame)", level: 70 },
-    { name: "Tkinter (Python GUI)", level: 60 },
-    { name: "Teaching & Mentoring", level: 92 },
+  const skillGroups = [
+    {
+      category: "Programming & Tooling",
+      items: ["Python", "NumPy / pandas / PyTorch", "Tkinter & Pygame (GUI and game development)"],
+    },
+    {
+      category: "Complex Systems & Network Science",
+      items: ["Persistent homology / topological data analysis", "Brain network & connectome analysis", "Statistical physics of complex systems"],
+    },
+    {
+      category: "Machine Learning & AI",
+      items: ["Model development and evaluation", "Feature engineering", "Deep learning for medical imaging"],
+    },
+    {
+      category: "Teaching & Mentoring",
+      items: ["Python, data analysis, and ML instruction", "1:1 and group teaching, project-based learning"],
+    },
   ];
 
   const experiences = [
@@ -62,6 +70,11 @@ const About = () => {
         >
           {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
+            <img
+              src={`${process.env.PUBLIC_URL}/headshot-avatar.jpg`}
+              alt="Mohaddeseh Mozaffari"
+              className="w-36 h-36 rounded-full object-cover mx-auto mb-8 border-4 border-purple-700/50 shadow-lg shadow-purple-950/50"
+            />
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
               About Me
             </h1>
@@ -98,28 +111,21 @@ const About = () => {
               Skills & Expertise
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
-              {skills.map((skill, index) => (
-                <motion.div
-                  key={skill.name}
-                  variants={itemVariants}
+              {skillGroups.map((group) => (
+                <div
+                  key={group.category}
                   className="bg-purple-900/30 p-6 rounded-xl border border-purple-700/50"
                 >
-                  <div className="flex justify-between items-center mb-3">
-                    <span className="text-white font-semibold">
-                      {skill.name}
-                    </span>
-                    <span className="text-purple-300">{skill.level}%</span>
-                  </div>
-                  <div className="w-full bg-purple-950 rounded-full h-2">
-                    <motion.div
-                      className="bg-gradient-to-r from-purple-400 to-pink-400 h-2 rounded-full"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.level}%` }}
-                      transition={{ duration: 1, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                    />
-                  </div>
-                </motion.div>
+                  <h3 className="text-white font-semibold mb-3">{group.category}</h3>
+                  <ul className="space-y-2">
+                    {group.items.map((item) => (
+                      <li key={item} className="text-purple-200 text-sm flex items-start gap-2">
+                        <span className="text-purple-400 mt-1">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
             </div>
           </motion.div>

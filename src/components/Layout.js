@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Menu, X, Brain, Code, BookOpen, FileText, Users, Mail } from 'lucide-react';
+import { Menu, X, Brain, Code, BookOpen, FileText, Users, Mail, Download } from 'lucide-react';
 import useSiteSettings from '../hooks/useSiteSettings';
 
 const Layout = ({ children }) => {
@@ -57,6 +57,15 @@ const Layout = ({ children }) => {
                   </Link>
                 );
               })}
+              <a
+                href={`${process.env.PUBLIC_URL}/CV.pdf`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-1 px-3 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 transition-all duration-200"
+              >
+                <Download className="w-4 h-4" />
+                <span>CV</span>
+              </a>
             </div>
 
             {/* Mobile menu button */}
@@ -96,6 +105,16 @@ const Layout = ({ children }) => {
                   </Link>
                 );
               })}
+              <a
+                href={`${process.env.PUBLIC_URL}/CV.pdf`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 text-white"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Download className="w-4 h-4" />
+                <span>Download CV</span>
+              </a>
             </div>
           </motion.div>
         )}

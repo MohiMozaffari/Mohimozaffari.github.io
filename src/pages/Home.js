@@ -7,8 +7,8 @@ import {
   Code,
   Cpu,
   Gamepad2,
+  Download,
 } from "lucide-react";
-import NeuralNetwork from "../components/NeuralNetwork";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { getProjects } from "../api/projects";
 import { getLangColor, displayName, displayDescription, projectYear } from "../utils/projectDisplay";
@@ -102,11 +102,25 @@ const Home = () => {
                 >
                   Get In Touch
                 </Link>
+
+                <a
+                  href={`${process.env.PUBLIC_URL}/CV.pdf`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-8 py-4 border-2 border-purple-400 text-purple-200 font-semibold rounded-full hover:bg-purple-600 hover:text-white transition-all duration-300"
+                >
+                  Download CV
+                  <Download className="ml-2 w-5 h-5" />
+                </a>
               </motion.div>
             </motion.div>
 
             <motion.div variants={itemVariants} className="flex justify-center">
-              <NeuralNetwork className="w-full max-w-md h-80" />
+              <img
+                src={`${process.env.PUBLIC_URL}/headshot-hero.jpg`}
+                alt="Mohaddeseh Mozaffari"
+                className="w-full max-w-sm rounded-2xl border border-purple-700/50 shadow-lg shadow-purple-950/50 object-cover"
+              />
             </motion.div>
           </div>
         </motion.div>

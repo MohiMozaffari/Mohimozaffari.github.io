@@ -9,6 +9,7 @@ const FIELDS = [
   { key: 'about_journey_1', label: 'About — My Journey (paragraph 1)', type: 'textarea' },
   { key: 'about_journey_2', label: 'About — My Journey (paragraph 2)', type: 'textarea' },
   { key: 'about_journey_3', label: 'About — My Journey (paragraph 3)', type: 'textarea' },
+  { key: 'research_statement', label: 'Research — Research statement', type: 'textarea' },
   { key: 'teaching_intro', label: 'Teaching — Header intro', type: 'textarea' },
   { key: 'contact_intro', label: 'Contact — Header subtitle', type: 'textarea' },
   { key: 'footer_tagline', label: 'Site footer tagline', type: 'input' },
