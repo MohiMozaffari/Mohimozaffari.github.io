@@ -12,7 +12,6 @@ import BlogPost from './pages/BlogPost';
 import Teaching from './pages/Teaching';
 import Contact from './pages/Contact';
 import Layout from './components/Layout';
-import ParticleBackground from './components/ParticleBackground';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -27,7 +26,10 @@ const PublicLayout = () => (
 function App() {
   return (
     <div className="App relative">
-      <ParticleBackground />
+      {/* No global fixed backdrop: a viewport-pinned motif stays put while the
+          page scrolls, which reads as a "moving" background (and doubles up with
+          the hero motif on Home/Research). Per the approved mockups the motif
+          lives inside the hero/header section only, so it scrolls with content. */}
       <BrowserRouter>
         <ScrollToTop behavior="smooth" />
         <PageviewTracker />

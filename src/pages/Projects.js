@@ -1,9 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ExternalLink, Star, GitFork, Calendar } from "lucide-react";
 import { getProjects } from "../api/projects";
 import LoadingSpinner from "../components/LoadingSpinner";
+import Section from "../components/ui/Section";
+import Card from "../components/ui/Card";
+import PageHeader from "../components/ui/PageHeader";
+import Reveal from "../components/ui/Reveal";
 import { getLangColor, displayName, displayDescription, projectYear } from "../utils/projectDisplay";
 
 export default function Projects() {
@@ -24,7 +27,7 @@ export default function Projects() {
     return ["all", ...Array.from(set)];
   }, [projects]);
 
-  // Featured-first, then most recently updated
+  // Featured-first, then most recently updated — kept exactly as before.
   const sortedProjects = useMemo(() => {
     return [...projects].sort((a, b) => {
       if (!!b.featured !== !!a.featured) return b.featured ? 1 : -1;
@@ -39,121 +42,127 @@ export default function Projects() {
     return sortedProjects.filter((p) => (p.language || "").toLowerCase() === filter);
   }, [filter, sortedProjects]);
 
-  if (loading) {
-    return (
-      <div className="relative z-10 py-20 flex justify-center">
-        <LoadingSpinner size="medium" />
-      </div>
-    );
-  }
-
   return (
-    <div className="relative z-10 py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {languages.map((lang) => (
-            <button
-              key={lang}
-              onClick={() => setFilter(lang)}
-              className={`px-5 py-2 rounded-full font-semibold transition-all duration-300 ${
-                filter === lang
-                  ? "bg-purple-600 text-white"
-                  : "bg-purple-900/50 text-purple-200 hover:bg-purple-700 hover:text-white"
-              }`}
-            >
-              {lang === "all"
-                ? "All Projects"
+    <div className="relative z-10">
+      {/* ══ PAGE HEADER — lighter register, no mesh/motif ═══════════════ */}
+      <Section background="surface" border="bottom" maxWidth="max-w-7xl" padY="pb-14 pt-16">
+        <Reveal>
+          <PageHeader
+            size="lg"
+            maxWidth="max-w-2xl"
+            description="Research tooling and applied engineering, synced automatically from GitHub."
+          >
+            Projects
+          </PageHeader>
+        </Reveal>
+      </Section>
+
+      {/* ══ FILTERS + GRID — deliberately lighter register than publications ══ */}
+      <Section background="ink">
+        <Reveal className="flex flex-wrap gap-2.5">
+          {languages.map((lang) => {
+            const isActive = filter === lang;
+            const label =
+              lang === "all"
+                ? "All projects"
                 : lang
                     .split(" ")
                     .map((w) => w[0].toUpperCase() + w.slice(1))
-                    .join(" ")}
-            </button>
-          ))}
-        </div>
+                    .join(" ");
+            return (
+              <button
+                key={lang}
+                type="button"
+                onClick={() => setFilter(lang)}
+                className={`rounded-md border px-3.5 py-2 font-mono text-micro uppercase tracking-[0.08em] transition-colors ${
+                  isActive
+                    ? "border-iris-500/40 bg-iris-500/10 text-iris-200"
+                    : "border-line text-content-faint hover:border-line-strong hover:text-content-muted"
+                }`}
+              >
+                {label}
+              </button>
+            );
+          })}
+        </Reveal>
 
-        {/* Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((p) => (
-            <div
-              key={p._id}
-              className={`bg-purple-900/30 rounded-xl border overflow-hidden hover:border-purple-600 transition-all duration-300 hover:transform hover:scale-105 flex flex-col ${
-                p.featured ? "border-purple-500" : "border-purple-700/50"
-              }`}
-            >
-              <div className="p-6 flex flex-col h-full">
-                <div className="flex items-start justify-between mb-4">
-                  <h3
-                    className="text-xl font-bold text-white leading-snug break-words whitespace-normal pr-2"
-                    title={displayName(p)}
-                  >
-                    {displayName(p)}
+        {loading ? (
+          <div className="flex justify-center py-16">
+            <LoadingSpinner size="medium" />
+          </div>
+        ) : filteredProjects.length === 0 ? (
+          <p className="mt-10 text-center text-content-muted">
+            No projects found for the selected filter.
+          </p>
+        ) : (
+          <Reveal className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredProjects.map((p) => (
+              <Card key={p._id} padding="sm" radius="lg" className="flex flex-col">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="font-mono text-micro uppercase tracking-[0.08em] text-content-faint">
+                      {p.language || "Project"}
+                    </p>
                     {p.featured && (
-                      <span className="ml-2 align-middle text-[10px] bg-gradient-to-r from-purple-500 to-pink-500 text-white px-2 py-0.5 rounded-full whitespace-nowrap">
+                      <span className="mt-1.5 inline-flex items-center gap-1.5 font-mono text-micro uppercase tracking-[0.08em] text-orchid-400">
+                        <span className="h-1 w-1 rounded-full bg-orchid-400" />
                         Featured
                       </span>
                     )}
-                  </h3>
+                  </div>
                   {p.language && (
                     <span
-                      className={`text-xs ${getLangColor(p.language)} text-white
-              flex items-center justify-center
-              h-6 px-3 rounded-full whitespace-nowrap`}
-                    >
-                      {p.language}
-                    </span>
+                      className={`mt-1.5 inline-block h-2 w-2 shrink-0 rounded-full ${getLangColor(p.language)}`}
+                      aria-hidden="true"
+                    />
                   )}
                 </div>
 
-                <p className="text-purple-200 text-sm leading-relaxed mb-6 flex-grow">
+                <h3
+                  className="mt-3 text-base font-semibold leading-snug text-content"
+                  title={displayName(p)}
+                >
+                  {displayName(p)}
+                </h3>
+                <p className="mt-2 flex-grow text-sm leading-relaxed text-content-muted">
                   {displayDescription(p)}
                 </p>
 
-                <div className="flex items-center justify-between text-sm text-purple-300 mb-4">
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-1">
-                      <Star className="w-4 h-4" />
-                      <span>{numberFmt.format(p.stars || 0)}</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <GitFork className="w-4 h-4" />
-                      <span>{numberFmt.format(p.forksCount || 0)}</span>
-                    </div>
+                <div className="mt-5 flex items-center justify-between gap-3 border-t border-line pt-4">
+                  <div className="tnum flex items-center gap-3.5 font-mono text-micro text-content-faint">
+                    <span className="inline-flex items-center gap-1">
+                      <Star className="h-3.5 w-3.5" />
+                      {numberFmt.format(p.stars || 0)}
+                    </span>
+                    <span className="inline-flex items-center gap-1">
+                      <GitFork className="h-3.5 w-3.5" />
+                      {numberFmt.format(p.forksCount || 0)}
+                    </span>
+                    <span className="inline-flex items-center gap-1">
+                      <Calendar className="h-3.5 w-3.5" />
+                      {projectYear(p)}
+                    </span>
                   </div>
-                  <div className="flex items-center space-x-1">
-                    <Calendar className="w-4 h-4" />
-                    <span>{projectYear(p)}</span>
+                  <div className="flex shrink-0 items-center gap-3">
+                    <a
+                      href={p.htmlUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={p.source === "manual" ? "View preprint" : "View on GitHub"}
+                      className="text-content-faint transition-colors hover:text-iris-300"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                    <Link to={`/projects/${p.slug}`} className="link text-caption font-medium">
+                      Details →
+                    </Link>
                   </div>
                 </div>
-
-                <div className="flex items-center justify-between">
-                  <a
-                    href={p.htmlUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-all duration-300 text-sm"
-                  >
-                    {p.source === "manual" ? "View Preprint" : "View on GitHub"}{" "}
-                    <ExternalLink className="ml-2 w-4 h-4" />
-                  </a>
-                  <Link
-                    to={`/projects/${p.slug}`}
-                    className="text-purple-400 hover:text-purple-300 font-semibold text-sm"
-                  >
-                    Learn More →
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {filteredProjects.length === 0 && (
-          <div className="text-center py-12 text-purple-200 text-lg">
-            No projects found for the selected filter.
-          </div>
+              </Card>
+            ))}
+          </Reveal>
         )}
-      </div>
+      </Section>
     </div>
   );
 }

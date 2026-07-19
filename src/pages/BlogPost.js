@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { ArrowLeft, Calendar } from "lucide-react";
 import { getPost } from "../api/blog";
 import LoadingSpinner from "../components/LoadingSpinner";
+import Section from "../components/ui/Section";
+import Card from "../components/ui/Card";
+import Reveal from "../components/ui/Reveal";
 
 export default function BlogPost() {
   const { slug } = useParams();
@@ -22,7 +24,7 @@ export default function BlogPost() {
 
   if (loading) {
     return (
-      <div className="relative z-10 py-20 flex justify-center">
+      <div className="relative z-10 flex justify-center py-20">
         <LoadingSpinner size="medium" />
       </div>
     );
@@ -30,11 +32,11 @@ export default function BlogPost() {
 
   if (notFound || !post) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="flex min-h-[60vh] items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-white mb-4">Post Not Found</h2>
-          <Link to="/blog" className="inline-flex items-center text-purple-400 hover:text-purple-300">
-            <ArrowLeft className="mr-2 w-4 h-4" /> Back to Research Notes
+          <h2 className="font-display text-2xl font-semibold text-content">Post not found</h2>
+          <Link to="/blog" className="link mt-4 inline-flex items-center text-sm font-medium">
+            <ArrowLeft className="mr-2 h-4 w-4" /> Back to research notes
           </Link>
         </div>
       </div>
@@ -42,15 +44,15 @@ export default function BlogPost() {
   }
 
   return (
-    <div className="relative z-10 py-20">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-          <Link to="/blog" className="inline-flex items-center text-purple-400 hover:text-purple-300 mb-8">
-            <ArrowLeft className="mr-2 w-4 h-4" /> Back to Research Notes
+    <div className="relative z-10">
+      <Section background="ink" maxWidth="max-w-3xl">
+        <Reveal>
+          <Link to="/blog" className="link mb-8 inline-flex items-center text-sm font-medium">
+            <ArrowLeft className="mr-2 h-4 w-4" /> Back to research notes
           </Link>
 
-          <div className="flex items-center gap-2 text-purple-300 text-sm mb-3">
-            <Calendar className="w-4 h-4" />
+          <div className="flex items-center gap-2 font-mono text-micro uppercase tracking-[0.08em] text-content-faint">
+            <Calendar className="h-3.5 w-3.5" />
             {new Date(post.date).toLocaleDateString(undefined, {
               year: "numeric",
               month: "long",
@@ -58,21 +60,30 @@ export default function BlogPost() {
             })}
           </div>
 
-          <h1 className="text-4xl font-bold text-white mb-6">{post.title}</h1>
+          <h1 className="mt-4 font-display text-3xl font-semibold leading-tight tracking-tight text-content sm:text-4xl">
+            {post.title}
+          </h1>
 
-          <div className="flex flex-wrap gap-2 mb-8">
-            {(post.tags || []).map((tag) => (
-              <span key={tag} className="text-xs bg-purple-700 text-purple-100 px-2 py-1 rounded-full">
-                {tag}
-              </span>
-            ))}
-          </div>
+          {(post.tags || []).length > 0 && (
+            <div className="mt-5 flex flex-wrap gap-2">
+              {(post.tags || []).map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-md border border-line px-2 py-1 font-mono text-micro uppercase tracking-[0.08em] text-content-faint"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
 
-          <div className="bg-purple-900/30 p-8 rounded-xl border border-purple-700/50">
-            <p className="text-purple-100 leading-relaxed whitespace-pre-line">{post.body}</p>
-          </div>
-        </motion.div>
-      </div>
+          <Card radius="xl" padding="lg" raise interactive={false} className="mt-8">
+            <p className="whitespace-pre-line text-base leading-relaxed text-content-muted">
+              {post.body}
+            </p>
+          </Card>
+        </Reveal>
+      </Section>
     </div>
   );
 }

@@ -1,246 +1,238 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { Brain, Target, Users } from "lucide-react";
+import Section from "../components/ui/Section";
+import Card from "../components/ui/Card";
+import PageHeader from "../components/ui/PageHeader";
+import Prose from "../components/ui/Prose";
+import Reveal from "../components/ui/Reveal";
 import useSiteSettings from "../hooks/useSiteSettings";
+
+const SKILL_GROUPS = [
+  {
+    category: "Programming & tooling",
+    items: ["Python", "NumPy / pandas / PyTorch", "Tkinter & Pygame (GUI and game development)"],
+  },
+  {
+    category: "Complex systems & network science",
+    items: [
+      "Persistent homology / topological data analysis",
+      "Brain network & connectome analysis",
+      "Statistical physics of complex systems",
+    ],
+  },
+  {
+    category: "Machine learning & AI",
+    items: ["Model development and evaluation", "Feature engineering", "Deep learning for medical imaging"],
+  },
+  {
+    category: "Teaching & mentoring",
+    items: ["Python, data analysis, and ML instruction", "1:1 and group teaching, project-based learning"],
+  },
+];
+
+const EXPERIENCE = [
+  {
+    period: "2022 – Present",
+    title: "Researcher",
+    organization: "CCNet (Complexity & Complex Networks Lab)",
+    description:
+      "Collaborated on projects in complex systems, network science, and topological data analysis with applications in neuroscience and machine learning.",
+  },
+  {
+    period: "2022 – Present",
+    title: "Python & AI Instructor",
+    organization: "Independent / online",
+    description:
+      "Teaching Python, scientific computing, and AI through hands-on projects — game development, interactive simulations, and real-world applications.",
+  },
+];
+
+// Same CV-verified facts as the Education block on Research.js (kept in sync
+// by hand — see CLAUDE.md "Key facts"). Not admin-managed content.
+const EDUCATION = [
+  {
+    period: "Sep 2022 – Mar 2025",
+    title: "MSc Physics — Statistical Physics and Complex Systems",
+    detail: (
+      <>
+        Shahid Beheshti University. Thesis:{" "}
+        <em className="text-content">
+          Analysis of Topological Features of Brain Networks in Autism Spectrum Disorder Using
+          Persistent Homology
+        </em>
+        , graded Outstanding. Advised by Prof. G. Reza Jafari. Ranked 2nd in cohort.
+      </>
+    ),
+  },
+  {
+    period: "Sep 2018 – May 2022",
+    title: "BSc Physics",
+    detail: "Shahid Beheshti University. Ranked 1st in cohort.",
+  },
+];
+
+const APPROACH = [
+  {
+    label: "Research-driven",
+    text: "Every project and lesson is grounded in current research and best practices in computational science and complex systems theory.",
+  },
+  {
+    label: "Practical focus",
+    text: "I believe in learning by doing. All my courses emphasize hands-on projects that solve real-world problems and build practical skills.",
+  },
+  {
+    label: "Student-centered",
+    text: "Every student learns differently. I adapt my teaching style to individual needs and learning preferences.",
+  },
+];
 
 const About = () => {
   const settings = useSiteSettings();
 
-  const skillGroups = [
-    {
-      category: "Programming & Tooling",
-      items: ["Python", "NumPy / pandas / PyTorch", "Tkinter & Pygame (GUI and game development)"],
-    },
-    {
-      category: "Complex Systems & Network Science",
-      items: ["Persistent homology / topological data analysis", "Brain network & connectome analysis", "Statistical physics of complex systems"],
-    },
-    {
-      category: "Machine Learning & AI",
-      items: ["Model development and evaluation", "Feature engineering", "Deep learning for medical imaging"],
-    },
-    {
-      category: "Teaching & Mentoring",
-      items: ["Python, data analysis, and ML instruction", "1:1 and group teaching, project-based learning"],
-    },
-  ];
-
-  const experiences = [
-    {
-      title: "Researcher",
-      organization: "CCNet (Complexity & Complex Networks Lab)",
-      period: "2022 - Present",
-      description:
-        "Collaborated on projects in complex systems, network science, and topological data analysis with applications in neuroscience and machine learning.",
-    },
-    {
-      title: "Python & AI Instructor",
-      organization: "Independent / Online",
-      period: "2022 - Present",
-      description:
-        "Teaching Python, scientific computing, and AI through hands-on projects. Designed courses that include game development, interactive simulations, and real-world applications.",
-    },
-  ];
-
   return (
-    <div className="relative z-10 py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <img
-            src={`${process.env.PUBLIC_URL}/headshot-avatar.jpg`}
-            alt="Mohaddeseh Mozaffari"
-            className="w-36 h-36 rounded-full object-cover mx-auto mb-8 border-4 border-purple-700/50 shadow-lg shadow-purple-950/50"
-          />
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-            About Me
-          </h1>
-          <p className="text-xl text-purple-200 max-w-3xl mx-auto leading-relaxed">
-            {settings.about_intro}
-          </p>
-        </motion.div>
-
-        {/* Personal Story */}
-        <div className="mb-20">
-          <div className="bg-purple-900/30 p-8 md:p-12 rounded-2xl border border-purple-700/50">
-            <h2 className="text-3xl font-bold text-white mb-8">My Journey</h2>
-            <div className="grid md:grid-cols-1 gap-8">
-              <div>
-                <p className="text-lg text-purple-200 leading-relaxed mb-6">
-                  {settings.about_journey_1}
-                </p>
-
-                <p className="text-lg text-purple-200 leading-relaxed mb-6">
-                  {settings.about_journey_2}
-                </p>
-
-                <p className="text-lg text-purple-200 leading-relaxed">
-                  {settings.about_journey_3}
-                </p>
+    <div className="relative z-10">
+      {/* ══ HEADER — avatar styled like Home's headshot treatment ═══════ */}
+      <Section background="surface" border="bottom" padY="pb-14 pt-16">
+        <Reveal>
+          <div className="grid gap-10 md:grid-cols-12 md:items-center">
+            <div className="md:col-span-3">
+              <div className="relative mx-auto h-32 w-32 sm:h-36 sm:w-36">
+                <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-iris-500/25 via-orchid-500/10 to-orchid-400/25 blur-xl" />
+                <img
+                  src={`${process.env.PUBLIC_URL}/headshot-avatar.jpg`}
+                  alt="Mohaddeseh Mozaffari"
+                  className="relative h-full w-full rounded-full border border-line-strong object-cover shadow-raise"
+                />
               </div>
             </div>
+            <div className="md:col-span-9">
+              {/* split={false}: this header already shares a row with the avatar,
+                  so it keeps the stacked form rather than splitting again. */}
+              <PageHeader size="lg" maxWidth="max-w-2xl" split={false} description={settings.about_intro}>
+                About
+              </PageHeader>
+            </div>
           </div>
-        </div>
+        </Reveal>
+      </Section>
 
-        {/* Skills */}
-        <div className="mb-20">
-          <h2 className="text-3xl font-bold text-white text-center mb-12">
-            Skills & Expertise
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {skillGroups.map((group) => (
-              <div
-                key={group.category}
-                className="bg-purple-900/30 p-6 rounded-xl border border-purple-700/50"
-              >
-                <h3 className="text-white font-semibold mb-3">{group.category}</h3>
-                <ul className="space-y-2">
-                  {group.items.map((item) => (
-                    <li key={item} className="text-purple-200 text-sm flex items-start gap-2">
-                      <span className="text-purple-400 mt-1">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+      {/* ══ JOURNEY — editorial, matches the Research-statement pattern ═ */}
+      <Section background="ink">
+        {/* Centred reading column — see Research.js: prose caps near ~75ch, so
+            the leftover width is split into even margins instead of one dead band. */}
+        <p className="mx-auto max-w-[80ch] font-mono text-meta uppercase text-iris-400">
+          My journey
+        </p>
+        <Reveal className="mx-auto mt-5 max-w-[80ch] space-y-6">
+          <Prose justify className="max-w-none">
+            {settings.about_journey_1}
+          </Prose>
+          <Prose justify className="max-w-none">
+            {settings.about_journey_2}
+          </Prose>
+          <Prose justify className="max-w-none">
+            {settings.about_journey_3}
+          </Prose>
+        </Reveal>
+      </Section>
+
+      {/* ══ SKILLS — plain grouped lists, no percentage bars ═════════════ */}
+      <Section background="surface" border="top">
+        <h2 className="border-b border-line pb-5 font-display text-h2 font-semibold leading-tight tracking-tight text-iris-200">
+          Skills &amp; expertise
+        </h2>
+        <Reveal className="mt-8 grid gap-5 sm:grid-cols-2">
+          {SKILL_GROUPS.map((group) => (
+            <Card key={group.category} radius="lg" padding="md" interactive={false}>
+              <h3 className="font-mono text-micro uppercase tracking-[0.08em] text-iris-400">
+                {group.category}
+              </h3>
+              <ul className="mt-4 space-y-2.5">
+                {group.items.map((item) => (
+                  <li key={item} className="flex gap-2.5 text-sm leading-relaxed text-content-muted">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-coral-400" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          ))}
+        </Reveal>
+      </Section>
+
+      {/* ══ EXPERIENCE ════════════════════════════════════════════════════ */}
+      <Section background="ink">
+        <h2 className="border-b border-line pb-5 font-display text-h2 font-semibold leading-tight tracking-tight text-iris-200">
+          Experience
+        </h2>
+        <Reveal className="mt-2">
+          {EXPERIENCE.map((exp, i) => (
+            <div
+              key={exp.title}
+              className={`grid gap-6 py-8 md:grid-cols-12 ${
+                i < EXPERIENCE.length - 1 ? "border-b border-line" : ""
+              }`}
+            >
+              <div className="md:col-span-3">
+                <p className="tnum font-mono text-micro uppercase tracking-[0.08em] text-content-faint">
+                  {exp.period}
+                </p>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Experience */}
-        <div className="mb-20">
-          <h2 className="text-3xl font-bold text-white text-center mb-12">
-            Experience
-          </h2>
-          <div className="space-y-8">
-            {experiences.map((exp, index) => (
-              <div
-                key={index}
-                className="bg-purple-900/30 p-8 rounded-xl border border-purple-700/50"
-              >
-                <div className="flex flex-col md:flex-row md:justify-between mb-4 text-left">
-                  <div>
-                    <h3 className="text-xl font-bold text-white">
-                      {exp.title}
-                    </h3>
-                    <p className="text-purple-300">{exp.organization}</p>
-                  </div>
-                  <span className="text-purple-400 font-semibold mt-2 md:mt-0">
-                    {exp.period}
-                  </span>
-                </div>
-                <p className="text-purple-200 leading-relaxed">
+              <div className="md:col-span-9">
+                <h3 className="font-display text-xl font-semibold tracking-tight">{exp.title}</h3>
+                <p className="mt-1.5 font-mono text-caption text-content-faint">{exp.organization}</p>
+                <p className="mt-3 max-w-prose text-base leading-relaxed text-content-muted">
                   {exp.description}
                 </p>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Education */}
-        <div className="mb-20">
-          <h2 className="text-3xl font-bold text-white text-center mb-12">
-            Education
-          </h2>
-          <div className="space-y-8">
-            <div className="bg-purple-900/30 p-8 rounded-xl border border-purple-700/50">
-              <div className="flex flex-col md:flex-row md:justify-between mb-4 text-left">
-                <div>
-                  <h3 className="text-xl font-bold text-white">
-                    M.Sc. Statistical Physics & Complex Systems
-                  </h3>
-                  <p className="text-purple-300">
-                    Shahid Beheshti University
-                  </p>
-                </div>
-                <span className="text-purple-400 font-semibold mt-2 md:mt-0">
-                  2022 – 2025
-                </span>
-              </div>
-              <p className="text-purple-200 leading-relaxed">
-                Thesis: "Analysis of Topological Features of Brain Networks in Autism Spectrum
-                Disorder Using Persistent Homology," graded Outstanding, defended March 11, 2025.
-                Ranked 2nd in the program.
-              </p>
             </div>
+          ))}
+        </Reveal>
+      </Section>
 
-            <div className="bg-purple-900/30 p-8 rounded-xl border border-purple-700/50">
-              <div className="flex flex-col md:flex-row md:justify-between mb-4 text-left">
-                <div>
-                  <h3 className="text-xl font-bold text-white">
-                    B.Sc. Physics
-                  </h3>
-                  <p className="text-purple-300">
-                    Shahid Beheshti University
-                  </p>
-                </div>
-                <span className="text-purple-400 font-semibold mt-2 md:mt-0">
-                  2018 – 2022
-                </span>
+      {/* ══ EDUCATION ═════════════════════════════════════════════════════ */}
+      <Section background="surface" border="top">
+        <h2 className="border-b border-line pb-5 font-display text-h2 font-semibold leading-tight tracking-tight text-iris-200">
+          Education
+        </h2>
+        <Reveal className="mt-2">
+          {EDUCATION.map((edu, i) => (
+            <div
+              key={edu.title}
+              className={`grid gap-6 py-8 md:grid-cols-12 ${
+                i < EDUCATION.length - 1 ? "border-b border-line" : ""
+              }`}
+            >
+              <div className="md:col-span-3">
+                <p className="tnum font-mono text-micro uppercase tracking-[0.08em] text-content-faint">
+                  {edu.period}
+                </p>
               </div>
-              <p className="text-purple-200 leading-relaxed">
-                Studied fundamental and applied physics with a focus on
-                complex systems. Ranked 1st in the program.
-              </p>
+              <div className="md:col-span-9">
+                <h3 className="font-display text-xl font-semibold tracking-tight">{edu.title}</h3>
+                <p className="mt-3 max-w-prose text-base leading-relaxed text-content-muted">
+                  {edu.detail}
+                </p>
+              </div>
             </div>
-          </div>
-        </div>
+          ))}
+        </Reveal>
+      </Section>
 
-        {/* Values & Approach */}
-        <div>
-          <h2 className="text-3xl font-bold text-white text-center mb-12">
-            My Approach
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Brain className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">
-                Research-Driven
-              </h3>
-              <p className="text-purple-200 leading-relaxed">
-                Every project and lesson is grounded in current research and
-                best practices in computational science and complex systems
-                theory.
-              </p>
+      {/* ══ APPROACH — plain prose, no icon circles (theme.md: rounded-full
+          is reserved for status pips and the avatar only) ═══════════════ */}
+      <Section background="ink">
+        <h2 className="border-b border-line pb-5 font-display text-h2 font-semibold leading-tight tracking-tight text-iris-200">
+          Approach
+        </h2>
+        <Reveal className="mt-8 grid gap-10 sm:grid-cols-3">
+          {APPROACH.map((a) => (
+            <div key={a.label}>
+              <p className="font-mono text-micro uppercase tracking-[0.08em] text-iris-400">{a.label}</p>
+              <p className="mt-3 text-sm leading-relaxed text-content-muted">{a.text}</p>
             </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Target className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">
-                Practical Focus
-              </h3>
-              <p className="text-purple-200 leading-relaxed">
-                I believe in learning by doing. All my courses emphasize
-                hands-on projects that solve real-world problems and build
-                practical skills.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">
-                Student-Centered
-              </h3>
-              <p className="text-purple-200 leading-relaxed">
-                Every student learns differently. I adapt my teaching style to
-                meet individual needs and learning preferences for maximum
-                effectiveness.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+          ))}
+        </Reveal>
+      </Section>
     </div>
   );
 };

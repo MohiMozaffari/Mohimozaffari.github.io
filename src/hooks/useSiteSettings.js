@@ -17,11 +17,18 @@ const DEFAULTS = {
   about_journey_3:
     'Outside of research and teaching, I’m usually trying out new algorithms, contributing to open-source, or just recharging with yoga, TRX workouts, and a little purple aesthetic ✨.',
   research_statement:
-    'My research traces a path from statistical physics to computational neuroscience: I started by studying how simple local rules generate complex global behavior, then moved into network science and topological data analysis during my master’s work at Shahid Beheshti University. There, I applied persistent homology to resting-state fMRI data, developing a node-removal-based method to detect topological differences between autism spectrum disorder and control brain networks and examining how these differences vary with age — work now under review at Network Neuroscience. I released the analysis pipeline as an open-source Python package, NeuroPHorm, so other TDA researchers working with brain networks could build on it. In parallel, I’ve contributed to deep-learning pipelines for coronary artery segmentation and FFR estimation from angiography, which shaped how I think about applying machine learning to noisy, high-stakes medical imaging data. Going forward, I want to keep building methods at the intersection of topology, network science, and machine learning to understand how the brain’s structure gives rise to its function.',
+    'My research traces a path from statistical physics to computational neuroscience: I started by studying how simple local rules generate complex global behavior, then moved into network science and topological data analysis during my master’s work at Shahid Beheshti University.\n\nThere, I applied persistent homology to resting-state fMRI data, developing a node-removal-based method to detect topological differences between autism spectrum disorder and control brain networks and examining how these differences vary with age — work now under review at Network Neuroscience. I released the analysis pipeline as an open-source Python package, NeuroPHorm, so other TDA researchers working with brain networks could build on it.\n\nIn parallel, I’ve contributed to deep-learning pipelines for coronary artery segmentation and FFR estimation from angiography, which shaped how I think about applying machine learning to noisy, high-stakes medical imaging data.\n\nGoing forward, I want to keep building methods at the intersection of topology, network science, and machine learning to understand how the brain’s structure gives rise to its function.',
+  // Research-page focus rail. One area per line, "Title — detail".
+  // Mirrors server/src/routes/settings.js; editable from the admin Content tab.
+  research_focus:
+    'Computational and network neuroscience — brain connectivity, developmental connectomics\nMachine learning for medical imaging — segmentation and classification\nComplex systems and network science — robustness, stochastic processes\nReproducible scientific software — reusable research tooling',
   contact_intro: 'Send a message directly, or reach me via Email, LinkedIn, or Telegram.',
   teaching_intro:
-    'Python instructor since June 2023 (Ostadbank & Picha Club), teaching Python, data analysis, and machine learning to learners of varying backgrounds — from complete beginners to advanced deep-learning students — through 1:1 and group sessions.',
+    'Teaching Python, data analysis, and machine learning since June 2023 — beginners through advanced deep-learning students.',
   footer_tagline: 'AI & Neuroscience Researcher | Brain Networks | Topological Data Analysis | Medical Imaging',
+  // Public "Book a session" scheduling link — Google Calendar Appointment Schedule.
+  // Mirrors server/src/routes/settings.js; editable from the admin Content tab.
+  booking_url: 'https://calendar.app.google/LbBh5ooi89wrhe7m9',
 };
 
 export default function useSiteSettings() {
