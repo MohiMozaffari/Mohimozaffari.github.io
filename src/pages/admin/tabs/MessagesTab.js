@@ -12,30 +12,37 @@ const MessagesTab = () => {
     load();
   };
 
-  if (messages.length === 0) return <p className="text-purple-300">No messages yet.</p>;
+  if (messages.length === 0) return <p className="text-content-faint">No messages yet.</p>;
 
   return (
     <div className="space-y-4">
       {messages.map((msg) => (
         <div
           key={msg._id}
-          className={`p-4 rounded-xl border ${msg.read ? 'bg-purple-900/20 border-purple-700/30' : 'bg-purple-900/40 border-purple-500'}`}
+          className={`rounded-xl border p-5 ${
+            msg.read ? 'border-line bg-surface-raised/50' : 'border-iris-500/40 bg-surface-raised'
+          }`}
         >
-          <div className="flex items-center justify-between gap-3 mb-2">
+          <div className="mb-2 flex items-center justify-between gap-3">
             <div>
-              <span className="text-white font-semibold">{msg.name}</span>
-              <span className="ml-2 text-purple-400 text-xs">{msg.email}</span>
+              <span className="font-semibold text-content">{msg.name}</span>
+              <span className="ml-2 font-mono text-caption text-content-faint">{msg.email}</span>
             </div>
-            <div className="flex items-center gap-3 shrink-0">
-              <span className="text-purple-400 text-xs">{new Date(msg.createdAt).toLocaleString()}</span>
+            <div className="flex shrink-0 items-center gap-3">
+              <span className="font-mono text-caption text-content-faint">
+                {new Date(msg.createdAt).toLocaleString()}
+              </span>
               {!msg.read && (
-                <button onClick={() => handleMarkRead(msg._id)} className="text-purple-400 hover:text-purple-300 text-xs font-semibold">
+                <button
+                  onClick={() => handleMarkRead(msg._id)}
+                  className="font-mono text-caption font-semibold text-iris-400 transition-colors hover:text-iris-300"
+                >
                   Mark read
                 </button>
               )}
             </div>
           </div>
-          <p className="text-purple-200 text-sm whitespace-pre-line">{msg.message}</p>
+          <p className="whitespace-pre-line text-sm text-content-muted">{msg.message}</p>
         </div>
       ))}
     </div>

@@ -57,7 +57,12 @@ const ProjectsTab = () => {
       setSyncMessage(`Synced: ${result.created} new, ${result.updated} updated, ${result.total} total repos.`);
       load();
     } catch (err) {
-      setSyncMessage('Sync failed.');
+      // Surface the worker's actual reason (missing/expired GITHUB_TOKEN, rate
+      // limit, expired admin JWT). A bare "Sync failed." leaves no way to debug.
+      const res = err?.response;
+      const detail = res?.data?.detail || res?.data?.error || err?.message || 'Unknown error';
+      const status = res?.status ? ` (HTTP ${res.status})` : '';
+      setSyncMessage(`Sync failed${status}: ${detail}`);
     } finally {
       setSyncing(false);
     }

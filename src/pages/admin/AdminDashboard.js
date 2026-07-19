@@ -30,26 +30,28 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="relative z-10 min-h-screen bg-gradient-to-br from-purple-950 via-purple-900 to-indigo-950">
-      <nav className="bg-purple-950/90 backdrop-blur-sm border-b border-purple-800/50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <h1 className="text-xl font-bold text-white">Admin Dashboard</h1>
+    <div className="relative z-10 min-h-screen bg-ink">
+      <nav className="border-b border-line bg-surface/90 backdrop-blur-sm">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+          <h1 className="font-display text-h3 font-semibold tracking-tight text-content">
+            Admin Dashboard
+          </h1>
           <button
             onClick={handleLogout}
-            className="inline-flex items-center text-purple-300 hover:text-white text-sm font-semibold"
+            className="inline-flex items-center text-sm font-semibold text-content-faint transition-colors hover:text-content"
           >
-            <LogOut className="mr-1 w-4 h-4" /> Log out
+            <LogOut className="mr-1 h-4 w-4" /> Log out
           </button>
         </div>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-2 pb-3 overflow-x-auto">
+        <div className="mx-auto flex max-w-6xl gap-2 overflow-x-auto px-4 pb-3 sm:px-6 lg:px-8">
           {TABS.map((tab) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap transition-all duration-200 ${
+              className={`whitespace-nowrap rounded-md border px-4 py-2 text-sm font-semibold transition-colors ${
                 activeTab === tab.key
-                  ? 'bg-purple-600 text-white'
-                  : 'text-purple-200 hover:bg-purple-800/50'
+                  ? 'border-iris-500/40 bg-iris-500/10 text-iris-200'
+                  : 'border-transparent text-content-muted hover:border-line hover:bg-surface-raised hover:text-content'
               }`}
             >
               {tab.label}
@@ -58,7 +60,7 @@ const AdminDashboard = () => {
         </div>
       </nav>
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
         <ActiveComponent />
       </main>
     </div>

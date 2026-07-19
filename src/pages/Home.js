@@ -206,21 +206,26 @@ const Home = () => {
                 to={`/projects/${project.slug}`}
                 className="block rounded-lg border border-line bg-surface-raised p-5 transition-colors hover:border-line-strong"
               >
-                <p className="font-mono text-micro uppercase tracking-[0.08em] text-content-faint">
-                  {project.language || "Project"}
-                </p>
+                {/* Language dot sits top-right beside its label, matching the
+                    Projects page cards — it read as a stray dot when trailing
+                    the description at the bottom-left. */}
+                <div className="flex items-start justify-between gap-3">
+                  <p className="font-mono text-micro uppercase tracking-[0.08em] text-content-faint">
+                    {project.language || "Project"}
+                  </p>
+                  {project.language && (
+                    <span
+                      className={`mt-1 inline-block h-2 w-2 shrink-0 rounded-full ${getLangColor(project.language)}`}
+                      aria-hidden="true"
+                    />
+                  )}
+                </div>
                 <h3 className="mt-2 text-base font-semibold text-content">
                   {displayName(project)}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-content-muted">
                   {displayDescription(project)}
                 </p>
-                {project.language && (
-                  <span
-                    className={`mt-3 inline-block h-1.5 w-1.5 rounded-full ${getLangColor(project.language)}`}
-                    aria-hidden="true"
-                  />
-                )}
               </Link>
             ))}
           </Reveal>

@@ -39,7 +39,17 @@ async function fetchRepos(token) {
     `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`,
     { headers: githubHeaders(token) }
   );
-  if (!res.ok) throw new Error(`GitHub repos fetch failed: ${res.status}`);
+  if (!res.ok) {
+    // Include GitHub's own reason and name the usual production cause: the
+    // Worker missing a GITHUB_TOKEN secret falls back to unauthenticated calls,
+    // which are rate-limited to 60/hour and then 403 for the rest of the hour.
+    const body = await res.text().catch(() => '');
+    const hint = !token
+      ? ' (no GITHUB_TOKEN set on the Worker — unauthenticated GitHub calls are rate-limited)'
+      : '';
+    const reason = body.slice(0, 200).replace(/\s+/g, ' ').trim();
+    throw new Error(`GitHub repos fetch failed: ${res.status}${hint}${reason ? ` — ${reason}` : ''}`);
+  }
   return res.json();
 }
 

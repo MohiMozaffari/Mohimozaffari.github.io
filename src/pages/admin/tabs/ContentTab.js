@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getSettings, updateSettings } from '../../../api/settings';
+import Card from '../../../components/ui/Card';
+import Button from '../../../components/ui/Button';
 
 const FIELDS = [
   { key: 'home_hero_line1', label: 'Home — Hero tagline (line 1)', type: 'input' },
@@ -24,6 +26,9 @@ const FIELDS = [
   { key: 'contact_intro', label: 'Contact — Header subtitle', type: 'textarea' },
   { key: 'footer_tagline', label: 'Site footer tagline', type: 'input' },
 ];
+
+const inputClasses =
+  'w-full rounded-lg border border-line bg-surface-overlay px-4 py-3 text-sm text-content placeholder-content-faint transition-colors focus:border-iris-500 focus:outline-none';
 
 const ContentTab = () => {
   const [values, setValues] = useState({});
@@ -51,44 +56,44 @@ const ContentTab = () => {
     }
   };
 
-  if (loading) return <p className="text-purple-300">Loading content...</p>;
+  if (loading) return <p className="text-content-faint">Loading content...</p>;
 
   return (
     <form onSubmit={handleSave} className="space-y-6">
-      <p className="text-purple-300 text-sm">
+      <p className="text-sm text-content-muted">
         Edit the text that appears across the public site. Changes go live as soon as you save.
       </p>
 
       {FIELDS.map((field) => (
-        <div key={field.key} className="bg-purple-900/30 p-4 rounded-xl border border-purple-700/50">
-          <label className="block text-white font-semibold text-sm mb-2">{field.label}</label>
+        <Card key={field.key} padding="md" radius="xl" interactive={false}>
+          <label className="mb-2 block font-mono text-micro uppercase tracking-[0.08em] text-content-faint">
+            {field.label}
+          </label>
           {field.type === 'textarea' ? (
             <textarea
               rows={3}
               value={values[field.key] || ''}
               onChange={(e) => handleChange(field.key, e.target.value)}
-              className="w-full bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
+              className={inputClasses}
             />
           ) : (
             <input
               value={values[field.key] || ''}
               onChange={(e) => handleChange(field.key, e.target.value)}
-              className="w-full bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
+              className={inputClasses}
             />
           )}
-        </div>
+        </Card>
       ))}
 
       <div className="flex items-center gap-4">
-        <button
-          type="submit"
-          disabled={saving}
-          className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300 disabled:opacity-60"
-        >
+        <Button type="submit" variant="primary" disabled={saving} className="disabled:opacity-60">
           {saving ? 'Saving...' : 'Save Changes'}
-        </button>
+        </Button>
         {savedAt && (
-          <span className="text-green-400 text-sm">Saved at {savedAt.toLocaleTimeString()}</span>
+          <span className="text-sm font-medium text-mint-400">
+            Saved at {savedAt.toLocaleTimeString()}
+          </span>
         )}
       </div>
     </form>
