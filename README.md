@@ -28,8 +28,28 @@ panel at `/admin/login`, not by editing files in this repo:
 - **Contact messages**: view submissions in the admin Messages tab (also emailed on arrival).
 - **Analytics**: simple page-view counts in the admin Analytics tab.
 
-The Teaching page content (`src/data/courses.js`) and About page bio are the only content that
-still lives in code, since they don't need runtime editing.
+Editable site copy also includes the **research focus areas** (`research_focus`, one per line as
+`Title — detail`) and the **"Book a session" link** (`booking_url`, a Google Calendar Appointment
+Schedule URL) — both in the admin Content tab.
+
+Content that still lives in code, because it changes rarely and is CV-verified:
+`src/data/courses.js` (teaching topics), and the `EDUCATION` / `EXPERIENCE` / `SKILL_GROUPS` /
+`APPROACH` arrays in `src/pages/About.js` and `src/pages/Research.js`. Education and publication
+facts are deliberately kept out of free-text admin fields so they can't drift from the CV repo —
+see `CLAUDE.md`.
+
+## Design system
+
+The frontend uses the **Midnight Iris** design system. Before changing colours, type, or spacing,
+read `design/theme.md` (tokens + rationale) and `design/ia-spec.md` (information architecture).
+Tokens live in `tailwind.config.js`; shared primitives (`Section`, `Card`, `Button`, `Badge`,
+`PageHeader`, `Prose`, `Reveal`, `NetworkMotif`) live in `src/components/ui/` — compose from those
+rather than restyling ad hoc. `design/*.html` are the approved static mockups, kept for reference;
+they are not shipped.
+
+Two gotchas worth knowing: don't reintroduce a `position: fixed` decorative backdrop (it reads as a
+"moving" background while the page scrolls), and don't apply the `display-optical` class below
+~40px (it sets Fraunces `opsz 144`, whose hairline strokes are illegible at small sizes).
 
 ## Local development
 
