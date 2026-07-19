@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Midnight Iris — theme + mockups</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="tailwind-theme.js?v=coral"></script>
+<script>tailwind.config = { theme: window.midnightIris };</script>
+<link rel="stylesheet" href="theme.css?v=coral" />
+</head>
+<body class="bg-ink font-sans text-content antialiased">
+<main class="mx-auto max-w-5xl px-6 py-16">
+
+  <p class="font-mono text-meta uppercase text-coral-400">Theme-factory custom theme &middot; awaiting sign-off</p>
+  <h1 class="mt-4 font-display display-optical text-display-lg font-semibold">Midnight <span class="gradient-word">Iris</span></h1>
+  <div class="mt-5 h-px w-32 rule-orchid"></div>
+  <p class="mt-6 max-w-prose text-body text-content-muted">
+    Dark + purple, evolved rather than rebranded: near-black neutral surfaces instead of one flat
+    purple gradient, an editorial serif for headings, technical mono for metadata, and a single warm
+    accent so nothing is purple-on-purple. Nothing here is encoded in the React app yet.
+  </p>
+
+  <!-- screens -->
+  <h2 class="mt-14 border-b border-line pb-4 font-display text-2xl font-semibold tracking-tight">The three screens</h2>
+  <div class="mt-6 grid gap-4 sm:grid-cols-3">
+    <a href="hero.html" class="rounded-lg border border-line bg-surface-raised p-5 transition-colors hover:border-iris-500">
+      <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-content-faint">01</p>
+      <h3 class="mt-2 font-display text-lg font-semibold">Hero / Home</h3>
+      <p class="mt-2 text-sm text-content-muted">B5 hero, featured publications, lighter project cards.</p>
+    </a>
+    <a href="research.html" class="rounded-lg border border-line bg-surface-raised p-5 transition-colors hover:border-iris-500">
+      <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-content-faint">02</p>
+      <h3 class="mt-2 font-display text-lg font-semibold">Research</h3>
+      <p class="mt-2 text-sm text-content-muted">Statement → publications centerpiece → software → education.</p>
+    </a>
+    <a href="teaching.html" class="rounded-lg border border-line bg-surface-raised p-5 transition-colors hover:border-iris-500">
+      <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-content-faint">03</p>
+      <h3 class="mt-2 font-display text-lg font-semibold">Teaching</h3>
+      <p class="mt-2 text-sm text-content-muted">Subordinate register + &ldquo;Book a session&rdquo; CTA.</p>
+    </a>
+  </div>
+
+  <!-- palette -->
+  <h2 class="mt-14 border-b border-line pb-4 font-display text-2xl font-semibold tracking-tight">Palette</h2>
+
+  <p class="mt-6 font-mono text-meta uppercase text-content-faint">Surfaces &amp; text — the non-purple neutrals</p>
+  <div class="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">
+    <div><div class="h-16 rounded-md border border-line" style="background:#0A0910"></div><p class="mt-2 font-mono text-[11px] text-content">ink</p><p class="font-mono text-[11px] text-content-faint">#0A0910</p></div>
+    <div><div class="h-16 rounded-md border border-line" style="background:#100E1A"></div><p class="mt-2 font-mono text-[11px] text-content">surface</p><p class="font-mono text-[11px] text-content-faint">#100E1A</p></div>
+    <div><div class="h-16 rounded-md border border-line" style="background:#171426"></div><p class="mt-2 font-mono text-[11px] text-content">raised</p><p class="font-mono text-[11px] text-content-faint">#171426</p></div>
+    <div><div class="h-16 rounded-md border border-line" style="background:#1E1A31"></div><p class="mt-2 font-mono text-[11px] text-content">overlay</p><p class="font-mono text-[11px] text-content-faint">#1E1A31</p></div>
+    <div><div class="h-16 rounded-md border border-line" style="background:#241F38"></div><p class="mt-2 font-mono text-[11px] text-content">line</p><p class="font-mono text-[11px] text-content-faint">#241F38</p></div>
+    <div><div class="h-16 rounded-md border border-line" style="background:#382F55"></div><p class="mt-2 font-mono text-[11px] text-content">line-strong</p><p class="font-mono text-[11px] text-content-faint">#382F55</p></div>
+    <div><div class="h-16 rounded-md border border-line" style="background:#F2EEF9"></div><p class="mt-2 font-mono text-[11px] text-content">content</p><p class="font-mono text-[11px] text-content-faint">#F2EEF9</p></div>
+    <div><div class="h-16 rounded-md border border-line" style="background:#B7AECD"></div><p class="mt-2 font-mono text-[11px] text-content">muted</p><p class="font-mono text-[11px] text-content-faint">#B7AECD</p></div>
+    <div><div class="h-16 rounded-md border border-line" style="background:#7C7391"></div><p class="mt-2 font-mono text-[11px] text-content">faint</p><p class="font-mono text-[11px] text-content-faint">#7C7391</p></div>
+  </div>
+
+  <p class="mt-8 font-mono text-meta uppercase text-content-faint">Iris — the brand purple</p>
+  <div class="mt-3 grid grid-cols-4 gap-3 sm:grid-cols-8">
+    <div><div class="h-16 rounded-md" style="background:#DCCBFF"></div><p class="mt-2 font-mono text-[11px] text-content-faint">200</p></div>
+    <div><div class="h-16 rounded-md" style="background:#C4A9FF"></div><p class="mt-2 font-mono text-[11px] text-content-faint">300</p></div>
+    <div><div class="h-16 rounded-md" style="background:#A683FF"></div><p class="mt-2 font-mono text-[11px] text-content-faint">400</p></div>
+    <div><div class="h-16 rounded-md ring-1 ring-iris-300" style="background:#8B5CF6"></div><p class="mt-2 font-mono text-[11px] text-content">500</p></div>
+    <div><div class="h-16 rounded-md" style="background:#7442E0"></div><p class="mt-2 font-mono text-[11px] text-content-faint">600</p></div>
+    <div><div class="h-16 rounded-md" style="background:#5B2FB8"></div><p class="mt-2 font-mono text-[11px] text-content-faint">700</p></div>
+    <div><div class="h-16 rounded-md" style="background:#2A1259"></div><p class="mt-2 font-mono text-[11px] text-content-faint">900</p></div>
+    <div><div class="h-16 rounded-md" style="background:#180A34"></div><p class="mt-2 font-mono text-[11px] text-content-faint">950</p></div>
+  </div>
+
+  <p class="mt-8 font-mono text-meta uppercase text-content-faint">Orchid (secondary accent) &middot; Coral (accent) &middot; Mint (status)</p>
+  <div class="mt-3 grid grid-cols-3 gap-3 sm:grid-cols-6">
+    <div><div class="h-16 rounded-md" style="background:#EC72B6"></div><p class="mt-2 font-mono text-[11px] text-content-faint">orchid-400</p></div>
+    <div><div class="h-16 rounded-md" style="background:#E0559C"></div><p class="mt-2 font-mono text-[11px] text-content-faint">orchid-500</p></div>
+    <div><div class="h-16 rounded-md" style="background:#F7A991"></div><p class="mt-2 font-mono text-[11px] text-content-faint">coral-300</p></div>
+    <div><div class="h-16 rounded-md ring-1 ring-coral-300" style="background:#F2856B"></div><p class="mt-2 font-mono text-[11px] text-content">coral-400</p></div>
+    <div><div class="h-16 rounded-md" style="background:#E56A4E"></div><p class="mt-2 font-mono text-[11px] text-content-faint">coral-500</p></div>
+    <div><div class="h-16 rounded-md" style="background:#6FD9A6"></div><p class="mt-2 font-mono text-[11px] text-content-faint">mint-400</p></div>
+  </div>
+
+  <!-- type -->
+  <h2 class="mt-14 border-b border-line pb-4 font-display text-2xl font-semibold tracking-tight">Type</h2>
+  <div class="mt-6 space-y-8">
+    <div>
+      <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-content-faint">font-display &middot; Fraunces &middot; SOFT 0 / WONK 0</p>
+      <p class="mt-2 font-display display-optical text-5xl font-semibold">Persistent homology</p>
+      <p class="mt-1 font-display text-2xl">Headings, hero identity, publication titles</p>
+    </div>
+    <div>
+      <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-content-faint">font-sans &middot; IBM Plex Sans &middot; deliberately not Inter</p>
+      <p class="mt-2 max-w-prose text-body text-content-muted">
+        Body copy, UI labels, prose. Chosen because it reads technical and scientific without being
+        the default face on every AI portfolio.
+      </p>
+    </div>
+    <div>
+      <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-content-faint">font-mono &middot; IBM Plex Mono</p>
+      <p class="mt-2 font-mono text-sm text-coral-400">arXiv:2601.17429 &middot; 10.5281/zenodo.17542598 &middot; NETNEURO-26-0075</p>
+      <p class="mt-1 text-sm text-content-faint">Venue, DOI, status, manuscript numbers &mdash; the scientific record register.</p>
+    </div>
+  </div>
+
+  <!-- status badges -->
+  <h2 class="mt-14 border-b border-line pb-4 font-display text-2xl font-semibold tracking-tight">Status badges</h2>
+  <p class="mt-4 text-sm text-content-muted">Mapped 1:1 to the existing D1 <span class="font-mono text-coral-400">publications.status</span> column. No new statuses invented, nothing upgraded.</p>
+  <div class="mt-5 flex flex-wrap gap-3">
+    <span class="inline-flex items-center gap-2 rounded-md border border-mint-400/30 bg-mint-400/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-mint-400"><span class="h-1.5 w-1.5 rounded-full bg-mint-400"></span>Published</span>
+    <span class="inline-flex items-center gap-2 rounded-md border border-coral-400/30 bg-coral-400/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-coral-300"><span class="h-1.5 w-1.5 rounded-full bg-coral-400"></span>Under review</span>
+    <span class="inline-flex items-center gap-2 rounded-md border border-iris-400/30 bg-iris-400/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-iris-300"><span class="h-1.5 w-1.5 rounded-full bg-iris-400"></span>Preprint</span>
+  </div>
+
+  <!-- buttons -->
+  <h2 class="mt-14 border-b border-line pb-4 font-display text-2xl font-semibold tracking-tight">Buttons</h2>
+  <p class="mt-4 text-sm text-content-muted">Three weights, three shapes &mdash; replacing three identical gradient pills.</p>
+  <div class="mt-5 flex flex-wrap items-center gap-3">
+    <a href="#" class="rounded-lg bg-iris-600 px-5 py-3 text-sm font-semibold text-white shadow-focus transition-colors hover:bg-iris-500">Primary</a>
+    <a href="#" class="rounded-lg border border-line-strong bg-surface-raised px-5 py-3 text-sm font-medium text-content transition-colors hover:border-iris-500">Secondary</a>
+    <a href="#" class="link px-1 py-3 text-sm font-medium">Ghost link →</a>
+    <a href="#" class="rounded-lg bg-coral-400 px-5 py-3 text-sm font-semibold text-ink transition-colors hover:bg-coral-300">Booking CTA</a>
+  </div>
+
+  <footer class="mt-16 border-t border-line pt-8">
+    <p class="font-mono text-[11px] text-content-faint">Scratch mockups — not shipped. Full token spec in design/theme.md.</p>
+  </footer>
+</main>
+</body>
+</html>

@@ -1,38 +1,14 @@
+/* Midnight Iris — app shell.
+ *
+ * This file used to be untouched Create React App boilerplate, including
+ * `.App { text-align: center; }`, which silently centred every heading and
+ * paragraph on the site (and made long-form prose impossible to justify).
+ * The starter's `.App-logo` / `.App-header` / `.App-link` rules and the
+ * spinning-logo keyframes were dead code and have been removed.
+ *
+ * Text alignment is now left by default (inherited from `body`), and any
+ * centring is opted into per component. */
+
 .App {
-    text-align: center;
-}
-
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
-}
-
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-}
-
-.App-link {
-    color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+  text-align: left;
 }

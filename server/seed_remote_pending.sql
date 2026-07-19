@@ -1,23 +1,9 @@
--- One-off seed for content with no corresponding public GitHub repo (verified via the GitHub
--- API — see plan notes). Safe to re-run: INSERT OR IGNORE won't duplicate on the unique slug.
-INSERT OR IGNORE INTO projects
-  (source, name, slug, description, html_url, featured, override_arxiv_url, override_publication_status)
-VALUES (
-  'manual',
-  'Coronary Artery Segmentation',
-  'coronary-artery-segmentation',
-  'Deep learning approach for coronary artery segmentation in X-ray coronary angiography.',
-  'https://arxiv.org/abs/2601.17429',
-  1,
-  'https://arxiv.org/abs/2601.17429',
-  'preprint'
-);
+-- REMOTE-SAFE VERSION: excludes the Network Neuroscience publication already live in prod.
+-- Adds the 3 remaining verified publications from the CV repo's publications.md.
+-- Run once only - no unique constraint on title, so re-running duplicates rows.
+-- After running successfully, delete this file (its content is preserved in server/seed.sql,
+-- which is the full/local-dev version - this trimmed one is a one-time hand-off only).
 
--- Seed the publications table — previously empty in production (nothing had ever inserted rows
--- here; the admin panel is the normal path, but this backfills the four verified publications
--- from the CV repo's cv_builder/experience/publications.md so the Research page isn't empty).
--- Status/wording carried verbatim from that file. Not idempotent (no unique constraint on
--- title) — check the admin panel before re-running so this doesn't duplicate rows.
 INSERT INTO publications (title, authors, status, venue, url, doi, description, order_num)
 VALUES ('Nonlinear optical response of IMIP ionic liquid-stabilized magnetic graphene oxide sheets', 'Mohammadi, M.S., Shahrokhi, S., Mozaffari, M., et al.', 'published', 'Journal of Materials Science: Materials in Electronics', 'https://doi.org/10.1007/s10854-022-08262-1', '10.1007/s10854-022-08262-1', 'Journal of Materials Science: Materials in Electronics, 33, 13224-13233 (2022). Co-authored; Mozaffari is a co-author, not first or senior author.', 4);
 
@@ -25,13 +11,12 @@ INSERT INTO publications (title, authors, status, venue, url, doi, description, 
 VALUES ('Automated Noninvasive FFR Estimation from Biplane Coronary Angiography Using a Transformer-Based Deep Learning Framework', 'Yousefzadeh, M., Shirzadeh Barough, S., Fakharifar, A., Mozaffari, M., Eghbali, N., Taeb, H., Tayyarazad, Y.', 'presentation', '2nd National Meeting on Artificial Intelligence in Medical Imaging (Oral Presentation), Rajaee Heart Institute, Tehran, Iran', '', '', 'Accepted for oral presentation, 11-13 June 2025. Co-authored transformer-based deep learning framework for FFR estimation from biplane coronary angiography.', 3);
 
 INSERT INTO publications (title, authors, status, venue, url, doi, description, order_num)
-VALUES ('Persistent Homology Reveals Topological Alterations in Resting-State Brain Networks of Autism Spectrum Disorder', 'Mozaffari, M., et al.', 'under-review', 'Network Neuroscience', '', '', 'Manuscript No. NETNEURO-26-0075. Derived from master''s thesis work applying persistent homology to resting-state fMRI data in autism spectrum disorder.', 1);
-
-INSERT INTO publications (title, authors, status, venue, url, doi, description, order_num)
 VALUES ('Coronary Artery Segmentation and Vessel-Type Classification in X-Ray Angiography: Machine-Learning Generalized Image Processing and Deep Neural Networks', 'Yousefzadeh, M., Shirzadeh Barough, S., Fakharifar, A., Tayyarazad, Y., Eghbali, N., Mozaffari, M., et al.', 'preprint', 'arXiv', 'https://arxiv.org/abs/2601.17429', '', 'Preprint. Contributed to the deep-learning segmentation and vessel-type classification pipeline, including DICOM processing and data augmentation.', 2);
 
--- Seed 3 real research-notes blog posts (PROMPT.md Task 4 nice-to-have). Dated the day they
--- were written/published, not backdated to the events they describe.
+
+
+-- Seed 3 real research-notes blog posts (Task 4 nice-to-have).
+
 INSERT INTO blog_posts (title, slug, date, body, tags, published)
 VALUES ('What persistent homology found in autism spectrum disorder brain networks', 'persistent-homology-asd-brain-networks', '2026-07-16T09:00:00.000Z', 'My master''s thesis, "Analysis of Topological Features of Brain Networks in Autism Spectrum Disorder Using Persistent Homology," asked a simple question in a nonstandard way: instead of comparing brain connectivity matrices directly, what happens if you compare their topology?
 

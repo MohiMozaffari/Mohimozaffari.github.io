@@ -1,49 +1,54 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Linkedin, Send, Loader2, CheckCircle2 } from 'lucide-react';
-import { sendContactMessage } from '../api/contact';
-import useSiteSettings from '../hooks/useSiteSettings';
+import React, { useState } from "react";
+import { Mail, Linkedin, Send, Loader2, CheckCircle2, Calendar } from "lucide-react";
+import Section from "../components/ui/Section";
+import Button from "../components/ui/Button";
+import PageHeader from "../components/ui/PageHeader";
+import Reveal from "../components/ui/Reveal";
+import { sendContactMessage } from "../api/contact";
+import useSiteSettings from "../hooks/useSiteSettings";
+
+const PUBLIC_EMAIL = "mohaddeseh.mozaffarii@gmail.com";
 
 const Contact = () => {
   const settings = useSiteSettings();
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState('idle'); // idle | sending | sent | error
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { delayChildren: 0.3, staggerChildren: 0.2 } },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1 },
-  };
+  // booking_url dependency (design/ia-spec.md): link out when set, fall back
+  // to mailto when empty — never a dead "#" link. Same pattern as Teaching.js.
+  const bookingUrl = settings.booking_url;
+  const bookingHref = bookingUrl || `mailto:${PUBLIC_EMAIL}`;
+  const bookingExternalProps = bookingUrl ? { target: "_blank", rel: "noopener noreferrer" } : {};
 
   const contacts = [
     {
       icon: Mail,
-      title: 'Email',
-      action: 'mohaddeseh.mozaffarii@gmail.com',
-      link: 'mailto:mohaddeseh.mozaffarii@gmail.com',
-      hover: 'group-hover:bg-red-400/20 group-hover:border-red-400/60',
-      iconHover: 'group-hover:text-red-300',
+      title: "Email",
+      action: PUBLIC_EMAIL,
+      link: `mailto:${PUBLIC_EMAIL}`,
+      external: {},
     },
     {
       icon: Linkedin,
-      title: 'LinkedIn',
-      action: '@mohimozaffari',
-      link: 'https://www.linkedin.com/in/mohimozaffari',
-      hover: 'group-hover:bg-blue-400/20 group-hover:border-blue-400/60',
-      iconHover: 'group-hover:text-blue-300',
+      title: "LinkedIn",
+      action: "@mohimozaffari",
+      link: "https://www.linkedin.com/in/mohimozaffari",
+      external: { target: "_blank", rel: "noopener noreferrer" },
     },
     {
       icon: Send,
-      title: 'Telegram',
-      action: '@mohimozaffari',
-      link: 'https://t.me/mohimozaffari',
-      hover: 'group-hover:bg-sky-400/20 group-hover:border-sky-400/60',
-      iconHover: 'group-hover:text-sky-300',
-      nudgeX: '-translate-x-[1px]', // subtle 1px shift to visually center the paper plane
+      title: "Telegram",
+      action: "@mohimozaffari",
+      link: "https://t.me/mohimozaffari",
+      external: { target: "_blank", rel: "noopener noreferrer" },
+    },
+    {
+      icon: Calendar,
+      title: "Book a call",
+      action: bookingUrl ? "Schedule online →" : "Email to schedule →",
+      link: bookingHref,
+      external: bookingExternalProps,
+      accent: true,
     },
   ];
 
@@ -51,35 +56,42 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus('sending');
+    setStatus("sending");
     try {
       await sendContactMessage(form);
-      setStatus('sent');
-      setForm({ name: '', email: '', message: '' });
+      setStatus("sent");
+      setForm({ name: "", email: "", message: "" });
     } catch (err) {
-      setStatus('error');
+      setStatus("error");
     }
   };
 
-  return (
-    <div className="relative z-10 py-20">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div initial="hidden" animate="visible" variants={containerVariants}>
-          {/* Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Get In Touch</h1>
-            <p className="text-xl text-purple-200 max-w-3xl mx-auto leading-relaxed">
-              {settings.contact_intro}
-            </p>
-          </motion.div>
+  const inputClasses =
+    "rounded-lg border border-line bg-surface-overlay px-4 py-3 text-sm text-content placeholder-content-faint transition-colors focus:border-iris-500 focus:outline-none";
 
-          {/* Contact Form */}
-          <motion.form
-            variants={itemVariants}
+  return (
+    <div className="relative z-10">
+      {/* ══ PAGE HEADER — subordinate register, no mesh/motif ═══════════ */}
+      <Section background="surface" border="bottom" maxWidth="max-w-7xl" padY="pb-14 pt-16">
+        <Reveal>
+          <PageHeader size="lg" maxWidth="max-w-2xl" description={settings.contact_intro}>
+            Get in touch
+          </PageHeader>
+        </Reveal>
+      </Section>
+
+      {/* ══ FORM + WAYS TO REACH ME — side by side so the page uses its width
+             instead of a narrow centred strip with dead space either side ══ */}
+      <Section background="ink" maxWidth="max-w-7xl">
+        {/* Equal columns + matching panel styling on both sides: a 7/5 split with
+            a bare list on the right read as lopsided. Both are now the same card. */}
+        <div className="grid items-stretch gap-6 lg:grid-cols-2">
+        <Reveal className="h-full">
+          <form
             onSubmit={handleSubmit}
-            className="bg-purple-900/30 p-8 rounded-xl border border-purple-700/50 mb-16 max-w-2xl mx-auto"
+            className="flex h-full flex-col rounded-xl border border-line bg-surface-raised p-7"
           >
-            <div className="grid sm:grid-cols-2 gap-4 mb-4">
+            <div className="grid gap-4 sm:grid-cols-2">
               <input
                 type="text"
                 name="name"
@@ -87,7 +99,7 @@ const Contact = () => {
                 placeholder="Your name"
                 value={form.name}
                 onChange={handleChange}
-                className="bg-purple-950/50 border border-purple-700/50 rounded-lg px-4 py-3 text-white placeholder-purple-300 focus:outline-none focus:border-purple-400"
+                className={inputClasses}
               />
               <input
                 type="email"
@@ -96,74 +108,97 @@ const Contact = () => {
                 placeholder="Your email"
                 value={form.email}
                 onChange={handleChange}
-                className="bg-purple-950/50 border border-purple-700/50 rounded-lg px-4 py-3 text-white placeholder-purple-300 focus:outline-none focus:border-purple-400"
+                className={inputClasses}
               />
             </div>
+            {/* flex-1 so the message field absorbs the panel's leftover height
+                instead of leaving dead space under a fixed 5-row box. */}
             <textarea
               name="message"
               required
-              rows={5}
               placeholder="Your message"
               value={form.message}
               onChange={handleChange}
-              className="w-full bg-purple-950/50 border border-purple-700/50 rounded-lg px-4 py-3 text-white placeholder-purple-300 focus:outline-none focus:border-purple-400 mb-4"
+              className={`mt-4 w-full flex-1 resize-none ${inputClasses}`}
             />
 
-            <div className="flex items-center gap-4">
-              <button
-                type="submit"
-                disabled={status === 'sending'}
-                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full hover:from-purple-700 hover:to-pink-700 transition-all duration-300 disabled:opacity-60"
-              >
-                {status === 'sending' ? (
-                  <>
-                    <Loader2 className="mr-2 w-5 h-5 animate-spin" /> Sending...
-                  </>
+            <div className="mt-5 flex flex-wrap items-center gap-4">
+              <Button type="submit" variant="primary" disabled={status === "sending"}>
+                {status === "sending" ? (
+                  <span className="inline-flex items-center">
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending&hellip;
+                  </span>
                 ) : (
-                  <>
-                    Send Message <Send className="ml-2 w-4 h-4" />
-                  </>
+                  <span className="inline-flex items-center">
+                    Send message <Send className="ml-2 h-4 w-4" />
+                  </span>
                 )}
-              </button>
+              </Button>
 
-              {status === 'sent' && (
-                <span className="inline-flex items-center text-green-400 text-sm font-semibold">
-                  <CheckCircle2 className="mr-1 w-4 h-4" /> Message sent, thank you!
+              {status === "sent" && (
+                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-mint-400">
+                  <CheckCircle2 className="h-4 w-4" /> Message sent, thank you.
                 </span>
               )}
-              {status === 'error' && (
-                <span className="text-red-400 text-sm font-semibold">
-                  Something went wrong, please try again or email me directly.
+              {status === "error" && (
+                <span className="text-sm font-medium text-coral-400">
+                  Something went wrong &mdash; please try again or email me directly.
                 </span>
               )}
             </div>
-          </motion.form>
+          </form>
+        </Reveal>
 
-          {/* Contact Cards */}
-          <motion.div variants={itemVariants} className="grid md:grid-cols-3 gap-8">
-            {contacts.map(({ icon: Icon, title, action, link, hover, iconHover, nudgeX }, i) => (
-              <a
-                key={i}
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`group bg-purple-900/30 p-6 rounded-xl border border-purple-700/50 text-center transition-all duration-300 hover:border-purple-600 ${hover}`}
-              >
-                {/* Icon circle: perfectly centered with grid */}
-                <div className="w-16 h-16 rounded-full mx-auto mb-4 bg-purple-600 transition-colors grid place-items-center">
-                  <Icon
-                    className={`w-8 h-8 text-white block transition-colors ${iconHover || ''} ${nudgeX || ''}`}
-                    aria-hidden="true"
-                  />
-                </div>
+        <Reveal index={1} className="h-full">
+          {/* Matches the form panel exactly. Icons sit inline rather than in
+              bordered boxes, which read as clunky chips against the flat card. */}
+          <div className="flex h-full flex-col rounded-xl border border-line bg-surface-raised p-7">
+            <h2 className="font-display text-h3 font-semibold tracking-tight text-iris-200">
+              Other ways to reach me
+            </h2>
 
-                <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-                <p className="text-purple-200">{action}</p>
-              </a>
-            ))}
-          </motion.div>
-        </motion.div>
-      </div>
+            <ul className="mt-2 flex flex-col divide-y divide-line">
+              {contacts.map(({ icon: Icon, title, action, link, external, accent }) => (
+                <li key={title} className="flex-1">
+                  <a
+                    href={link}
+                    {...external}
+                    className="group flex h-full items-center gap-4 py-4"
+                  >
+                    <Icon
+                      className={`h-5 w-5 shrink-0 transition-colors ${
+                        accent
+                          ? "text-coral-400"
+                          : "text-content-faint group-hover:text-iris-300"
+                      }`}
+                      aria-hidden="true"
+                    />
+                    <span className="min-w-0 flex-1">
+                      <span
+                        className={`block text-sm font-medium transition-colors ${
+                          accent ? "text-coral-300" : "text-content group-hover:text-iris-200"
+                        }`}
+                      >
+                        {title}
+                      </span>
+                      <span className="mt-0.5 block truncate font-mono text-caption text-content-faint">
+                        {action}
+                      </span>
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="shrink-0 text-content-faint transition-transform group-hover:translate-x-0.5 group-hover:text-iris-300"
+                    >
+                      →
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+        </div>
+      </Section>
     </div>
   );
 };

@@ -10,7 +10,17 @@ const FIELDS = [
   { key: 'about_journey_2', label: 'About — My Journey (paragraph 2)', type: 'textarea' },
   { key: 'about_journey_3', label: 'About — My Journey (paragraph 3)', type: 'textarea' },
   { key: 'research_statement', label: 'Research — Research statement', type: 'textarea' },
+  {
+    key: 'research_focus',
+    label: 'Research — Focus areas (one per line, "Title — detail")',
+    type: 'textarea',
+  },
   { key: 'teaching_intro', label: 'Teaching — Header intro', type: 'textarea' },
+  {
+    key: 'booking_url',
+    label: 'Teaching — "Book a session" link (Google Appointment Schedule or Cal.com URL)',
+    type: 'input',
+  },
   { key: 'contact_intro', label: 'Contact — Header subtitle', type: 'textarea' },
   { key: 'footer_tagline', label: 'Site footer tagline', type: 'input' },
 ];

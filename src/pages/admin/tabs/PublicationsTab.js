@@ -62,9 +62,14 @@ const PublicationsTab = () => {
           onChange={(e) => setForm({ ...form, status: e.target.value })}
           className="bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
         >
+          {/* Must stay in sync with STATUS_CONFIG in src/components/ui/Badge.jsx.
+              "preprint" was previously missing here even though the DB used it,
+              so preprints could not be set from the admin at all. */}
           <option value="submitted">Submitted</option>
           <option value="under-review">Under Review</option>
+          <option value="preprint">Preprint</option>
           <option value="published">Published</option>
+          <option value="presentation">Oral Presentation (conference)</option>
         </select>
         <input
           placeholder="Venue"

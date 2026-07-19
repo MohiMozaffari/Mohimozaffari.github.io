@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mockup — Teaching · Midnight Iris</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="tailwind-theme.js?v=coral"></script>
+<script>tailwind.config = { theme: window.midnightIris };</script>
+<link rel="stylesheet" href="theme.css?v=coral" />
+</head>
+<body class="bg-ink font-sans text-content antialiased">
+
+<header class="sticky top-0 z-50 border-b border-line bg-ink/80 backdrop-blur-md">
+  <nav class="mx-auto flex max-w-6xl items-center gap-6 px-6 py-4">
+    <a href="hero.html" class="mr-auto font-display display-optical text-xl font-semibold tracking-tight">Mohaddeseh Mozaffari</a>
+    <div class="hidden items-center gap-6 text-sm md:flex">
+      <a href="research.html" class="font-medium text-content transition-colors hover:text-iris-300">Research</a>
+      <a href="#" class="font-medium text-content-muted transition-colors hover:text-iris-300">Projects</a>
+      <a href="#" class="font-medium text-content-muted transition-colors hover:text-iris-300">About</a>
+      <span class="ml-1 h-4 w-px bg-line-strong"></span>
+      <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-content-faint">Also</span>
+      <a href="#" class="text-[13px] text-content-muted underline decoration-line-strong underline-offset-4">Teaching</a>
+      <a href="#" class="text-[13px] text-content-faint transition-colors hover:text-content-muted">Blog</a>
+      <a href="#" class="text-[13px] text-content-faint transition-colors hover:text-content-muted">Contact</a>
+    </div>
+    <a href="/CV.pdf" class="rounded-md border border-line-strong bg-surface-raised px-3.5 py-2 font-mono text-[11px] uppercase tracking-[0.1em] text-content transition-colors hover:border-iris-500 hover:text-iris-200">CV ↓</a>
+  </nav>
+</header>
+
+<!-- ══ PAGE HEADER — lighter register than Research: narrower measure, no mesh,
+     smaller display size, no drop cap. Subordination is structural (B4). ══ -->
+<section class="border-b border-line bg-surface">
+  <div class="mx-auto max-w-5xl px-6 pb-14 pt-16">
+    <div class="reveal">
+      <p class="font-mono text-meta uppercase text-orchid-400">Also &middot; additional experience</p>
+      <h1 class="mt-4 font-display text-[2.5rem] font-semibold leading-tight tracking-tight">Teaching</h1>
+      <!-- teaching_intro, verbatim from useSiteSettings / D1 site_settings -->
+      <p class="mt-5 max-w-prose text-body text-content-muted">
+        Python instructor since June 2023 (Ostadbank &amp; Picha Club), teaching Python, data analysis,
+        and machine learning to learners of varying backgrounds &mdash; from complete beginners to
+        advanced deep-learning students &mdash; through 1:1 and group sessions.
+      </p>
+    </div>
+
+    <!-- ══ BOOKING CTA (Part D) — the one loud thing on this page ══════════ -->
+    <div class="reveal reveal-1 mt-10 overflow-hidden rounded-xl border border-coral-400/30 bg-gradient-to-r from-coral-400/10 to-transparent">
+      <div class="flex flex-col items-start justify-between gap-5 p-6 sm:flex-row sm:items-center">
+        <div>
+          <h2 class="font-display text-xl font-semibold tracking-tight text-coral-300">Book a session</h2>
+          <p class="mt-1.5 max-w-md text-sm leading-relaxed text-content-muted">
+            Pick a time that works for you &mdash; 1:1 or small group, beginner through advanced.
+          </p>
+        </div>
+        <div class="flex shrink-0 items-center gap-3">
+          <a href="#booking_url" class="rounded-lg bg-coral-400 px-5 py-3 text-sm font-semibold text-ink transition-colors hover:bg-coral-300">
+            Book a session →
+          </a>
+          <a href="#" class="rounded-lg border border-line-strong bg-surface-raised px-5 py-3 text-sm font-medium text-content transition-colors hover:border-iris-500">
+            Message me
+          </a>
+        </div>
+      </div>
+      <p class="border-t border-coral-400/20 bg-ink/40 px-6 py-2.5 font-mono text-[10px] uppercase tracking-[0.08em] text-content-faint">
+        Mockup note: href comes from the <span class="text-coral-400">booking_url</span> site-setting (admin → Content tab). Not hardcoded.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COURSES — anonymized, topic-based only (courses.js structure kept) ═══ -->
+<section class="bg-ink">
+  <div class="mx-auto max-w-5xl px-6 py-16">
+    <h2 class="border-b border-line pb-4 font-display text-2xl font-semibold tracking-tight">What I teach</h2>
+
+    <div class="mt-8 grid gap-8 md:grid-cols-12">
+      <!-- selector rail -->
+      <div class="md:col-span-4">
+        <div class="flex flex-col gap-1">
+          <button class="rounded-md border border-iris-500/40 bg-iris-500/10 px-4 py-3 text-left transition-colors">
+            <span class="block text-sm font-semibold text-iris-200">Python Fundamentals</span>
+            <span class="mt-0.5 block font-mono text-[10px] uppercase tracking-[0.08em] text-content-faint">Beginner &middot; 4&ndash;6 weeks</span>
+          </button>
+          <button class="rounded-md border border-transparent px-4 py-3 text-left transition-colors hover:border-line hover:bg-surface-raised">
+            <span class="block text-sm font-medium text-content-muted">Data Structures &amp; Functional Python</span>
+            <span class="mt-0.5 block font-mono text-[10px] uppercase tracking-[0.08em] text-content-faint">Intermediate &middot; 4&ndash;6 weeks</span>
+          </button>
+          <button class="rounded-md border border-transparent px-4 py-3 text-left transition-colors hover:border-line hover:bg-surface-raised">
+            <span class="block text-sm font-medium text-content-muted">GUI Development</span>
+            <span class="mt-0.5 block font-mono text-[10px] uppercase tracking-[0.08em] text-content-faint">Beginner to Intermediate &middot; 4&ndash;6 weeks</span>
+          </button>
+          <button class="rounded-md border border-transparent px-4 py-3 text-left transition-colors hover:border-line hover:bg-surface-raised">
+            <span class="block text-sm font-medium text-content-muted">Game Development</span>
+            <span class="mt-0.5 block font-mono text-[10px] uppercase tracking-[0.08em] text-content-faint">Beginner to Intermediate &middot; 6&ndash;10 weeks</span>
+          </button>
+          <button class="rounded-md border border-transparent px-4 py-3 text-left transition-colors hover:border-line hover:bg-surface-raised">
+            <span class="block text-sm font-medium text-content-muted">Data Science &amp; Intro ML</span>
+            <span class="mt-0.5 block font-mono text-[10px] uppercase tracking-[0.08em] text-content-faint">Intermediate &middot; 6&ndash;10 weeks</span>
+          </button>
+          <button class="rounded-md border border-transparent px-4 py-3 text-left transition-colors hover:border-line hover:bg-surface-raised">
+            <span class="block text-sm font-medium text-content-muted">Advanced / Deep Learning Track</span>
+            <span class="mt-0.5 block font-mono text-[10px] uppercase tracking-[0.08em] text-content-faint">Advanced &middot; 10&ndash;14 weeks</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- detail -->
+      <div class="md:col-span-8">
+        <div class="rounded-xl border border-line bg-surface-raised p-7 shadow-raise">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="rounded-md border border-iris-400/30 bg-iris-400/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-iris-300">Beginner</span>
+            <span class="rounded-md border border-line px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-content-faint">4&ndash;6 weeks</span>
+          </div>
+          <h3 class="mt-4 font-display text-2xl font-semibold tracking-tight">Python Fundamentals</h3>
+          <p class="mt-3 max-w-prose text-[15px] leading-relaxed text-content-muted">
+            Core Python programming concepts for learners starting from scratch: variables, control
+            flow, data structures, and functions.
+          </p>
+
+          <div class="mt-7 grid gap-7 sm:grid-cols-2">
+            <div>
+              <p class="font-mono text-[10px] uppercase tracking-[0.1em] text-content-faint">Covers</p>
+              <ul class="mt-3 space-y-2 text-sm text-content-muted">
+                <li class="flex gap-2.5"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-iris-400"></span>Variables, data types, and operators</li>
+                <li class="flex gap-2.5"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-iris-400"></span>Control flow: loops and conditionals</li>
+                <li class="flex gap-2.5"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-iris-400"></span>Core data structures: lists, dicts, tuples</li>
+                <li class="flex gap-2.5"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-iris-400"></span>Functions and modular programming</li>
+                <li class="flex gap-2.5"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-iris-400"></span>Basic error handling</li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-mono text-[10px] uppercase tracking-[0.1em] text-content-faint">Projects</p>
+              <ul class="mt-3 space-y-2 text-sm text-content-muted">
+                <li class="flex gap-2.5"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-coral-400"></span>Simple calculator</li>
+                <li class="flex gap-2.5"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-coral-400"></span>Text-based games</li>
+                <li class="flex gap-2.5"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-coral-400"></span>Mini command-line tools</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-7 border-t border-line pt-5">
+            <a href="#booking_url" class="link text-sm font-medium">Book a session for this track →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TA EXPERIENCE — real, signed-off supervisor names (no placeholders) ══ -->
+<section class="border-t border-line bg-surface">
+  <div class="mx-auto max-w-5xl px-6 py-16">
+    <h2 class="border-b border-line pb-4 font-display text-2xl font-semibold tracking-tight">Teaching assistantships</h2>
+    <p class="mt-4 max-w-prose text-sm leading-relaxed text-content-muted">
+      Undergraduate and graduate courses at Shahid Beheshti University.
+    </p>
+
+    <dl class="reveal mt-7 divide-y divide-line rounded-lg border border-line bg-surface-raised/60">
+      <div class="flex flex-wrap items-baseline justify-between gap-3 px-5 py-4">
+        <dt class="text-[15px] font-medium text-content">Complex Systems Physics</dt>
+        <dd class="font-mono text-[11px] text-content-faint">Prof. G. Reza Jafari</dd>
+      </div>
+      <div class="flex flex-wrap items-baseline justify-between gap-3 px-5 py-4">
+        <dt class="text-[15px] font-medium text-content">Complex Networks &amp; Graph Theory</dt>
+        <dd class="font-mono text-[11px] text-content-faint">Prof. G. Reza Jafari</dd>
+      </div>
+      <div class="flex flex-wrap items-baseline justify-between gap-3 px-5 py-4">
+        <dt class="text-[15px] font-medium text-content">Stochastic Processes</dt>
+        <dd class="font-mono text-[11px] text-content-faint">Prof. S. Ali Hosseiny</dd>
+      </div>
+      <div class="flex flex-wrap items-baseline justify-between gap-3 px-5 py-4">
+        <dt class="text-[15px] font-medium text-content">Numerical Simulations</dt>
+        <dd class="font-mono text-[11px] text-content-faint">Prof. S. Ali Hosseiny</dd>
+      </div>
+      <div class="flex flex-wrap items-baseline justify-between gap-3 px-5 py-4">
+        <dt class="text-[15px] font-medium text-content">Analytical Mechanics</dt>
+        <dd class="font-mono text-[11px] text-content-faint">Prof. Marzieh Farhang</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- ══ PHILOSOPHY — plain prose, no icon circles, no cards ══════════════════ -->
+<section class="bg-ink">
+  <div class="mx-auto max-w-5xl px-6 py-16">
+    <h2 class="border-b border-line pb-4 font-display text-2xl font-semibold tracking-tight">How I teach</h2>
+    <div class="mt-8 grid gap-10 sm:grid-cols-3">
+      <div>
+        <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-iris-400">Hands-on</p>
+        <p class="mt-3 text-sm leading-relaxed text-content-muted">
+          Learning by doing. Every concept is reinforced through practical projects that solve
+          real-world problems.
+        </p>
+      </div>
+      <div>
+        <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-iris-400">Personalized</p>
+        <p class="mt-3 text-sm leading-relaxed text-content-muted">
+          Each student learns differently. I adapt my teaching style to match your learning
+          preferences and pace.
+        </p>
+      </div>
+      <div>
+        <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-iris-400">Examples first</p>
+        <p class="mt-3 text-sm leading-relaxed text-content-muted">
+          Clear explanations, examples before abstraction, and step-by-step, project-based learning.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-14 flex flex-col items-start justify-between gap-5 rounded-xl border border-line bg-surface-raised p-6 sm:flex-row sm:items-center">
+      <p class="text-body text-content-muted">Ready to start?</p>
+      <div class="flex gap-3">
+        <a href="#booking_url" class="rounded-lg bg-coral-400 px-5 py-3 text-sm font-semibold text-ink transition-colors hover:bg-coral-300">Book a session</a>
+        <a href="mailto:mohaddeseh.mozaffarii@gmail.com" class="rounded-lg border border-line-strong px-5 py-3 text-sm font-medium text-content transition-colors hover:border-iris-500">Email</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-line bg-ink">
+  <div class="mx-auto max-w-5xl px-6 py-10">
+    <div class="h-px w-24 rule-orchid"></div>
+    <p class="mt-5 font-mono text-[11px] text-content-faint">
+      mohaddeseh.mozaffarii@gmail.com &middot; github.com/MohiMozaffari &middot; linkedin.com/in/mohimozaffari
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

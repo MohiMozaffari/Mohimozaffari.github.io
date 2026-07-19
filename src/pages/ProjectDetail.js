@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import {
   ArrowLeft,
   ExternalLink,
@@ -13,6 +12,10 @@ import {
 } from "lucide-react";
 import { getProject, getProjects } from "../api/projects";
 import LoadingSpinner from "../components/LoadingSpinner";
+import Section from "../components/ui/Section";
+import Card from "../components/ui/Card";
+import Button from "../components/ui/Button";
+import Reveal from "../components/ui/Reveal";
 import { getLangColor, displayName, displayDescription, projectYear } from "../utils/projectDisplay";
 
 export default function ProjectDetail() {
@@ -48,7 +51,7 @@ export default function ProjectDetail() {
 
   if (loading) {
     return (
-      <div className="relative z-10 py-20 flex justify-center">
+      <div className="relative z-10 flex justify-center py-20">
         <LoadingSpinner size="medium" />
       </div>
     );
@@ -56,14 +59,11 @@ export default function ProjectDetail() {
 
   if (notFound || !project) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="flex min-h-[60vh] items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-white mb-4">Project Not Found</h2>
-          <Link
-            to="/projects"
-            className="inline-flex items-center text-purple-400 hover:text-purple-300"
-          >
-            <ArrowLeft className="mr-2 w-4 h-4" /> Back to Projects
+          <h2 className="font-display text-2xl font-semibold text-content">Project not found</h2>
+          <Link to="/projects" className="link mt-4 inline-flex items-center text-sm font-medium">
+            <ArrowLeft className="mr-2 h-4 w-4" /> Back to projects
           </Link>
         </div>
       </div>
@@ -73,44 +73,38 @@ export default function ProjectDetail() {
   const { overrides = {} } = project;
 
   return (
-    <div className="relative z-10 py-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          {/* Back */}
-          <Link
-            to="/projects"
-            className="inline-flex items-center text-purple-400 hover:text-purple-300 mb-8"
-          >
-            <ArrowLeft className="mr-2 w-4 h-4" /> Back to Projects
+    <div className="relative z-10">
+      <Section background="ink" maxWidth="max-w-4xl">
+        <Reveal>
+          <Link to="/projects" className="link mb-8 inline-flex items-center text-sm font-medium">
+            <ArrowLeft className="mr-2 h-4 w-4" /> Back to projects
           </Link>
 
-          {/* Header */}
-          <div className="bg-purple-900/30 p-8 rounded-xl border border-purple-700/50 mb-8">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+          {/* ══ HEADER PANEL ═════════════════════════════════════════════ */}
+          <Card radius="xl" padding="lg" raise interactive={false}>
+            <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
               <div>
                 <h1
-                  className="text-4xl font-bold text-white mb-3 break-words"
+                  className="break-words font-display text-3xl font-semibold leading-tight tracking-tight text-content sm:text-4xl"
                   title={displayName(project)}
                 >
                   {displayName(project)}
                 </h1>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
                   {project.language && (
-                    <span
-                      className={`text-xs ${getLangColor(project.language)} text-white flex items-center justify-center h-6 px-3 rounded-full whitespace-nowrap`}
-                    >
+                    <span className="inline-flex items-center gap-1.5 font-mono text-micro uppercase tracking-[0.08em] text-content-faint">
+                      <span
+                        className={`h-2 w-2 rounded-full ${getLangColor(project.language)}`}
+                        aria-hidden="true"
+                      />
                       {project.language}
                     </span>
                   )}
                   {(project.topics || []).map((topic) => (
                     <span
                       key={topic}
-                      className="text-xs bg-purple-700 text-purple-100 flex items-center justify-center h-6 px-3 rounded-full whitespace-nowrap"
+                      className="rounded-md border border-line px-2 py-1 font-mono text-micro uppercase tracking-[0.08em] text-content-faint"
                     >
                       {topic}
                     </span>
@@ -119,108 +113,109 @@ export default function ProjectDetail() {
               </div>
 
               {project.source !== "manual" && (
-                <div className="flex items-center space-x-6 mt-4 md:mt-0 text-purple-300">
-                  <div className="flex items-center space-x-1">
-                    <Star className="w-5 h-5" />
-                    <span>{num.format(project.stars || 0)}</span>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <GitFork className="w-5 h-5" />
-                    <span>{num.format(project.forksCount || 0)}</span>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <Calendar className="w-5 h-5" />
-                    <span>{projectYear(project)}</span>
-                  </div>
+                <div className="tnum flex shrink-0 items-center gap-5 font-mono text-caption text-content-faint">
+                  <span className="inline-flex items-center gap-1.5">
+                    <Star className="h-4 w-4" />
+                    {num.format(project.stars || 0)}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <GitFork className="h-4 w-4" />
+                    {num.format(project.forksCount || 0)}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <Calendar className="h-4 w-4" />
+                    {projectYear(project)}
+                  </span>
                 </div>
               )}
             </div>
 
-            <p className="text-lg text-white leading-relaxed mb-6">
+            <p className="max-w-prose text-base leading-relaxed text-content-muted">
               {displayDescription(project)}
             </p>
 
-            <div className="flex flex-wrap gap-4">
-              <a
-                href={project.htmlUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-all duration-300"
-              >
-                <Code className="mr-2 w-5 h-5" />
-                {project.source === "manual" ? "View Preprint" : "View on GitHub"}
-                <ExternalLink className="ml-2 w-4 h-4" />
-              </a>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Button href={project.htmlUrl} target="_blank" rel="noopener noreferrer" variant="primary">
+                <span className="inline-flex items-center">
+                  <Code className="mr-2 h-4 w-4" />
+                  {project.source === "manual" ? "View preprint" : "View on GitHub"}
+                  <ExternalLink className="ml-2 h-4 w-4" />
+                </span>
+              </Button>
 
               {overrides.arxivUrl && project.source !== "manual" && (
-                <a
-                  href={overrides.arxivUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 border-2 border-purple-400 text-purple-200 font-semibold rounded-lg hover:bg-purple-600 hover:text-white transition-all duration-300"
-                >
-                  <FileText className="mr-2 w-5 h-5" /> arXiv Preprint
-                </a>
+                <Button href={overrides.arxivUrl} target="_blank" rel="noopener noreferrer" variant="secondary">
+                  <span className="inline-flex items-center">
+                    <FileText className="mr-2 h-4 w-4" /> arXiv preprint
+                  </span>
+                </Button>
               )}
 
               {overrides.zenodoDoi && (
-                <a
+                <Button
                   href={`https://doi.org/${overrides.zenodoDoi}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 border-2 border-purple-400 text-purple-200 font-semibold rounded-lg hover:bg-purple-600 hover:text-white transition-all duration-300"
+                  variant="secondary"
                 >
-                  <Database className="mr-2 w-5 h-5" /> Zenodo DOI
-                </a>
+                  <span className="inline-flex items-center">
+                    <Database className="mr-2 h-4 w-4" /> Zenodo DOI
+                  </span>
+                </Button>
               )}
             </div>
-          </div>
+          </Card>
 
-          {/* Overview */}
+          {/* ══ OVERVIEW ═════════════════════════════════════════════════ */}
           {project.readmeExcerpt && (
-            <div className="bg-purple-900/30 p-6 rounded-xl border border-purple-700/50 mb-8">
-              <h3 className="text-xl font-bold text-white mb-4">Overview</h3>
-              <p className="text-purple-200 leading-relaxed whitespace-pre-line">
+            <Card radius="lg" padding="lg" interactive={false} className="mt-8">
+              <h3 className="font-display text-xl font-semibold tracking-tight text-content">
+                Overview
+              </h3>
+              <p className="mt-4 whitespace-pre-line text-base leading-relaxed text-content-muted">
                 {project.readmeExcerpt}
               </p>
-            </div>
+            </Card>
           )}
 
-          {/* Related */}
+          {/* ══ RELATED — same lighter register as the Projects grid ═══════ */}
           {related.length > 0 && (
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Related Projects</h3>
-              <div className="grid md:grid-cols-3 gap-6">
+            <div className="mt-12">
+              <h3 className="border-b border-line pb-4 font-display text-xl font-semibold tracking-tight text-content">
+                Related projects
+              </h3>
+              <div className="mt-6 grid gap-4 sm:grid-cols-3">
                 {related.map((rp) => (
-                  <Link
-                    key={rp._id}
-                    to={`/projects/${rp.slug}`}
-                    className="bg-purple-900/30 p-4 rounded-xl border border-purple-700/50 hover:border-purple-600 transition-all duration-300 hover:transform hover:scale-105"
-                  >
-                    <h4 className="text-lg font-bold text-white mb-2 line-clamp-2">
-                      {displayName(rp)}
-                    </h4>
-                    <p className="text-purple-200 text-sm mb-3 line-clamp-3">
-                      {displayDescription(rp)}
-                    </p>
-
-                    <div className="flex items-center justify-between text-xs text-purple-300">
-                      {rp.language && (
-                        <span
-                          className={`text-[10px] ${getLangColor(rp.language)} text-white flex items-center justify-center h-5 px-2 rounded-full whitespace-nowrap`}
-                        >
-                          {rp.language}
+                  <Link key={rp._id} to={`/projects/${rp.slug}`} className="block">
+                    <Card radius="lg" padding="sm" className="h-full">
+                      <h4 className="line-clamp-2 text-sm font-semibold leading-snug text-content">
+                        {displayName(rp)}
+                      </h4>
+                      <p className="mt-2 line-clamp-3 text-caption leading-relaxed text-content-muted">
+                        {displayDescription(rp)}
+                      </p>
+                      <div className="mt-4 flex items-center justify-between font-mono text-micro text-content-faint">
+                        {rp.language && (
+                          <span className="inline-flex items-center gap-1.5">
+                            <span
+                              className={`h-1.5 w-1.5 rounded-full ${getLangColor(rp.language)}`}
+                              aria-hidden="true"
+                            />
+                            {rp.language}
+                          </span>
+                        )}
+                        <span className="tnum inline-flex items-center gap-1">
+                          <Star className="h-3 w-3" /> {num.format(rp.stars || 0)}
                         </span>
-                      )}
-                      <span>⭐ {num.format(rp.stars || 0)}</span>
-                    </div>
+                      </div>
+                    </Card>
                   </Link>
                 ))}
               </div>
             </div>
           )}
-        </motion.div>
-      </div>
+        </Reveal>
+      </Section>
     </div>
   );
 }

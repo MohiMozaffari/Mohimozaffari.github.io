@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mockup — Research &amp; Publications · Midnight Iris</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="tailwind-theme.js?v=coral"></script>
+<script>tailwind.config = { theme: window.midnightIris };</script>
+<link rel="stylesheet" href="theme.css?v=coral" />
+<style>
+  /* Editorial drop cap — works on the single research_statement string from the DB,
+     so no sentence-splitting or copy rewriting is needed to get the lead treatment. */
+  .statement::first-letter {
+    float: left;
+    font-family: Fraunces, Georgia, serif;
+    font-variation-settings: 'SOFT' 0, 'WONK' 0, 'opsz' 144;
+    font-size: 4.6rem;
+    line-height: 0.82;
+    font-weight: 600;
+    padding: 0.22rem 0.7rem 0 0;
+    color: #c4a9ff;
+  }
+</style>
+</head>
+<body class="bg-ink font-sans text-content antialiased">
+
+<header class="sticky top-0 z-50 border-b border-line bg-ink/80 backdrop-blur-md">
+  <nav class="mx-auto flex max-w-6xl items-center gap-6 px-6 py-4">
+    <a href="hero.html" class="mr-auto font-display display-optical text-xl font-semibold tracking-tight">Mohaddeseh Mozaffari</a>
+    <div class="hidden items-center gap-6 text-sm md:flex">
+      <a href="#" class="font-medium text-iris-300">Research</a>
+      <a href="#" class="font-medium text-content-muted transition-colors hover:text-iris-300">Projects</a>
+      <a href="#" class="font-medium text-content-muted transition-colors hover:text-iris-300">About</a>
+      <span class="ml-1 h-4 w-px bg-line-strong"></span>
+      <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-content-faint">Also</span>
+      <a href="teaching.html" class="text-[13px] text-content-faint transition-colors hover:text-content-muted">Teaching</a>
+      <a href="#" class="text-[13px] text-content-faint transition-colors hover:text-content-muted">Blog</a>
+      <a href="#" class="text-[13px] text-content-faint transition-colors hover:text-content-muted">Contact</a>
+    </div>
+    <a href="/CV.pdf" class="rounded-md border border-line-strong bg-surface-raised px-3.5 py-2 font-mono text-[11px] uppercase tracking-[0.1em] text-content transition-colors hover:border-iris-500 hover:text-iris-200">CV ↓</a>
+  </nav>
+</header>
+
+<!-- ══ PAGE HEADER + RESEARCH STATEMENT (narrative first, per CLAUDE.md) ════ -->
+<section class="relative overflow-hidden mesh">
+  <div class="motif" aria-hidden="true">
+    <svg viewBox="0 0 1200 520" fill="none" preserveAspectRatio="xMidYMid slice">
+      <g stroke="#8B5CF6" stroke-opacity="0.14" stroke-width="1">
+        <path d="M80 420 L260 340 L430 400 M260 340 L340 180 M430 400 L620 300 L800 360 M620 300 L700 160 M800 360 L980 280 M980 280 L1120 380" />
+      </g>
+      <g fill="#8B5CF6" fill-opacity="0.04" stroke="#A683FF" stroke-opacity="0.09">
+        <circle cx="260" cy="340" r="64" /><circle cx="620" cy="300" r="64" /><circle cx="980" cy="280" r="64" />
+      </g>
+      <g fill="#C4A9FF" fill-opacity="0.45">
+        <circle cx="80" cy="420" r="3" /><circle cx="260" cy="340" r="4" /><circle cx="430" cy="400" r="3" />
+        <circle cx="340" cy="180" r="3" /><circle cx="620" cy="300" r="4" /><circle cx="700" cy="160" r="3" />
+        <circle cx="800" cy="360" r="3" /><circle cx="980" cy="280" r="4" /><circle cx="1120" cy="380" r="3" />
+      </g>
+    </svg>
+  </div>
+
+  <div class="relative mx-auto max-w-6xl px-6 pb-16 pt-20">
+    <div class="reveal">
+      <p class="font-mono text-meta uppercase text-orchid-400">01 / The lead section</p>
+      <h1 class="mt-4 max-w-3xl font-display display-optical text-display-lg font-semibold">
+        Research &amp; <span class="gradient-word">Publications</span>
+      </h1>
+      <div class="mt-6 h-px w-32 rule-orchid"></div>
+    </div>
+
+    <div class="reveal reveal-1 mt-12 grid gap-10 md:grid-cols-12">
+      <div class="md:col-span-3">
+        <p class="font-mono text-meta uppercase text-content-faint md:sticky md:top-24">Research statement</p>
+      </div>
+      <div class="md:col-span-9">
+        <!-- research_statement, verbatim from useSiteSettings / D1 site_settings -->
+        <p class="statement max-w-prose text-body text-content-muted">
+          My research traces a path from statistical physics to computational neuroscience: I started
+          by studying how simple local rules generate complex global behavior, then moved into network
+          science and topological data analysis during my master&rsquo;s work at Shahid Beheshti
+          University. There, I applied persistent homology to resting-state fMRI data, developing a
+          node-removal-based method to detect topological differences between autism spectrum disorder
+          and control brain networks and examining how these differences vary with age &mdash; work now
+          under review at Network Neuroscience. I released the analysis pipeline as an open-source
+          Python package, NeuroPHorm, so other TDA researchers working with brain networks could build
+          on it. In parallel, I&rsquo;ve contributed to deep-learning pipelines for coronary artery
+          segmentation and FFR estimation from angiography, which shaped how I think about applying
+          machine learning to noisy, high-stakes medical imaging data. Going forward, I want to keep
+          building methods at the intersection of topology, network science, and machine learning to
+          understand how the brain&rsquo;s structure gives rise to its function.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PUBLICATIONS — the visual centerpiece (B3) ═══════════════════════════ -->
+<section class="border-t border-line bg-surface">
+  <div class="mx-auto max-w-6xl px-6 py-20">
+    <div class="flex items-end justify-between gap-6 border-b border-line-strong pb-5">
+      <h2 class="font-display text-[2rem] font-semibold leading-tight tracking-tight">Publications</h2>
+      <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-content-faint tnum">4 entries</p>
+    </div>
+
+    <!-- Legend makes status literal — an admissions reader should never have to guess. -->
+    <div class="mt-5 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-[0.08em]">
+      <span class="inline-flex items-center gap-2 text-mint-400"><span class="h-1.5 w-1.5 rounded-full bg-mint-400"></span>Published</span>
+      <span class="inline-flex items-center gap-2 text-coral-400"><span class="h-1.5 w-1.5 rounded-full bg-coral-400"></span>Under review</span>
+      <span class="inline-flex items-center gap-2 text-iris-400"><span class="h-1.5 w-1.5 rounded-full bg-iris-400"></span>Preprint</span>
+    </div>
+
+    <ol class="mt-4">
+      <!-- ─ 01 · under review ─ -->
+      <li class="reveal group relative border-b border-line py-9">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-12">
+          <div class="md:col-span-3">
+            <p class="font-mono text-[11px] text-content-faint tnum">01</p>
+            <span class="mt-3 inline-flex items-center gap-2 rounded-md border border-coral-400/30 bg-coral-400/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-coral-300">
+              <span class="h-1.5 w-1.5 rounded-full bg-coral-400"></span>Under review
+            </span>
+            <p class="mt-3 font-mono text-[11px] leading-relaxed text-content-faint">Network Neuroscience</p>
+          </div>
+          <div class="md:col-span-9">
+            <h3 class="font-display text-2xl font-semibold leading-snug tracking-tight text-content">
+              Persistent Homology Reveals Topological Alterations in Resting-State Brain Networks of
+              Autism Spectrum Disorder
+            </h3>
+            <p class="mt-3 font-mono text-[12px] text-content-faint">Mozaffari, M., et al.</p>
+            <p class="mt-4 max-w-prose text-[15px] leading-relaxed text-content-muted">
+              Manuscript No. NETNEURO-26-0075. Derived from master&rsquo;s thesis work applying
+              persistent homology to resting-state fMRI data in autism spectrum disorder.
+            </p>
+          </div>
+        </div>
+      </li>
+
+      <!-- ─ 02 · preprint ─ -->
+      <li class="reveal reveal-1 group relative border-b border-line py-9">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-12">
+          <div class="md:col-span-3">
+            <p class="font-mono text-[11px] text-content-faint tnum">02</p>
+            <span class="mt-3 inline-flex items-center gap-2 rounded-md border border-iris-400/30 bg-iris-400/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-iris-300">
+              <span class="h-1.5 w-1.5 rounded-full bg-iris-400"></span>Preprint
+            </span>
+            <p class="mt-3 font-mono text-[11px] leading-relaxed text-content-faint">arXiv</p>
+          </div>
+          <div class="md:col-span-9">
+            <h3 class="font-display text-2xl font-semibold leading-snug tracking-tight text-content">
+              Coronary Artery Segmentation and Vessel-Type Classification in X-Ray Angiography:
+              Machine-Learning Generalized Image Processing and Deep Neural Networks
+            </h3>
+            <p class="mt-3 font-mono text-[12px] text-content-faint">
+              Yousefzadeh, M., Shirzadeh Barough, S., Fakharifar, A., Tayyarazad, Y., Eghbali, N., Mozaffari, M., et al.
+            </p>
+            <p class="mt-4 max-w-prose text-[15px] leading-relaxed text-content-muted">
+              Preprint. Contributed to the deep-learning segmentation and vessel-type classification
+              pipeline, including DICOM processing and data augmentation.
+            </p>
+            <a href="https://arxiv.org/abs/2601.17429" class="link mt-4 inline-block font-mono text-[12px]">arxiv.org/abs/2601.17429 →</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- ─ 03 · published ─ -->
+      <li class="reveal reveal-2 group relative border-b border-line py-9">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-12">
+          <div class="md:col-span-3">
+            <p class="font-mono text-[11px] text-content-faint tnum">03</p>
+            <span class="mt-3 inline-flex items-center gap-2 rounded-md border border-mint-400/30 bg-mint-400/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-mint-400">
+              <span class="h-1.5 w-1.5 rounded-full bg-mint-400"></span>Published
+            </span>
+            <p class="mt-3 font-mono text-[11px] leading-relaxed text-content-faint">
+              2nd National Meeting on Artificial Intelligence in Medical Imaging &middot; Rajaee Heart
+              Institute, Tehran
+            </p>
+          </div>
+          <div class="md:col-span-9">
+            <h3 class="font-display text-2xl font-semibold leading-snug tracking-tight text-content">
+              Automated Noninvasive FFR Estimation from Biplane Coronary Angiography Using a
+              Transformer-Based Deep Learning Framework
+            </h3>
+            <p class="mt-3 font-mono text-[12px] text-content-faint">
+              Yousefzadeh, M., Shirzadeh Barough, S., Fakharifar, A., Mozaffari, M., et al.
+            </p>
+            <p class="mt-4 max-w-prose text-[15px] leading-relaxed text-content-muted">
+              Oral presentation, 2025. Co-authored transformer-based deep learning framework for FFR
+              estimation from biplane coronary angiography.
+            </p>
+          </div>
+        </div>
+      </li>
+
+      <!-- ─ 04 · published ─ -->
+      <li class="reveal reveal-2 group relative border-b border-line py-9">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-12">
+          <div class="md:col-span-3">
+            <p class="font-mono text-[11px] text-content-faint tnum">04</p>
+            <span class="mt-3 inline-flex items-center gap-2 rounded-md border border-mint-400/30 bg-mint-400/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-mint-400">
+              <span class="h-1.5 w-1.5 rounded-full bg-mint-400"></span>Published
+            </span>
+            <p class="mt-3 font-mono text-[11px] leading-relaxed text-content-faint">
+              Journal of Materials Science: Materials in Electronics
+            </p>
+          </div>
+          <div class="md:col-span-9">
+            <h3 class="font-display text-2xl font-semibold leading-snug tracking-tight text-content">
+              Nonlinear optical response of IMIP ionic liquid-stabilized magnetic graphene oxide sheets
+            </h3>
+            <p class="mt-3 font-mono text-[12px] text-content-faint">Mohammadi, M.S., Shahrokhi, S., Mozaffari, M., et al.</p>
+            <p class="mt-4 max-w-prose text-[15px] leading-relaxed text-content-muted">
+              Journal of Materials Science: Materials in Electronics, 33, 13224&ndash;13233 (2022).
+              Co-authored; Mozaffari is a co-author, not first or senior author.
+            </p>
+            <a href="https://doi.org/10.1007/s10854-022-08262-1" class="link mt-4 inline-block font-mono text-[12px]">doi.org/10.1007/s10854-022-08262-1 →</a>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══ SOFTWARE — NeuroPHorm gets a real slot, not just a project card ══════ -->
+<section class="bg-ink">
+  <div class="mx-auto max-w-6xl px-6 py-20">
+    <h2 class="border-b border-line pb-5 font-display text-[2rem] font-semibold leading-tight tracking-tight">Research software</h2>
+    <div class="reveal mt-8 rounded-xl border border-line bg-surface-raised p-7 shadow-raise">
+      <div class="grid gap-6 md:grid-cols-12">
+        <div class="md:col-span-3">
+          <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-content-faint">Zenodo DOI</p>
+          <p class="mt-2 font-mono text-[12px] text-coral-400">10.5281/zenodo.17542598</p>
+        </div>
+        <div class="md:col-span-9">
+          <h3 class="font-display text-2xl font-semibold tracking-tight">NeuroPHorm</h3>
+          <p class="mt-3 max-w-prose text-[15px] leading-relaxed text-content-muted">
+            Open-source Python package for topological data analysis of brain networks &mdash; the
+            pipeline behind the persistent-homology thesis work, packaged so other researchers can
+            build on it.
+          </p>
+          <a href="https://github.com/MohiMozaffari/NeuroPHorm" class="link mt-4 inline-block font-mono text-[12px]">github.com/MohiMozaffari/NeuroPHorm →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EDUCATION ═══════════════════════════════════════════════════════════ -->
+<section class="border-t border-line bg-surface">
+  <div class="mx-auto max-w-6xl px-6 py-20">
+    <h2 class="border-b border-line pb-5 font-display text-[2rem] font-semibold leading-tight tracking-tight">Education</h2>
+
+    <div class="reveal mt-2">
+      <div class="grid gap-6 border-b border-line py-8 md:grid-cols-12">
+        <div class="md:col-span-3">
+          <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-content-faint">Defended 11 Mar 2025</p>
+          <p class="mt-2 inline-block rounded-md border border-coral-400/30 bg-coral-400/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-coral-300">Outstanding</p>
+        </div>
+        <div class="md:col-span-9">
+          <h3 class="font-display text-xl font-semibold tracking-tight">MSc &mdash; Shahid Beheshti University</h3>
+          <p class="mt-3 max-w-prose text-[15px] leading-relaxed text-content-muted">
+            Thesis: <em class="text-content">Analysis of Topological Features of Brain Networks in Autism
+            Spectrum Disorder Using Persistent Homology</em>. Advised by Prof. G. Reza Jafari.
+            Ranked 2nd in cohort.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid gap-6 py-8 md:grid-cols-12">
+        <div class="md:col-span-3">
+          <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-content-faint tnum">2018 &ndash; 2022</p>
+          <p class="mt-2 inline-block rounded-md border border-coral-400/30 bg-coral-400/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-coral-300">Ranked 1st</p>
+        </div>
+        <div class="md:col-span-9">
+          <h3 class="font-display text-xl font-semibold tracking-tight">BSc Physics &mdash; Shahid Beheshti University</h3>
+          <p class="mt-3 max-w-prose text-[15px] leading-relaxed text-content-muted">Ranked 1st in cohort.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-ink">
+  <div class="mx-auto max-w-6xl px-6 py-10">
+    <div class="h-px w-24 rule-orchid"></div>
+    <p class="mt-5 font-mono text-[11px] text-content-faint">
+      mohaddeseh.mozaffarii@gmail.com &middot; github.com/MohiMozaffari &middot; linkedin.com/in/mohimozaffari
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

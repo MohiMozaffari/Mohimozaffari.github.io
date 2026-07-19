@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mockup — Hero / Home · Midnight Iris</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="tailwind-theme.js?v=coral"></script>
+<script>tailwind.config = { theme: window.midnightIris };</script>
+<link rel="stylesheet" href="theme.css?v=coral" />
+</head>
+<body class="bg-ink font-sans text-content antialiased">
+
+<!-- ══ NAV (B1) — Research leads; Teaching demoted behind an "Also" divider ══ -->
+<header class="sticky top-0 z-50 border-b border-line bg-ink/80 backdrop-blur-md">
+  <nav class="mx-auto flex max-w-6xl items-center gap-6 px-6 py-4">
+    <a href="#" class="mr-auto flex items-baseline gap-2">
+      <span class="font-display display-optical text-xl font-semibold tracking-tight">Mohaddeseh Mozaffari</span>
+    </a>
+
+    <div class="hidden items-center gap-6 text-sm md:flex">
+      <a href="#" class="font-medium text-content transition-colors hover:text-iris-300">Research</a>
+      <a href="#" class="font-medium text-content-muted transition-colors hover:text-iris-300">Projects</a>
+      <a href="#" class="font-medium text-content-muted transition-colors hover:text-iris-300">About</a>
+
+      <!-- the "Also" divider: Teaching/Blog/Contact are visibly subordinate -->
+      <span class="ml-1 h-4 w-px bg-line-strong"></span>
+      <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-content-faint">Also</span>
+      <a href="#" class="text-[13px] text-content-faint transition-colors hover:text-content-muted">Teaching</a>
+      <a href="#" class="text-[13px] text-content-faint transition-colors hover:text-content-muted">Blog</a>
+      <a href="#" class="text-[13px] text-content-faint transition-colors hover:text-content-muted">Contact</a>
+    </div>
+
+    <!-- persistent chrome, per CLAUDE.md -->
+    <a href="/CV.pdf" class="rounded-md border border-line-strong bg-surface-raised px-3.5 py-2 font-mono text-[11px] uppercase tracking-[0.1em] text-content transition-colors hover:border-iris-500 hover:text-iris-200">
+      CV ↓
+    </a>
+  </nav>
+</header>
+
+<!-- ══ HERO (B5) ═══════════════════════════════════════════════════════════ -->
+<section class="relative overflow-hidden mesh">
+  <!-- A5: static SVG motif — Vietoris–Rips filtration over a sparse graph. No JS. -->
+  <div class="motif" aria-hidden="true">
+    <svg viewBox="0 0 1200 700" fill="none" preserveAspectRatio="xMidYMid slice">
+      <g stroke="#8B5CF6" stroke-opacity="0.16" stroke-width="1">
+        <path d="M120 180 L300 120 L470 210 L300 330 Z" />
+        <path d="M300 120 L470 210 M120 180 L300 330 M470 210 L640 150 M640 150 L780 260 M300 330 L470 480 M470 480 L640 150 M470 480 L700 560" />
+      </g>
+      <!-- the graph resolves from iris into orchid as it moves right -->
+      <g stroke="#E0559C" stroke-opacity="0.18" stroke-width="1">
+        <path d="M780 260 L960 200 M960 200 L1080 380 M700 560 L900 470 M900 470 L1080 380 M780 260 L900 470" />
+      </g>
+      <!-- filtration balls: the ε-radius disks of persistent homology -->
+      <g fill="#8B5CF6" fill-opacity="0.05" stroke="#A683FF" stroke-opacity="0.10">
+        <circle cx="300" cy="120" r="72" /><circle cx="470" cy="210" r="72" />
+        <circle cx="300" cy="330" r="72" /><circle cx="640" cy="150" r="72" />
+      </g>
+      <g fill="#E0559C" fill-opacity="0.05" stroke="#EC72B6" stroke-opacity="0.14">
+        <circle cx="900" cy="470" r="72" /><circle cx="1080" cy="380" r="72" /><circle cx="960" cy="200" r="72" />
+      </g>
+      <g fill="#C4A9FF" fill-opacity="0.5">
+        <circle cx="120" cy="180" r="3" /><circle cx="300" cy="120" r="4" /><circle cx="470" cy="210" r="4" />
+        <circle cx="300" cy="330" r="3" /><circle cx="640" cy="150" r="4" /><circle cx="780" cy="260" r="3" />
+        <circle cx="470" cy="480" r="4" /><circle cx="700" cy="560" r="3" />
+      </g>
+      <g fill="#EC72B6" fill-opacity="0.6">
+        <circle cx="960" cy="200" r="4" /><circle cx="900" cy="470" r="4" /><circle cx="1080" cy="380" r="3.5" />
+      </g>
+    </svg>
+  </div>
+
+  <!-- Sized to fit the viewport under the 4.25rem nav — no scrolling to see the hero. -->
+  <div class="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-6 py-12 md:min-h-[calc(100svh-4.25rem)] md:grid-cols-12 md:gap-12">
+    <!-- left: typographic, left-aligned (not a centered gradient wall) -->
+    <div class="reveal md:col-span-7">
+      <p class="font-mono text-meta uppercase text-orchid-400">Mohaddeseh &ldquo;Mohi&rdquo; Mozaffari</p>
+
+      <h1 class="mt-4 font-display display-optical text-display-xl font-semibold">
+        AI &amp;<br /><span class="gradient-word">Neuroscience</span><br />Researcher
+      </h1>
+
+      <div class="mt-6 h-px w-32 rule-orchid"></div>
+
+      <!-- home_hero_line2, split on "|" into mono metadata -->
+      <div class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-meta uppercase text-content-faint">
+        <span>Brain Networks</span>
+        <span class="text-orchid-500">/</span>
+        <span>Topological Data Analysis</span>
+        <span class="text-orchid-500">/</span>
+        <span>Medical Imaging</span>
+      </div>
+
+      <!-- home_about_paragraph, promoted into the hero — this IS the tease that
+           lets B2 delete the duplicate "About Me" block from Home -->
+      <p class="mt-6 max-w-prose text-[15px] leading-relaxed text-content-muted">
+        I started in physics, curious about how simple rules create complex patterns. That curiosity
+        grew into my master&rsquo;s research on brain networks and autism, where I used tools like
+        persistent homology to study the hidden structure of the brain.
+      </p>
+
+      <!-- three actions, three weights — no three identical gradient pills -->
+      <div class="mt-7 flex flex-wrap items-center gap-3">
+        <a href="#" class="rounded-lg bg-iris-600 px-5 py-3 text-sm font-semibold text-white shadow-focus transition-colors hover:bg-iris-500">
+          View research
+        </a>
+        <a href="/CV.pdf" class="rounded-lg border border-line-strong bg-surface-raised px-5 py-3 text-sm font-medium text-content transition-colors hover:border-orchid-500">
+          Download CV
+        </a>
+        <a href="#" class="link px-1 py-3 text-sm font-medium">Book a call →</a>
+      </div>
+    </div>
+
+    <!-- right: headshot — capped narrow so the whole hero clears the fold -->
+    <div class="reveal reveal-1 md:col-span-5">
+      <div class="mx-auto w-full max-w-[260px] md:ml-auto md:mr-0">
+        <div class="relative">
+          <div class="absolute -inset-3 rounded-2xl bg-gradient-to-br from-iris-500/25 via-orchid-500/10 to-orchid-400/25 blur-xl"></div>
+          <div class="relative overflow-hidden rounded-2xl border border-line-strong bg-surface-raised shadow-raise">
+            <img src="../public/headshot-hero.jpg" alt="Mohaddeseh Mozaffari" class="aspect-[4/5] w-full object-cover" />
+          </div>
+        </div>
+
+        <!-- verified credential strip (facts only, from CV repo / CLAUDE.md) -->
+        <dl class="mt-5 divide-y divide-line rounded-lg border border-line bg-surface-raised/60">
+          <div class="px-4 py-2.5">
+            <dt class="font-mono text-[10px] uppercase tracking-[0.08em] text-content-faint">MSc thesis</dt>
+            <dd class="mt-0.5 text-[13px] text-content-muted">Outstanding &middot; ranked 2nd in cohort</dd>
+          </div>
+          <div class="px-4 py-2.5">
+            <dt class="font-mono text-[10px] uppercase tracking-[0.08em] text-content-faint">Institution</dt>
+            <dd class="mt-0.5 text-[13px] text-content-muted">Shahid Beheshti University</dd>
+          </div>
+          <div class="px-4 py-2.5">
+            <dt class="font-mono text-[10px] uppercase tracking-[0.08em] text-content-faint">Open source</dt>
+            <dd class="mt-0.5 text-[13px] text-content-muted">NeuroPHorm &middot; Zenodo DOI</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FEATURED PUBLICATIONS (B2/B3) — first thing under the hero ══════════ -->
+<section class="border-y border-line bg-surface">
+  <div class="mx-auto max-w-6xl px-6 py-20">
+    <div class="flex items-end justify-between gap-6 border-b border-line pb-5">
+      <div>
+        <p class="font-mono text-meta uppercase text-orchid-400">01 / Research</p>
+        <h2 class="mt-2 font-display text-[2rem] font-semibold leading-tight tracking-tight">Selected publications</h2>
+      </div>
+      <a href="#" class="link shrink-0 pb-1 text-sm">All research →</a>
+    </div>
+
+    <ol class="mt-2">
+      <!-- entry 1 -->
+      <li class="reveal group border-b border-line py-7">
+        <a href="#" class="grid grid-cols-1 gap-4 md:grid-cols-12">
+          <div class="md:col-span-3">
+            <span class="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.08em] text-coral-400">
+              <span class="h-1.5 w-1.5 rounded-full bg-coral-400"></span>Under review
+            </span>
+            <p class="mt-2 font-mono text-[11px] text-content-faint">Network Neuroscience</p>
+          </div>
+          <div class="md:col-span-9">
+            <h3 class="font-display text-xl font-semibold leading-snug text-content transition-colors group-hover:text-iris-200">
+              Persistent Homology Reveals Topological Alterations in Resting-State Brain Networks of
+              Autism Spectrum Disorder
+            </h3>
+            <p class="mt-2 font-mono text-[12px] text-content-faint">Mozaffari, M., et al.</p>
+          </div>
+        </a>
+      </li>
+      <!-- entry 2 -->
+      <li class="reveal reveal-1 group border-b border-line py-7">
+        <a href="https://arxiv.org/abs/2601.17429" class="grid grid-cols-1 gap-4 md:grid-cols-12">
+          <div class="md:col-span-3">
+            <span class="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.08em] text-iris-400">
+              <span class="h-1.5 w-1.5 rounded-full bg-iris-400"></span>Preprint
+            </span>
+            <p class="mt-2 font-mono text-[11px] text-content-faint">arXiv:2601.17429</p>
+          </div>
+          <div class="md:col-span-9">
+            <h3 class="font-display text-xl font-semibold leading-snug text-content transition-colors group-hover:text-iris-200">
+              Coronary Artery Segmentation and Vessel-Type Classification in X-Ray Angiography
+            </h3>
+            <p class="mt-2 font-mono text-[12px] text-content-faint">Yousefzadeh, M., &hellip; Mozaffari, M., et al.</p>
+          </div>
+        </a>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══ FEATURED PROJECTS — deliberately lighter than publications above ═════ -->
+<section class="bg-ink">
+  <div class="mx-auto max-w-6xl px-6 py-20">
+    <div class="flex items-end justify-between gap-6 border-b border-line pb-5">
+      <div>
+        <p class="font-mono text-meta uppercase text-orchid-400">02 / Projects</p>
+        <h2 class="mt-2 font-display text-[2rem] font-semibold leading-tight tracking-tight">Selected work</h2>
+      </div>
+      <a href="#" class="link shrink-0 pb-1 text-sm">All projects →</a>
+    </div>
+
+    <div class="reveal mt-8 grid gap-4 md:grid-cols-3">
+      <article class="rounded-lg border border-line bg-surface-raised p-5 transition-colors hover:border-line-strong">
+        <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-content-faint">Python &middot; TDA</p>
+        <h3 class="mt-2 text-base font-semibold text-content">NeuroPHorm</h3>
+        <p class="mt-2 text-sm leading-relaxed text-content-muted">Open-source toolkit for topological data analysis of brain networks.</p>
+      </article>
+      <article class="rounded-lg border border-line bg-surface-raised p-5 transition-colors hover:border-line-strong">
+        <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-content-faint">NLP &middot; DeBERTa</p>
+        <h3 class="mt-2 text-base font-semibold text-content">Context-Aware Sarcasm Detection</h3>
+        <p class="mt-2 text-sm leading-relaxed text-content-muted">DeBERTa with LoRA fine-tuning and FAISS retrieval.</p>
+      </article>
+      <article class="rounded-lg border border-line bg-surface-raised p-5 transition-colors hover:border-line-strong">
+        <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-content-faint">Medical imaging</p>
+        <h3 class="mt-2 text-base font-semibold text-content">Coronary Artery Segmentation</h3>
+        <p class="mt-2 text-sm leading-relaxed text-content-muted">Deep-learning segmentation and vessel-type classification.</p>
+      </article>
+    </div>
+    <p class="mt-4 font-mono text-[11px] text-content-faint">↑ Project cards sit in a lighter register than the publication list above — never the reverse (B3).</p>
+  </div>
+</section>
+
+<!-- ══ TEACHING + CONTACT CTA — one quiet strip, not a peer section ═════════ -->
+<section class="border-t border-line bg-surface">
+  <div class="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-6 py-14 md:flex-row md:items-center">
+    <div>
+      <p class="font-mono text-meta uppercase text-orchid-400">Also</p>
+      <p class="mt-2 max-w-xl text-body text-content-muted">
+        I teach Python, data analysis, and machine learning &mdash; from complete beginners to
+        advanced deep-learning students.
+      </p>
+    </div>
+    <div class="flex shrink-0 gap-3">
+      <a href="#" class="rounded-lg border border-line-strong bg-surface-raised px-5 py-3 text-sm font-medium text-content transition-colors hover:border-iris-500">Teaching</a>
+      <a href="#" class="rounded-lg border border-coral-400/40 bg-coral-400/10 px-5 py-3 text-sm font-semibold text-coral-300 transition-colors hover:bg-coral-400/20">Book a session</a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-ink">
+  <div class="mx-auto max-w-6xl px-6 py-10">
+    <div class="h-px w-24 rule-orchid"></div>
+    <p class="mt-5 font-mono text-[11px] text-content-faint">
+      mohaddeseh.mozaffarii@gmail.com &middot; github.com/MohiMozaffari &middot; linkedin.com/in/mohimozaffari
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
