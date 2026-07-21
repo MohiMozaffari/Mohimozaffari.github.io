@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { RefreshCw, Plus } from 'lucide-react';
 import { getAllProjectsAdmin, updateProjectAdmin, createProjectAdmin } from '../../../api/projects';
 import { triggerSync } from '../../../api/auth';
+import Button from '../../../components/ui/Button';
 
 const emptyForm = { name: '', description: '', htmlUrl: '', featured: false };
+
+const inputClasses =
+  'rounded-lg border border-line bg-surface-overlay px-4 py-3 text-sm text-content placeholder-content-faint transition-colors focus:border-iris-500 focus:outline-none';
 
 const ProjectsTab = () => {
   const [projects, setProjects] = useState([]);
@@ -68,50 +72,50 @@ const ProjectsTab = () => {
     }
   };
 
-  if (loading) return <p className="text-purple-300">Loading projects...</p>;
+  if (loading) return <p className="text-content-faint">Loading projects...</p>;
 
   return (
     <div>
-      <div className="flex items-center gap-4 mb-6">
-        <button
-          onClick={handleSync}
-          disabled={syncing}
-          className="inline-flex items-center px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-all duration-300 disabled:opacity-60"
-        >
-          <RefreshCw className={`mr-2 w-4 h-4 ${syncing ? 'animate-spin' : ''}`} />
-          {syncing ? 'Syncing...' : 'Refresh from GitHub'}
-        </button>
-        {syncMessage && <span className="text-purple-300 text-sm">{syncMessage}</span>}
-        <button
-          onClick={() => setShowNewForm((v) => !v)}
-          className="ml-auto inline-flex items-center px-4 py-2 bg-purple-900/50 border border-purple-700/50 text-purple-200 font-semibold rounded-lg hover:border-purple-600 transition-all duration-300"
-        >
-          <Plus className="mr-2 w-4 h-4" /> Add Manual Project
-        </button>
+      <div className="mb-6 flex flex-wrap items-center gap-4">
+        <Button onClick={handleSync} variant="primary" disabled={syncing}>
+          <span className="inline-flex items-center">
+            <RefreshCw className={`mr-2 h-4 w-4 ${syncing ? 'animate-spin' : ''}`} />
+            {syncing ? 'Syncing...' : 'Refresh from GitHub'}
+          </span>
+        </Button>
+        {syncMessage && <span className="text-sm text-content-muted">{syncMessage}</span>}
+        <Button onClick={() => setShowNewForm((v) => !v)} variant="secondary" className="ml-auto">
+          <span className="inline-flex items-center">
+            <Plus className="mr-2 h-4 w-4" /> Add Manual Project
+          </span>
+        </Button>
       </div>
 
       {showNewForm && (
-        <form onSubmit={handleCreate} className="bg-purple-900/30 p-4 rounded-xl border border-purple-700/50 mb-6 grid sm:grid-cols-2 gap-3">
+        <form
+          onSubmit={handleCreate}
+          className="mb-6 grid gap-3 rounded-xl border border-line bg-surface-raised p-4 sm:grid-cols-2"
+        >
           <input
             placeholder="Name"
             required
             value={newProject.name}
             onChange={(e) => setNewProject({ ...newProject, name: e.target.value })}
-            className="bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
+            className={inputClasses}
           />
           <input
             placeholder="Link (arXiv, external URL, etc.)"
             value={newProject.htmlUrl}
             onChange={(e) => setNewProject({ ...newProject, htmlUrl: e.target.value })}
-            className="bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
+            className={inputClasses}
           />
           <textarea
             placeholder="Description"
             value={newProject.description}
             onChange={(e) => setNewProject({ ...newProject, description: e.target.value })}
-            className="sm:col-span-2 bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
+            className={`sm:col-span-2 ${inputClasses}`}
           />
-          <label className="flex items-center gap-2 text-purple-200 text-sm">
+          <label className="flex items-center gap-2 text-sm text-content-muted">
             <input
               type="checkbox"
               checked={newProject.featured}
@@ -120,23 +124,25 @@ const ProjectsTab = () => {
             Featured
           </label>
           <div className="sm:col-span-2">
-            <button type="submit" className="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-semibold hover:bg-purple-700">
+            <Button type="submit" variant="primary">
               Create
-            </button>
+            </Button>
           </div>
         </form>
       )}
 
       <div className="space-y-4">
         {projects.map((p) => (
-          <div key={p._id} className="bg-purple-900/30 p-4 rounded-xl border border-purple-700/50">
+          <div key={p._id} className="rounded-xl border border-line bg-surface-raised p-4">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <span className="text-white font-semibold">{p.name}</span>
-                <span className="ml-2 text-xs text-purple-400">{p.source}</span>
+                <span className="font-semibold text-content">{p.name}</span>
+                <span className="ml-2 font-mono text-micro uppercase tracking-[0.08em] text-content-faint">
+                  {p.source}
+                </span>
               </div>
               <div className="flex items-center gap-3">
-                <label className="flex items-center gap-1 text-sm text-purple-200">
+                <label className="flex items-center gap-1 text-sm text-content-muted">
                   <input
                     type="checkbox"
                     checked={!!p.featured}
@@ -144,7 +150,7 @@ const ProjectsTab = () => {
                   />
                   Featured
                 </label>
-                <label className="flex items-center gap-1 text-sm text-purple-200">
+                <label className="flex items-center gap-1 text-sm text-content-muted">
                   <input
                     type="checkbox"
                     checked={!!p.hidden}
@@ -154,7 +160,7 @@ const ProjectsTab = () => {
                 </label>
                 <button
                   onClick={() => startEditOverrides(p)}
-                  className="text-purple-400 hover:text-purple-300 text-sm font-semibold"
+                  className="text-sm font-semibold text-iris-300 transition-colors hover:text-iris-200"
                 >
                   Edit overrides
                 </button>
@@ -162,50 +168,44 @@ const ProjectsTab = () => {
             </div>
 
             {editingId === p._id && (
-              <div className="mt-4 grid sm:grid-cols-2 gap-3">
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
                 <input
                   placeholder="arXiv URL"
                   value={overridesDraft.arxivUrl || ''}
                   onChange={(e) => setOverridesDraft({ ...overridesDraft, arxivUrl: e.target.value })}
-                  className="bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
+                  className={inputClasses}
                 />
                 <input
                   placeholder="Zenodo DOI"
                   value={overridesDraft.zenodoDoi || ''}
                   onChange={(e) => setOverridesDraft({ ...overridesDraft, zenodoDoi: e.target.value })}
-                  className="bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
+                  className={inputClasses}
                 />
                 <input
                   placeholder="Custom title"
                   value={overridesDraft.customTitle || ''}
                   onChange={(e) => setOverridesDraft({ ...overridesDraft, customTitle: e.target.value })}
-                  className="bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
+                  className={inputClasses}
                 />
                 <input
                   placeholder="Publication status"
                   value={overridesDraft.publicationStatus || ''}
                   onChange={(e) => setOverridesDraft({ ...overridesDraft, publicationStatus: e.target.value })}
-                  className="bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
+                  className={inputClasses}
                 />
                 <textarea
                   placeholder="Custom description"
                   value={overridesDraft.customDescription || ''}
                   onChange={(e) => setOverridesDraft({ ...overridesDraft, customDescription: e.target.value })}
-                  className="sm:col-span-2 bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
+                  className={`sm:col-span-2 ${inputClasses}`}
                 />
-                <div className="sm:col-span-2 flex gap-3">
-                  <button
-                    onClick={() => saveOverrides(p)}
-                    className="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-semibold hover:bg-purple-700"
-                  >
+                <div className="flex gap-3 sm:col-span-2">
+                  <Button onClick={() => saveOverrides(p)} variant="primary">
                     Save
-                  </button>
-                  <button
-                    onClick={() => setEditingId(null)}
-                    className="px-4 py-2 text-purple-300 text-sm"
-                  >
+                  </Button>
+                  <Button onClick={() => setEditingId(null)} variant="ghost">
                     Cancel
-                  </button>
+                  </Button>
                 </div>
               </div>
             )}

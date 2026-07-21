@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { getAllPostsAdmin, createPost, updatePost, deletePost } from '../../../api/blog';
+import Button from '../../../components/ui/Button';
 
 const emptyForm = { title: '', body: '', tags: '', published: true };
+
+// Shared with the other admin tabs / the Contact form — the Midnight Iris input.
+const inputClasses =
+  'w-full rounded-lg border border-line bg-surface-overlay px-4 py-3 text-sm text-content placeholder-content-faint transition-colors focus:border-iris-500 focus:outline-none';
 
 const BlogTab = () => {
   const [posts, setPosts] = useState([]);
@@ -41,13 +46,16 @@ const BlogTab = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="bg-purple-900/30 p-6 rounded-xl border border-purple-700/50 mb-8 space-y-3">
+      <form
+        onSubmit={handleSubmit}
+        className="mb-8 space-y-3 rounded-xl border border-line bg-surface-raised p-6"
+      >
         <input
           placeholder="Title"
           required
           value={form.title}
           onChange={(e) => setForm({ ...form, title: e.target.value })}
-          className="w-full bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
+          className={inputClasses}
         />
         <textarea
           placeholder="Body"
@@ -55,15 +63,15 @@ const BlogTab = () => {
           rows={6}
           value={form.body}
           onChange={(e) => setForm({ ...form, body: e.target.value })}
-          className="w-full bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
+          className={inputClasses}
         />
         <input
           placeholder="Tags (comma separated)"
           value={form.tags}
           onChange={(e) => setForm({ ...form, tags: e.target.value })}
-          className="w-full bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
+          className={inputClasses}
         />
-        <label className="flex items-center gap-2 text-purple-200 text-sm">
+        <label className="flex items-center gap-2 text-sm text-content-muted">
           <input
             type="checkbox"
             checked={form.published}
@@ -71,28 +79,47 @@ const BlogTab = () => {
           />
           Published
         </label>
-        <div className="flex gap-3">
-          <button type="submit" className="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-semibold hover:bg-purple-700">
+        <div className="flex items-center gap-3">
+          <Button type="submit" variant="primary">
             {editingId ? 'Update' : 'Add'} Post
-          </button>
+          </Button>
           {editingId && (
-            <button type="button" onClick={() => { setEditingId(null); setForm(emptyForm); }} className="px-4 py-2 text-purple-300 text-sm">
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={() => { setEditingId(null); setForm(emptyForm); }}
+            >
               Cancel
-            </button>
+            </Button>
           )}
         </div>
       </form>
 
       <div className="space-y-3">
         {posts.map((post) => (
-          <div key={post._id} className="bg-purple-900/30 p-4 rounded-xl border border-purple-700/50 flex items-center justify-between gap-3">
+          <div
+            key={post._id}
+            className="flex items-center justify-between gap-3 rounded-xl border border-line bg-surface-raised p-4"
+          >
             <div>
-              <p className="text-white font-semibold">{post.title}</p>
-              <p className="text-purple-400 text-xs">{post.published ? 'Published' : 'Draft'}</p>
+              <p className="font-semibold text-content">{post.title}</p>
+              <p className="font-mono text-micro uppercase tracking-[0.08em] text-content-faint">
+                {post.published ? 'Published' : 'Draft'}
+              </p>
             </div>
-            <div className="flex gap-3 shrink-0">
-              <button onClick={() => startEdit(post)} className="text-purple-400 hover:text-purple-300 text-sm font-semibold">Edit</button>
-              <button onClick={() => handleDelete(post._id)} className="text-red-400 hover:text-red-300 text-sm font-semibold">Delete</button>
+            <div className="flex shrink-0 gap-4">
+              <button
+                onClick={() => startEdit(post)}
+                className="text-sm font-semibold text-iris-300 transition-colors hover:text-iris-200"
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => handleDelete(post._id)}
+                className="text-sm font-semibold text-coral-400 transition-colors hover:text-coral-300"
+              >
+                Delete
+              </button>
             </div>
           </div>
         ))}

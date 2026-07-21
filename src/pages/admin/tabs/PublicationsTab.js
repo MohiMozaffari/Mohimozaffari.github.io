@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { getPublications, createPublication, updatePublication, deletePublication } from '../../../api/publications';
+import Button from '../../../components/ui/Button';
+import Badge from '../../../components/ui/Badge';
 
 const emptyForm = { title: '', authors: '', status: 'submitted', venue: '', url: '', doi: '', description: '' };
+
+const inputClasses =
+  'rounded-lg border border-line bg-surface-overlay px-4 py-3 text-sm text-content placeholder-content-faint transition-colors focus:border-iris-500 focus:outline-none';
 
 const PublicationsTab = () => {
   const [publications, setPublications] = useState([]);
@@ -43,24 +48,27 @@ const PublicationsTab = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="bg-purple-900/30 p-6 rounded-xl border border-purple-700/50 mb-8 grid sm:grid-cols-2 gap-3">
+      <form
+        onSubmit={handleSubmit}
+        className="mb-8 grid gap-3 rounded-xl border border-line bg-surface-raised p-6 sm:grid-cols-2"
+      >
         <input
           placeholder="Title"
           required
           value={form.title}
           onChange={(e) => setForm({ ...form, title: e.target.value })}
-          className="sm:col-span-2 bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
+          className={`sm:col-span-2 ${inputClasses}`}
         />
         <input
           placeholder="Authors"
           value={form.authors}
           onChange={(e) => setForm({ ...form, authors: e.target.value })}
-          className="bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
+          className={inputClasses}
         />
         <select
           value={form.status}
           onChange={(e) => setForm({ ...form, status: e.target.value })}
-          className="bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
+          className={inputClasses}
         >
           {/* Must stay in sync with STATUS_CONFIG in src/components/ui/Badge.jsx.
               "preprint" was previously missing here even though the DB used it,
@@ -75,42 +83,59 @@ const PublicationsTab = () => {
           placeholder="Venue"
           value={form.venue}
           onChange={(e) => setForm({ ...form, venue: e.target.value })}
-          className="bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
+          className={inputClasses}
         />
         <input
           placeholder="URL"
           value={form.url}
           onChange={(e) => setForm({ ...form, url: e.target.value })}
-          className="bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
+          className={inputClasses}
         />
         <textarea
           placeholder="Description"
           value={form.description}
           onChange={(e) => setForm({ ...form, description: e.target.value })}
-          className="sm:col-span-2 bg-purple-950/50 border border-purple-700/50 rounded-lg px-3 py-2 text-white text-sm"
+          className={`sm:col-span-2 ${inputClasses}`}
         />
-        <div className="sm:col-span-2 flex gap-3">
-          <button type="submit" className="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-semibold hover:bg-purple-700">
+        <div className="flex gap-3 sm:col-span-2">
+          <Button type="submit" variant="primary">
             {editingId ? 'Update' : 'Add'} Publication
-          </button>
+          </Button>
           {editingId && (
-            <button type="button" onClick={() => { setEditingId(null); setForm(emptyForm); }} className="px-4 py-2 text-purple-300 text-sm">
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={() => { setEditingId(null); setForm(emptyForm); }}
+            >
               Cancel
-            </button>
+            </Button>
           )}
         </div>
       </form>
 
       <div className="space-y-3">
         {publications.map((pub) => (
-          <div key={pub._id} className="bg-purple-900/30 p-4 rounded-xl border border-purple-700/50 flex items-center justify-between gap-3">
-            <div>
-              <p className="text-white font-semibold">{pub.title}</p>
-              <p className="text-purple-400 text-xs">{pub.status}</p>
+          <div
+            key={pub._id}
+            className="flex items-center justify-between gap-3 rounded-xl border border-line bg-surface-raised p-4"
+          >
+            <div className="min-w-0">
+              <p className="font-semibold text-content">{pub.title}</p>
+              <Badge status={pub.status} className="mt-2" />
             </div>
-            <div className="flex gap-3 shrink-0">
-              <button onClick={() => startEdit(pub)} className="text-purple-400 hover:text-purple-300 text-sm font-semibold">Edit</button>
-              <button onClick={() => handleDelete(pub._id)} className="text-red-400 hover:text-red-300 text-sm font-semibold">Delete</button>
+            <div className="flex shrink-0 gap-4">
+              <button
+                onClick={() => startEdit(pub)}
+                className="text-sm font-semibold text-iris-300 transition-colors hover:text-iris-200"
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => handleDelete(pub._id)}
+                className="text-sm font-semibold text-coral-400 transition-colors hover:text-coral-300"
+              >
+                Delete
+              </button>
             </div>
           </div>
         ))}
